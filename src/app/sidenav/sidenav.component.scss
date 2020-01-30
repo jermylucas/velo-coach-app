@@ -1,8 +1,85 @@
+@import "../../sass/variables";
 
+a {
+  text-decoration: none;
+  color: $color-white;
+}
 .example-sidenav {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 200px;
   background: rgba(255, 0, 0, 0.5);
+}
+
+.sidenav {
+  margin-top: 56px;
+  display: block;
+  width: 212px;
+  height: 100%;
+  position: fixed;
+  background: $color-grey;
+
+  &__expansion {
+    &--title {
+      font-size: 16px;
+      color: $color-white;
+      position: relative;
+      font-weight: normal;
+    }
+    &--panel {
+      cursor: pointer;
+      box-shadow: none;
+      border-radius: 0;
+      color: $color-white;
+      border-bottom: 1px solid $color-border-grey;
+      background: $color-dark-grey;
+
+      border-left: 4px solid transparent;
+
+      &:hover {
+        background: $color-black;
+      }
+      &-active {
+        background: $color-black;
+        border-left: solid 4px red;
+        position: relative;
+      }
+    }
+
+    &--header {
+      padding: 16px;
+    }
+
+    &--list {
+      list-style-type: none;
+      padding-left: 5px;
+      margin-top: -30px;
+      li {
+        padding-left: 0;
+        padding-top: 10px;
+
+        &:last-child {
+          margin-bottom: -10px;
+        }
+      }
+    }
+
+    &--link {
+      text-decoration: none;
+      color: darken($color-white, 20%);
+      font-size: 16px;
+
+      &:hover {
+        color: darken($color-dark-white, 20%);
+      }
+    }
+  }
+}
+
+::ng-deep .sidenav__expansion--header > .mat-expansion-indicator:after {
+  color: $color-dark-white;
+}
+.mat-expansion-panel-body {
+  padding: 0 !important;
 }

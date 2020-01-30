@@ -1,16 +1,16 @@
 <app-header></app-header>
 
 
-  <!-- this will change to be router outlet once i get more pages -->
-  <!-- <app-workouts></app-workouts> -->
 
-<mat-sidenav style="margin-top: 56px; display: block; width: 200px; height: 100%; box-shadow: 1px 1px 1px;" opened="true">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Self aware panel
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <p>I'm visible</p>
-  </mat-expansion-panel>
-</mat-sidenav>
+<mat-sidenav-container style="position: absolute;
+top: 56px;
+bottom: 0;
+left: 0;
+right: 0; z-index: 0;">
+  <app-sidenav></app-sidenav>
+  <div class="main-content">
+    <!-- this will change to be router outlet once i get more pages -->
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>

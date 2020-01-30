@@ -1,10 +1,39 @@
-<mat-sidenav class="example-sidenav">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Self aware panel
+<mat-sidenav [disableClose]="true" class="sidenav" mode="side" opened>
+  <!--Change panelOpenState ngClass to be routerlinkactive once I get routing set up-->
+  <mat-expansion-panel class="sidenav__expansion--panel" (click)="panelOpenState = !panelOpenState"
+    [ngClass]="{'sidenav__expansion--panel-active': panelOpenState}">
+    <mat-expansion-panel-header class="sidenav__expansion--header">
+      <mat-panel-title class="sidenav__expansion--title">
+        Workouts
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p>I'm visible</p>
+    <ul class="sidenav__expansion--list">
+      <li><a href="#" class="sidenav__expansion--link">View Workouts</a></li>
+      <li><a href="#" class="sidenav__expansion--link">Create Workout</a></li>
+    </ul>
   </mat-expansion-panel>
+  <div class="sidenav__expansion--panel">
+    <div class="sidenav__expansion--header">
+      <h2 class="sidenav__expansion--title"><a href="#">Training Plans</a> </h2>
+    </div>
+  </div>
+  <div class="sidenav__expansion--panel">
+    <div class="sidenav__expansion--header">
+      <h2 class="sidenav__expansion--title"><a href="#">Account</a> </h2>
+    </div>
+  </div>
+  <!--Can Use this if I want to make an expanded list again-->
+  <!-- <mat-expansion-panel class="sidenav__expansion--panel" (click)="panelOpenState = !panelOpenState"
+  [ngClass]="{'sidenav__expansion--panel-active': panelOpenState}">
+  <mat-expansion-panel-header class="sidenav__expansion--header">
+    <mat-panel-title class="sidenav__expansion--title">
+      Workouts
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <ul class="sidenav__expansion--list">
+    <li><a href="#" class="sidenav__expansion--link">View Workouts</a></li>
+    <li><a href="#" class="sidenav__expansion--link">Create Workout</a></li>
+  </ul>
+  </mat-expansion-panel> -->
+
 </mat-sidenav>

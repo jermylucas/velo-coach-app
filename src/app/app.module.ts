@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { WorkoutsComponent } from './workouts/workouts.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { WorkoutsComponent } from './workouts/workouts.component';
     AppComponent,
     HeaderComponent,
     SidenavComponent,
-    WorkoutsComponent
+    WorkoutsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
