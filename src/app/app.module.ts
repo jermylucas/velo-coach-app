@@ -11,7 +11,7 @@ import { WorkoutsComponent } from "./workouts/workouts.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { WorkoutEditComponent } from "./workouts/workout-edit/workout-edit.component";
 import { TrainingPlansComponent } from "./training-plans/training-plans.component";
-import { SidenavService } from "./sidenav/sidenav.service";
+import { SidenavService } from "./sidenav.service";
 
 @NgModule({
   declarations: [

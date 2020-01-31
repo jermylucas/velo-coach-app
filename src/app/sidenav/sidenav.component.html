@@ -1,26 +1,25 @@
-<mat-sidenav [disableClose]="true" autosize class="sidenav" mode="side" opened #sidenav>
-  <mat-expansion-panel [(expanded)]="panelOpenState" class="sidenav__expansion--panel"
-    routerLinkActive="sidenav__expansion--panel-active">
-    <mat-expansion-panel-header class="sidenav__expansion--header">
-      <mat-panel-title class="sidenav__expansion--title">
-        Workouts
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <ul class="sidenav__expansion--list">
-      <li><a routerLink="/workouts" href="#" class="sidenav__expansion--link">View Workouts</a></li>
-      <li><a routerLink="/workouts/new" href="#" class="sidenav__expansion--link">Create Workout</a></li>
-    </ul>
-  </mat-expansion-panel>
-  <div class="sidenav__expansion--panel" routerLinkActive="sidenav__expansion--panel-active">
-    <div class="sidenav__expansion--header" routerLink="/trainingplans" (click)="closePanel()">
-      <h2 class="sidenav__expansion--title">Training Plans </h2>
-    </div>
+<mat-expansion-panel [(expanded)]="panelOpenState" class="sidenav__expansion--panel"
+  routerLinkActive="sidenav__expansion--panel-active">
+  <mat-expansion-panel-header class="sidenav__expansion--header">
+    <mat-panel-title class="sidenav__expansion--title">
+      Workouts
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <ul class="sidenav__expansion--list">
+    <li><a routerLink="/workouts" href="#" class="sidenav__expansion--link">View Workouts</a></li>
+    <li><a routerLink="/workouts/new" href="#" class="sidenav__expansion--link">Create Workout</a></li>
+  </ul>
+</mat-expansion-panel>
+<div class="sidenav__expansion--panel" routerLinkActive="sidenav__expansion--panel-active">
+  <div class="sidenav__expansion--header" routerLink="/trainingplans" (click)="closePanel()">
+    <h2 class="sidenav__expansion--title">Training Plans </h2>
   </div>
-  <div class="sidenav__expansion--panel" routerLinkActive="sidenav__expansion--panel-active">
-    <div class="sidenav__expansion--header" routerLink="/account" (click)="closePanel()">
-      <h2 class="sidenav__expansion--title"><a href="#">Account</a> </h2>
-    </div>
+</div>
+<div class="sidenav__expansion--panel" routerLinkActive="sidenav__expansion--panel-active">
+  <div class="sidenav__expansion--header" routerLink="/account" (click)="closePanel()">
+    <h2 class="sidenav__expansion--title"><a href="#">Account</a> </h2>
   </div>
+</div>
 
-  <div class="logout" (click)="sidenav.toggle()">Logout</div>
-</mat-sidenav>
+<div class="logout" (click)="sidenav.toggle()">Logout</div>
+<!-- </mat-sidenav> -->

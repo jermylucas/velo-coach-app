@@ -8,3 +8,12 @@
   right: 0;
   z-index: 0;
 }
+
+.sidenav {
+  margin-top: 56px;
+  display: block;
+  width: 212px;
+  height: 100%;
+  position: fixed;
+  background: $color-grey;
+}

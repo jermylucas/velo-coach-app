@@ -3,9 +3,11 @@
 
 
 <mat-sidenav-container class="main-sidenav">
-  <app-sidenav></app-sidenav>
+  <mat-sidenav [disableClose]="true" autosize class="sidenav" mode="side" opened #sidenav>
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
 
-  <router-outlet></router-outlet>
-
-
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
