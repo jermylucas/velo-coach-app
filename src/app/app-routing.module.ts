@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { WorkoutsComponent } from "./components/workouts/workouts.component";
+import { WorkoutsComponent } from "./features/workouts/workouts.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { WorkoutEditComponent } from "./components/workouts/workout-edit/workout-edit.component";
-import { TrainingPlansComponent } from "./components/training-plans/training-plans.component";
+import { WorkoutEditComponent } from "./features/workouts/workout-edit/workout-edit.component";
+import { TrainingPlansComponent } from "./features/training-plans/training-plans.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/workouts", pathMatch: "full" },

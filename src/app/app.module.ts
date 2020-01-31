@@ -7,10 +7,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material.module";
 import { HeaderComponent } from "./components/header/header.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
-import { WorkoutsComponent } from "./components/workouts/workouts.component";
+import { WorkoutsComponent } from "./features/workouts/workouts.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { WorkoutEditComponent } from "./components/workouts/workout-edit/workout-edit.component";
-import { TrainingPlansComponent } from "./components/training-plans/training-plans.component";
+import { WorkoutEditComponent } from "./features/workouts/workout-edit/workout-edit.component";
+import { TrainingPlansComponent } from "./features/training-plans/training-plans.component";
 import { SidenavService } from "./services/sidenav.service";
 
 @NgModule({
