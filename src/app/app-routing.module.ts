@@ -2,18 +2,20 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { WorkoutsComponent } from "./workouts/workouts.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { WorkoutEditComponent } from "./workouts/workout-edit/workout-edit.component";
+import { TrainingPlansComponent } from "./training-plans/training-plans.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/workouts", pathMatch: "full" },
   {
     path: "workouts",
     component: WorkoutsComponent
-    // Add these later when I have more components for children to workouts
+    // This might not be a child... so check when components are made if the edits need to be done as a child or as a seperate component
     //
     // children: [
-    //   { path: 'new', component: NewWorkoutComponent},
+    //
     //   {
-    //     path: ':id',
+    //   path: ':id',
     //     component: WorkoutDetailComponent
     //     resolve: [WorkoutResolverService]
     //   },
@@ -23,6 +25,8 @@ const routes: Routes = [
     // }
     // ]
   },
+  { path: "workouts/new", component: WorkoutEditComponent },
+  { path: "trainingplans", component: TrainingPlansComponent },
   { path: "not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "/not-found" }
 ];

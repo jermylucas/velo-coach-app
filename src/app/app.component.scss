@@ -3,3 +3,12 @@
 .main-content {
   margin-left: 212px;
 }
+
+.main-sidenav {
+  position: absolute;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}

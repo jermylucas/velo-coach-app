@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { WorkoutsComponent } from './workouts/workouts.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WorkoutEditComponent } from './workouts/workout-edit/workout-edit.component';
+import { TrainingPlansComponent } from './training-plans/training-plans.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HeaderComponent,
     SidenavComponent,
     WorkoutsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    WorkoutEditComponent,
+    TrainingPlansComponent
   ],
   imports: [
     BrowserModule,
