@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { WorkoutsComponent } from "./workouts/workouts.component";
+
 
 @Component({
   selector: "app-root",
@@ -9,5 +9,5 @@ import { WorkoutsComponent } from "./workouts/workouts.component";
 export class AppComponent {
   title = "velo-coach-app";
 
-  constructor(private workoutsComponent: WorkoutsComponent) {}
+  constructor() {}
 }

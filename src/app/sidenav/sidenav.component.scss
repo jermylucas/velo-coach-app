@@ -4,13 +4,6 @@ a {
   text-decoration: none;
   color: $color-white;
 }
-.example-sidenav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  background: rgba(255, 0, 0, 0.5);
-}
 
 .sidenav {
   margin-top: 56px;
@@ -19,6 +12,14 @@ a {
   height: 100%;
   position: fixed;
   background: $color-grey;
+
+  /* disable user-select so it doesn't highlight menu text */
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none;
+     -khtml-user-select: none; 
+       -moz-user-select: none;
+        -ms-user-select: none; 
+            user-select: none; 
 
   &__expansion {
     &--title {
@@ -75,6 +76,12 @@ a {
       }
     }
   }
+}
+
+.logout {
+  position: absolute;  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 ::ng-deep .sidenav__expansion--header > .mat-expansion-indicator:after {

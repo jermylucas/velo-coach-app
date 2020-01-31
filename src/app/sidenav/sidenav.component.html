@@ -1,6 +1,6 @@
 <mat-sidenav [disableClose]="true" class="sidenav" mode="side" opened>
   <!--Change panelOpenState ngClass to be routerlinkactive once I get routing set up-->
-  <mat-expansion-panel [expanded]="panelOpenState" class="sidenav__expansion--panel"
+  <mat-expansion-panel [(expanded)]="panelOpenState" class="sidenav__expansion--panel"
     routerLinkActive="sidenav__expansion--panel-active">
     <mat-expansion-panel-header class="sidenav__expansion--header">
       <mat-panel-title class="sidenav__expansion--title">
@@ -13,16 +13,15 @@
     </ul>
   </mat-expansion-panel>
   <div class="sidenav__expansion--panel" routerLinkActive="sidenav__expansion--panel-active">
-    <div class="sidenav__expansion--header" routerLink="/trainingplans">
+    <div class="sidenav__expansion--header" routerLink="/trainingplans" (click)="closePanel()">
       <h2 class="sidenav__expansion--title">Training Plans </h2>
     </div>
   </div>
   <div class="sidenav__expansion--panel" routerLinkActive="sidenav__expansion--panel-active">
-    <div class="sidenav__expansion--header" routerLink="/account">
+    <div class="sidenav__expansion--header" routerLink="/account" (click)="closePanel()">
       <h2 class="sidenav__expansion--title"><a href="#">Account</a> </h2>
     </div>
   </div>
-  <div (click)="panelOpenState === false">Click</div>
   <!--Can Use this if I want to make an expanded list again-->
   <!-- <mat-expansion-panel class="sidenav__expansion--panel" (click)="panelOpenState = !panelOpenState"
   [ngClass]="{'sidenav__expansion--panel-active': panelOpenState}">
@@ -36,4 +35,5 @@
     <li><a href="#" class="sidenav__expansion--link">Create Workout</a></li>
   </ul>
   </mat-expansion-panel> -->
+  <div class="logout">Logout</div>
 </mat-sidenav>
