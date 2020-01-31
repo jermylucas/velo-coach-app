@@ -1,5 +1,5 @@
 import { Component, ViewChild, HostListener } from "@angular/core";
-import { SidenavService } from "./sidenav.service";
+import { SidenavService } from "./services/sidenav.service";
 import { MatSidenav } from "@angular/material";
 
 @Component({
