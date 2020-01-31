@@ -5,7 +5,7 @@
 <mat-sidenav-container class="main-sidenav">
   <app-sidenav></app-sidenav>
   <div class="main-content">
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onChange()"></router-outlet>
   </div>
 
 </mat-sidenav-container>
