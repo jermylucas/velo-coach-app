@@ -1,0 +1,108 @@
+@import "../../../../sass/variables";
+
+.toolbar {
+  background: $color-light-grey;
+  height: 4.8rem;
+  font-weight: normal;
+
+  &__title {
+    font-size: 1.6rem;
+    margin-right: 2rem;
+  }
+
+  &__sort {
+    font-size: 1.6rem;
+    color: $color-primary-blue;
+  }
+
+  &__search {
+    &-icon {
+      display: inline;
+    }
+  }
+}
+
+.break {
+  width: 2.5rem;
+  height: 0px;
+  left: 40rem;
+  top: 6.8rem;
+
+  border: 1px solid #868686;
+  transform: rotate(90deg);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.search-bar {
+  height: 3rem;
+  width: 200px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 20px;
+  position: relative;
+  background: #fff;
+  border: $color-grey 1px solid;
+}
+
+.input {
+  border: none;
+  height: 25px;
+  width: 150px;
+  color: #1b1b1b;
+  font-size: 15px;
+  outline: none;
+}
+
+.input:not(:placeholder-shown) + .label {
+  font-size: 9px;
+  top: -2rem;
+  color: #00c853;
+}
+
+.input:focus ~ .label {
+  font-size: 9px;
+  top: -2rem;
+  color: #4279a3;
+  transition: all 0.5s ease;
+}
+
+.label {
+  color: #aaaaaa;
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.search-btn {
+  background: $color-light-grey;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  height: 3rem;
+  min-width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  right: 0;
+  position: absolute;
+  transition: all 1s ease;
+}
+
+.highlight {
+  width: 0px;
+  height: 1px;
+  background: #4279a3;
+  position: absolute;
+  bottom: 1px;
+  transition: all 0.2s ease;
+}
+
+.input:focus ~ .highlight {
+  width: 150px;
+  transition: all 0.2s ease;
+}

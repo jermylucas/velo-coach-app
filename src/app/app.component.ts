@@ -10,6 +10,7 @@ import { MatSidenav } from "@angular/material";
 export class AppComponent {
   title = "velo-coach-app";
   smallScreen;
+  closeDisabled = true;
 
   @ViewChild("sidenav", { static: true }) public sidenav: MatSidenav;
 
@@ -29,9 +30,11 @@ export class AppComponent {
     if (!this.smallScreen) {
       this.sidenav.mode = "side";
       this.sidenav.opened = true;
+      this.closeDisabled = true;
     } else {
       this.sidenav.mode = "over";
       this.sidenav.opened = false;
+      this.closeDisabled = false;
     }
   }
 }

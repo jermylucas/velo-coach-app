@@ -1,29 +1,9 @@
 @import "../../../sass/variables";
 
-a {
-  text-decoration: none;
-  color: $color-white;
-}
-
 .sidenav {
-  margin-top: 56px;
-  display: block;
-  width: 212px;
-  height: 100%;
-  position: fixed;
-  background: $color-grey;
-
-  /* disable user-select so it doesn't highlight menu text */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
   &__expansion {
     &--title {
-      font-size: 16px;
+      font-size: 1.6rem;
       color: $color-white;
       position: relative;
       font-weight: normal;
@@ -33,35 +13,35 @@ a {
       box-shadow: none;
       border-radius: 0;
       color: $color-white;
-      border-bottom: 1px solid $color-border-grey;
+      border-bottom: 0.1rem solid $color-border-grey;
       background: $color-dark-grey;
 
-      border-left: 4px solid transparent;
+      border-left: 0.4rem solid transparent;
 
       &:hover {
         background: $color-black;
       }
       &-active {
         background: $color-black;
-        border-left: solid 4px red;
+        border-left: solid 0.4rem red;
         position: relative;
       }
     }
 
     &--header {
-      padding: 16px;
+      padding: 1.6rem;
     }
 
     &--list {
       list-style-type: none;
-      padding-left: 5px;
-      margin-top: -30px;
+      padding-left: 0.5rem;
+      margin-top: -3rem;
       li {
         padding-left: 0;
-        padding-top: 10px;
+        padding-top: 1rem;
 
         &:last-child {
-          margin-bottom: -10px;
+          margin-bottom: -1rem;
         }
       }
     }
@@ -69,11 +49,35 @@ a {
     &--link {
       text-decoration: none;
       color: darken($color-white, 20%);
-      font-size: 16px;
+      font-size: 1.6rem;
 
       &:hover {
         color: darken($color-dark-white, 20%);
       }
+    }
+  }
+}
+.wrapper {
+  height: calc(100% - 5.6rem);
+  position: relative;
+}
+.logout {
+  padding: 1.5rem 2rem;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 0;
+
+  &-link {
+    text-decoration: none;
+    color: lighten($color-primary-blue, 10%);
+
+    &:hover {
+      color: lighten($color-primary-blue, 20%);
+    }
+
+    &-icon {
+      vertical-align: -25%;
+      height: 1.4rem;
     }
   }
 }

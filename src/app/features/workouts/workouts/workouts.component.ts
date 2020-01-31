@@ -7,6 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class WorkoutsComponent implements OnInit {
   @Output() navOpen: EventEmitter<any> = new EventEmitter();
+  value = "";
 
   constructor() {}
 
