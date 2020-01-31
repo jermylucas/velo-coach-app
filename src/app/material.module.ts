@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material'
+import { NgModule } from "@angular/core";
+import { MatButtonModule, MatIconModule } from "@angular/material";
 
-import { MatExpansionModule } from '@angular/material/expansion';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
-import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 const MaterialComponents = [
   MatButtonModule,
@@ -13,16 +12,12 @@ const MaterialComponents = [
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatSidenavModule
-]
-
+  MatSidenavModule,
+  MatIconModule
+];
 
 @NgModule({
-  imports: [
-    MaterialComponents
-  ],
-  exports: [
-    MaterialComponents
-  ]
+  imports: [MaterialComponents],
+  exports: [MaterialComponents]
 })
-export class MaterialModule { }
+export class MaterialModule {}

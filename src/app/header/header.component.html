@@ -1,3 +1,11 @@
-<mat-toolbar class="header"> <a routerLink="/workouts" href="#" class="logo--link"><img class="logo--image"
-                  src="../../assets/img/white logo.png" alt="velocoach-logo"></a><button
-            (click)="toggleSidenav()">toggle sidenav</button></mat-toolbar>
+<mat-toolbar class="header"> <a routerLink="/workouts" href="#" class="logo--link">
+            <img class="logo--image-left logo--image" src="../../assets/img/white logo.png" alt="velocoach-logo"></a>
+      <button type="button" aria-label="Toggle sidenav" (click)="toggleSidenav()" mat-icon-button
+            class="menu__btn--icon">
+            <mat-icon class="icon-display" [ngStyle]="{'color': 'white'}" aria-label="Side nav toggle icon">menu
+            </mat-icon>
+      </button>
+      <span class="spacer"></span>
+      <a routerLink="/workouts" href="#" class="logo--link">
+            <img class="logo--image-right logo--image" src="../../assets/img/white logo.png" alt="velocoach-logo"></a>
+</mat-toolbar>
