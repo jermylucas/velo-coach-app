@@ -10,22 +10,45 @@
   <span class="spacer"></span>
 
 
-  <div class="search-bar">
+  <div class="search">
 
     <input
       type="text"
-      class="input"
+      class="search__input"
       placeholder="&nbsp;"
     >
-    <span class="label">Search...</span>
-    <span class="highlight"></span>
-    <div class="search-btn">
+    <span class="search__label">Search...</span>
+    <span class="search__highlight"></span>
+    <div class="search__btn">
       <mat-icon>search</mat-icon>
     </div>
   </div>
 
+
 </mat-toolbar>
+<mat-toolbar class="toolbar__mobile">
+  <div class="search search__mobile">
+    <input
+      type="text"
+      class="search__input"
+      placeholder="&nbsp;"
+    >
+    <span class="search__label">Search...</span>
+    <span class="search__highlight"></span>
+    <div class="search__btn">
+      <mat-icon>search</mat-icon>
+    </div>
+  </div>
+</mat-toolbar>
+
 <!-- will link with different workout components here -->
 <!-- workouts-filter 
 workouts-list (inside the list there are the items)  -->
-<h1>Workout list will go here</h1>
+<div class="main__workouts">
+  <div class="main__workouts--filter">
+    <app-workouts-filter></app-workouts-filter>
+  </div>
+  <div class="main__workouts--list">
+    <app-workouts-list></app-workouts-list>
+  </div>
+</div>

@@ -1,1 +1,38 @@
-<p>workouts-list works!</p>
+<!--Container Div-->
+<div>
+  <!--workout item-->
+  <div
+    *ngFor="let workout of workouts"
+    class="workout__list"
+  >
+    <!--Tag to select workout-->
+    <a
+      href="#"
+      class="workout__item"
+    >
+      <div class="workout__item--img"><img
+          [src]="workout.imagePath"
+          alt="placeholder"
+        ></div>
+
+      <div class="workout__item--info">
+        <h2 class="workout__item--title">{{ workout.title }}</h2>
+
+        <div class="workout__item--specs">
+
+          <h3 class="workout__item--specs-heading">{{ workout.type }}</h3>
+          <span class="break"></span>
+          <h3 class="workout__item--specs-heading">{{ workout.duration}}</h3>
+          <span class="break"></span>
+          <h3 class="workout__item--specs-heading">{{ workout.phase }}</h3>
+
+        </div>
+      </div>
+      <div class="workout__item--notes">
+        <p>{{ workout.description }}, on Zwift? {{ workout.zwo ? 'yes' : 'no' }}
+        </p>
+      </div>
+    </a>
+  </div>
+
+</div>

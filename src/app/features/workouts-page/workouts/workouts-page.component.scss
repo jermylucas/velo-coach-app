@@ -20,6 +20,18 @@
       display: inline;
     }
   }
+
+  &__mobile {
+    background: $color-light-grey;
+    height: 3.6rem;
+    font-weight: normal;
+    display: none;
+    padding: 0 0.5rem;
+
+    @media (max-width: $breakpoint-mobile) {
+      display: block;
+    }
+  }
 }
 
 .break {
@@ -36,73 +48,87 @@
   flex: 1 1 auto;
 }
 
-.search-bar {
+.search {
   height: 3rem;
-  width: 200px;
-  border-radius: 0.5rem;
+  width: 20rem;
+  border-radius: 0.2rem;
   display: flex;
   align-items: center;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 1rem;
   position: relative;
   background: #fff;
   border: $color-grey 1px solid;
+
+  &__input {
+    border: none;
+    height: 2.5rem;
+    width: 15rem;
+    color: #1b1b1b;
+    font-size: 1.5rem;
+    outline: none;
+
+    &:not(:placeholder-shown) + .search__label {
+      display: none;
+    }
+    &:focus ~ .search__highlight {
+      width: 15rem;
+      transition: all 0.2s ease;
+    }
+  }
+
+  &__label {
+    color: #aaaaaa;
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+
+  &__btn {
+    background: $color-light-grey;
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    height: 3rem;
+    min-width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    right: 0;
+    position: absolute;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: lighten($color-light-grey, 10%);
+    }
+  }
+
+  &__highlight {
+    width: 0px;
+    height: 1px;
+    background: #4279a3;
+    position: absolute;
+    bottom: 1px;
+    transition: all 0.2s ease;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    display: none;
+  }
+
+  &__mobile {
+    display: flex;
+    width: 100%;
+    padding: 0;
+  }
 }
 
-.input {
-  border: none;
-  height: 25px;
-  width: 150px;
-  color: #1b1b1b;
-  font-size: 15px;
-  outline: none;
-}
+// Main area grid
+.main__workouts {
+  display: grid;
+  grid-template-columns: 30% 70%;
 
-.input:not(:placeholder-shown) + .label {
-  font-size: 9px;
-  top: -2rem;
-  color: #00c853;
-}
-
-.input:focus ~ .label {
-  font-size: 9px;
-  top: -2rem;
-  color: #4279a3;
-  transition: all 0.5s ease;
-}
-
-.label {
-  color: #aaaaaa;
-  position: absolute;
-  top: 0;
-  pointer-events: none;
-  transition: all 0.2s ease;
-}
-
-.search-btn {
-  background: $color-light-grey;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  height: 3rem;
-  min-width: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  right: 0;
-  position: absolute;
-  transition: all 1s ease;
-}
-
-.highlight {
-  width: 0px;
-  height: 1px;
-  background: #4279a3;
-  position: absolute;
-  bottom: 1px;
-  transition: all 0.2s ease;
-}
-
-.input:focus ~ .highlight {
-  width: 150px;
-  transition: all 0.2s ease;
+  @media (max-width: $breakpoint-tablet-port) {
+    grid-template-columns: 100%;
+  }
 }

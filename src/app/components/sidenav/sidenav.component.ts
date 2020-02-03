@@ -18,7 +18,7 @@ export class SidenavComponent {
 
   // This closes sidenav if window inner width is less than 769
   closeNav() {
-    if (window.innerWidth < 769) {
+    if (window.innerWidth < 980) {
       this.sidenavService.close();
     } else {
       this.sidenavService.open();

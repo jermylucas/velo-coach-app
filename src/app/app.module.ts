@@ -13,7 +13,6 @@ import { WorkoutEditComponent } from "./features/workouts-page/workout-edit/work
 import { TrainingPlansComponent } from "./features/training-plans/training-plans.component";
 import { SidenavService } from "./services/sidenav.service";
 import { WorkoutsListComponent } from "./features/workouts-page/workouts/workouts-list/workouts-list.component";
-import { WorkoutsItemComponent } from "./features/workouts-page/workouts/workouts-list/workouts-item/workouts-item.component";
 import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/workouts-filter/workouts-filter.component";
 
 @NgModule({
@@ -26,7 +25,6 @@ import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/worko
     WorkoutEditComponent,
     TrainingPlansComponent,
     WorkoutsListComponent,
-    WorkoutsItemComponent,
     WorkoutsFilterComponent
   ],
   imports: [
