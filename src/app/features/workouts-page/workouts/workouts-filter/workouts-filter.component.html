@@ -1,49 +1,83 @@
-<form (ngSubmit)="onFilter(f)" #f="ngForm">
-<div class="checkbox checkbox__phase">
+<form
+  [formGroup]='filterForm'
+  (ngSubmit)="onSubmit()"
+>
   <h4>Phase</h4>
-  <mat-checkbox color="warn" ngModel name="base1">Base 1</mat-checkbox>
-  <mat-checkbox color="warn"ngModel name="base2">Base 2</mat-checkbox>
-  <mat-checkbox color="warn" ngModel name="base3">Base 3</mat-checkbox>
-  <mat-checkbox color="warn" ngModel name="base4">Build 1</mat-checkbox>
-  <mat-checkbox color="warn" ngModel name="base5">Build 2</mat-checkbox>
-  <mat-checkbox color="warn" ngModel name="base6">Recovery</mat-checkbox>
-  <mat-checkbox color="warn" ngModel name="base7">Peak</mat-checkbox>
-  <mat-checkbox color="warn" ngModel name="base8">Race</mat-checkbox>
-  <mat-checkbox color="warn" ngModel name="base9">Testing</mat-checkbox>
-</div>
-<button type="submit">Submit</button>
-<!-- <div class="checkbox checkbox__specialty">
-  <mat-checkbox color="warn">Rolling Road Race</mat-checkbox>
-  <mat-checkbox color="warn">Climbing Road Race</mat-checkbox>
-  <mat-checkbox color="warn">Cyclocross</mat-checkbox>
-  <mat-checkbox color="warn">Gravel</mat-checkbox>
-  <mat-checkbox color="warn">Time Trial</mat-checkbox>
-  <mat-checkbox color="warn">Cross Country MTB</mat-checkbox>
-</div>
+  <div
+    formGroupName="phaseCheckboxes"
+    class="checkbox"
+  >
+    <span *ngFor="let checkbox of filterForm.get('phaseCheckboxes').value | keyvalue">
+      <mat-checkbox
+        color="warn"
+        type="checkbox"
+        [formControlName]="checkbox.key"
+        [value]="checkbox.value"
+      >
+        {{ checkbox.key }}
+      </mat-checkbox>
+    </span>
+  </div>
 
-<div class="checkbox checkbox__duration">
-  <mat-checkbox color="warn">Less than 30min</mat-checkbox>
-  <mat-checkbox color="warn">30 &mdash; 60min</mat-checkbox>
-  <mat-checkbox color="warn">60 &mdash; 90min</mat-checkbox>
-  <mat-checkbox color="warn">90min &mdash; 2hrs</mat-checkbox>
-  <mat-checkbox color="warn">2 &mdash; 3hrs</mat-checkbox>
-  <mat-checkbox color="warn">3hrs + </mat-checkbox>
-</div>
-
-<div class="checkbox checkbox__type">
-  <mat-checkbox color="warn">Anaerobic</mat-checkbox>
-  <mat-checkbox color="warn">Aerobic / Endurance</mat-checkbox>
-  <mat-checkbox color="warn">Power</mat-checkbox>
-  <mat-checkbox color="warn">Sweet Spot</mat-checkbox>
-  <mat-checkbox color="warn">Strength</mat-checkbox>
-  <mat-checkbox color="warn">Technique</mat-checkbox>
-  <mat-checkbox color="warn">Testing</mat-checkbox>
-  <mat-checkbox color="warn">Tempo</mat-checkbox>
-  <mat-checkbox color="warn">Threshold</mat-checkbox>
-</div>
-
-<div class="checkbox checkbox__zwift">
-  <mat-checkbox color="warn">Yes</mat-checkbox>
-  <mat-checkbox color="warn">No</mat-checkbox>
-</div> -->
+  <h4>Specialty</h4>
+  <div
+    formGroupName="specialtyCheckboxes"
+    class="checkbox"
+  >
+    <span *ngFor="let checkbox of filterForm.get('specialtyCheckboxes').value | keyvalue">
+      <mat-checkbox
+        color="warn"
+        type="checkbox"
+        [formControlName]="checkbox.key"
+        [value]="checkbox.value"
+      >
+        {{ checkbox.key }}
+      </mat-checkbox>
+    </span>
+  </div>
+  <button type="submit">Apply</button>
 </form>
+
+<!-- PHASES -->
+<!-- Base 1
+Base 2
+Base 3
+Build 1
+Build 2
+Recovery
+Peak
+Race
+Testing -->
+
+<!-- SPECIALTIES -->
+<!-- Rolling Road Race
+Climbing Road Race
+Cyclocross
+Gravel
+Time Trial
+Cross Country MTB -->
+
+<!-- DURATION -->
+<!-- Less than 30min
+30 &mdash; 60min
+60 &mdash; 90min
+90min &mdash; 2hrs
+2 &mdash; 3hrs
+3hrs +  -->
+
+
+<!-- TYPE -->
+<!-- Anaerobic
+Aerobic / Endurance
+Power
+Sweet Spot
+Strength
+Technique
+Testing
+Tempo
+Threshold -->
+
+
+<!-- ZWIFT? -->
+<!-- Yes 
+No -->
