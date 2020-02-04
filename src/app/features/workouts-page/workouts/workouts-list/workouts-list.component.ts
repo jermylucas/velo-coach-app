@@ -10,13 +10,8 @@ export class WorkoutsListComponent implements OnInit {
   workouts: Workout[] = [
     new Workout(
       "SS7-2",
-      `Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-      Reiciendis nihil Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-      Reiciendis nihil Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-      Reiciendis nihil Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-      Reiciendis nihil Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-      Reiciendis nihil Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-      Reiciendis nihil`,
+      `Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptate totam doloremque excepturi aspernatur numquam accusantium optio amet quae eveniet, distinctio accusamus tempore autem dolor adipisci? Dolorum corrupti nulla alias culpa impedit! Ipsum pariatur placeat est quo hic dignissimos magni? 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptate totam doloremque excepturi aspernatur numquam accusantium optio amet quae eveniet, distinctio accusamus tempore autem dolor adipisci? Dolorum corrupti nulla alias culpa impedit! Ipsum pariatur placeat est quo hic dignissimos magni?`,
       "../../../../assets/img/placeholder.png",
       "Anaerobic",
       20,
@@ -38,6 +33,16 @@ export class WorkoutsListComponent implements OnInit {
       10,
       "Mountain Biking",
       "Build",
+      true
+    ),
+    new Workout(
+      'Name', 
+      'description afdsfsdfadfasdfasdfsd',
+      '../../../assets/img/placeholder.png',
+      'Sprint',
+      60,
+      'Road Biking',
+      'Race',
       true
     )
   ];
