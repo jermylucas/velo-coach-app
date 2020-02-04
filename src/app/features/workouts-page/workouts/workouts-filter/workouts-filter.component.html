@@ -1,15 +1,18 @@
+<form (ngSubmit)="onFilter(f)" #f="ngForm">
 <div class="checkbox checkbox__phase">
-  <mat-checkbox color="warn">Base 1</mat-checkbox>
-  <mat-checkbox color="warn">Base 2</mat-checkbox>
-  <mat-checkbox color="warn">Base 3</mat-checkbox>
-  <mat-checkbox color="warn">Build 1</mat-checkbox>
-  <mat-checkbox color="warn">Build 2</mat-checkbox>
-  <mat-checkbox color="warn">Recovery</mat-checkbox>
-  <mat-checkbox color="warn">Peak</mat-checkbox>
-  <mat-checkbox color="warn">Race</mat-checkbox>
-  <mat-checkbox color="warn">Testing</mat-checkbox>
+  <h4>Phase</h4>
+  <mat-checkbox color="warn" ngModel name="base1">Base 1</mat-checkbox>
+  <mat-checkbox color="warn"ngModel name="base2">Base 2</mat-checkbox>
+  <mat-checkbox color="warn" ngModel name="base3">Base 3</mat-checkbox>
+  <mat-checkbox color="warn" ngModel name="base4">Build 1</mat-checkbox>
+  <mat-checkbox color="warn" ngModel name="base5">Build 2</mat-checkbox>
+  <mat-checkbox color="warn" ngModel name="base6">Recovery</mat-checkbox>
+  <mat-checkbox color="warn" ngModel name="base7">Peak</mat-checkbox>
+  <mat-checkbox color="warn" ngModel name="base8">Race</mat-checkbox>
+  <mat-checkbox color="warn" ngModel name="base9">Testing</mat-checkbox>
 </div>
-<div class="checkbox checkbox__specialty">
+<button type="submit">Submit</button>
+<!-- <div class="checkbox checkbox__specialty">
   <mat-checkbox color="warn">Rolling Road Race</mat-checkbox>
   <mat-checkbox color="warn">Climbing Road Race</mat-checkbox>
   <mat-checkbox color="warn">Cyclocross</mat-checkbox>
@@ -42,4 +45,5 @@
 <div class="checkbox checkbox__zwift">
   <mat-checkbox color="warn">Yes</mat-checkbox>
   <mat-checkbox color="warn">No</mat-checkbox>
-</div>
+</div> -->
+</form>
