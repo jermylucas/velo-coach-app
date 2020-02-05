@@ -1,3 +1,8 @@
+<button
+  mat-raised-button
+  class="checkbox-apply"
+  (click)="applyFilter()"
+>Apply</button>
 <h4>Phase</h4>
 <div class="checkbox">
   <span *ngFor="let phase of phaseOptions">
@@ -36,7 +41,6 @@
     </mat-checkbox>
   </span>
 </div>
-<button (click)="applyFilter()">Apply</button>
 
 
 <!-- PHASES -->

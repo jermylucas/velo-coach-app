@@ -6,6 +6,7 @@ import { Observable, BehaviorSubject } from "rxjs";
   providedIn: "root"
 })
 export class WorkoutService {
+  listTotal: number;
   selectedWorkouts: BehaviorSubject<any>;
   workouts: Workout[] = [
     new Workout(
@@ -34,7 +35,7 @@ export class WorkoutService {
       "../../../assets/img/placeholder.png",
       "Tempo",
       60,
-      "Road Biking",
+      "Road Race",
       "Race",
       true
     )
@@ -53,81 +54,22 @@ export class WorkoutService {
 
   constructor() {
     this.selectedWorkouts = new BehaviorSubject(this.workouts);
+    this.listTotal = this.workouts.length;
   }
 
   getWorkouts() {
     return this.selectedWorkouts.asObservable();
   }
 
-  filterWorkouts(phases: string[], specialties: string[], type: string[]) {
-    const byPhase = workout => phases.some(phase => workout.phase === phase);
-    const bySpecialty = workout =>
-      specialties.some(specialty => workout.specialty === specialty);
-    const byType = workout => type.some(type => workout.type === type);
-
-    if (phases.length === 0 && specialties.length === 0 && type.length === 0) {
-      const workouts = this.workouts;
-      this.selectedWorkouts.next(workouts);
-    } else if (phases.length > 0 && specialties.length > 0 && type.length > 0) {
-      const workouts = this.workouts.filter(
-        workout => byPhase(workout) && bySpecialty(workout) && byType(workout)
+  filterWorkouts(phases: string[], specialties: string[], types: string[]) {
+    const workouts = this.workouts.filter(workout => {
+      return (
+        (phases.length === 0 || phases.indexOf(workout.phase) >= 0) &&
+        (specialties.length === 0 ||
+          specialties.indexOf(workout.specialty) >= 0) &&
+        (types.length === 0 || types.indexOf(workout.type) >= 0)
       );
-      this.selectedWorkouts.next(workouts);
-      console.log("1 EVERYTHING CHECKED");
-    } else if (
-      phases.length > 0 &&
-      specialties.length > 0 &&
-      type.length === 0
-    ) {
-      const workouts = this.workouts.filter(
-        workout => byPhase(workout) && bySpecialty(workout)
-      );
-      this.selectedWorkouts.next(workouts);
-      console.log("2 PHASE AND SPECIALTY (no type)");
-    } else if (
-      phases.length > 0 &&
-      specialties.length === 0 &&
-      type.length > 0
-    ) {
-      const workouts = this.workouts.filter(
-        workout => byPhase(workout) && byType(workout)
-      );
-      this.selectedWorkouts.next(workouts);
-      console.log("3 PHASE AND TYPE (no specialty)");
-    } else if (
-      phases.length > 0 &&
-      specialties.length === 0 &&
-      type.length === 0
-    ) {
-      const workouts = this.workouts.filter(workout => byPhase(workout));
-      this.selectedWorkouts.next(workouts);
-      console.log("4 PHASE ONLY (no type or specialty)");
-    } else if (
-      phases.length === 0 &&
-      specialties.length > 0 &&
-      type.length > 0
-    ) {
-      const workouts = this.workouts.filter(
-        workout => bySpecialty(workout) && byType(workout)
-      );
-      this.selectedWorkouts.next(workouts);
-      console.log("5 SPECIALTY AND TYPE (no phase)");
-    } else if (
-      phases.length === 0 &&
-      specialties.length > 0 &&
-      type.length === 0
-    ) {
-      const workouts = this.workouts.filter(workout => bySpecialty(workout));
-      this.selectedWorkouts.next(workouts);
-      console.log("6 SPECIALTY ONLY (no phase nor type)");
-    } else if (
-      phases.length === 0 &&
-      specialties.length === 0 &&
-      type.length > 0
-    ) {
-      const workouts = this.workouts.filter(workout => byType(workout));
-      this.selectedWorkouts.next(workouts);
-      console.log("7 TYPE ONLY (no phase nor specialty)");
-    }
+    });
+    this.selectedWorkouts.next(workouts);
   }
 }

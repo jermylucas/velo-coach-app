@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
 import { WorkoutService } from "../../workoutservice/workout.service";
 import { SelectionModel } from "@angular/cdk/collections";
 
@@ -9,6 +8,8 @@ import { SelectionModel } from "@angular/cdk/collections";
   styleUrls: ["./workouts-filter.component.scss"]
 })
 export class WorkoutsFilterComponent implements OnInit {
+  apply = false;
+
   // Filter groups
   phaseOptions = [
     "Base 1",
@@ -45,10 +46,7 @@ export class WorkoutsFilterComponent implements OnInit {
   specialtySelection = new SelectionModel<string>(true);
   typeSelection = new SelectionModel<string>(true);
 
-  constructor(
-    private fb: FormBuilder,
-    private workoutService: WorkoutService
-  ) {}
+  constructor(private workoutService: WorkoutService) {}
 
   ngOnInit() {}
 
@@ -59,8 +57,4 @@ export class WorkoutsFilterComponent implements OnInit {
       this.typeSelection.selected
     );
   }
-
-  // View True/False values
-  // console.log(phaseCheckboxValues);
-  // console.log(specialtyCheckboxValues);
 }

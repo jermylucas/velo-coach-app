@@ -9,12 +9,18 @@ import { WorkoutService } from "../../workoutservice/workout.service";
 })
 export class WorkoutsListComponent implements OnInit {
   workouts: any;
+  listCount;
+  listTotal;
 
   constructor(private workoutService: WorkoutService) {
     this.workoutService.getWorkouts().subscribe(res => {
       this.workouts = res;
       console.log("List Comp: ", this.workouts);
+
+      this.listCount = this.workouts.length;
     });
+
+    this.listTotal = this.workoutService.listTotal;
   }
 
   ngOnInit() {}

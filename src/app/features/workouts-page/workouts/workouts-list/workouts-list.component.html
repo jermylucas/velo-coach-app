@@ -1,10 +1,8 @@
 <!--Container Div-->
-<div>
+<div class="workout__list">
   <!--workout item-->
-  <div
-    *ngFor="let workout of workouts"
-    class="workout__list"
-  >
+  <p>Showing {{ listCount }} of {{ listTotal }} Workouts</p>
+  <div *ngFor="let workout of workouts">
     <!--Tag to select workout-->
     <a
       href="#"
