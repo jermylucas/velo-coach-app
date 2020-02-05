@@ -14,7 +14,8 @@ import { TrainingPlansComponent } from "./features/training-plans/training-plans
 import { SidenavService } from "./services/sidenav.service";
 import { WorkoutsListComponent } from "./features/workouts-page/workouts/workouts-list/workouts-list.component";
 import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/workouts-filter/workouts-filter.component";
-import { FormsModule } from '@angular/forms';
+
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]
