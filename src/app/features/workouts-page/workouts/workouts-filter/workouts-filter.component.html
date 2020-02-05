@@ -1,42 +1,43 @@
-<form
-  [formGroup]='filterForm'
-  (ngSubmit)="onSubmit()"
->
-  <h4>Phase</h4>
-  <div
-    formGroupName="phaseCheckboxes"
-    class="checkbox"
-  >
-    <span *ngFor="let checkbox of filterForm.get('phaseCheckboxes').value | keyvalue">
-      <mat-checkbox
-        color="warn"
-        type="checkbox"
-        [formControlName]="checkbox.key"
-        [value]="checkbox.value"
-      >
-        {{ checkbox.key }}
-      </mat-checkbox>
-    </span>
-  </div>
+<h4>Phase</h4>
+<div class="checkbox">
+  <span *ngFor="let phase of phaseOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="phaseSelection.toggle(phase)"
+    >
+      {{ phase }}
+    </mat-checkbox>
+  </span>
+</div>
 
-  <h4>Specialty</h4>
-  <div
-    formGroupName="specialtyCheckboxes"
-    class="checkbox"
-  >
-    <span *ngFor="let checkbox of filterForm.get('specialtyCheckboxes').value | keyvalue">
-      <mat-checkbox
-        color="warn"
-        type="checkbox"
-        [formControlName]="checkbox.key"
-        [value]="checkbox.value"
-      >
-        {{ checkbox.key }}
-      </mat-checkbox>
-    </span>
-  </div>
-  <button type="submit">Apply</button>
-</form>
+<h4>Specialty</h4>
+<div class="checkbox">
+  <span *ngFor="let specialty of specialtyOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="specialtySelection.toggle(specialty)"
+    >
+      {{ specialty }}
+    </mat-checkbox>
+  </span>
+</div>
+
+<h4>Type</h4>
+<div class="checkbox">
+  <span *ngFor="let type of typeOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="typeSelection.toggle(type)"
+    >
+      {{ type }}
+    </mat-checkbox>
+  </span>
+</div>
+<button (click)="applyFilter()">Apply</button>
+
 
 <!-- PHASES -->
 <!-- Base 1

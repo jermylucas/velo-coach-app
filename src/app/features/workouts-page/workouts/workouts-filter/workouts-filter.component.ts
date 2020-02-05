@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
 import { WorkoutService } from "../../workoutservice/workout.service";
+import { SelectionModel } from "@angular/cdk/collections";
 
 @Component({
   selector: "app-workouts-filter",
@@ -28,63 +29,35 @@ export class WorkoutsFilterComponent implements OnInit {
     "Time Trial",
     "Cross Country MTB"
   ];
-  // Create Form
-  filterForm: FormGroup;
+  typeOptions = [
+    "Anaerobic",
+    "Aerobic / Endurance",
+    "Muscular Endurance",
+    "Power",
+    "Sweet Spot",
+    "Strength",
+    "Technique",
+    "Tempo",
+    "Threshold"
+  ];
 
-  phaseCheckboxes: FormGroup;
-  specialtyCheckboxes: FormGroup;
-
-  // Arrays to hold checked values
-  phaseWorkoutFilter = [];
-  specialtyWorkoutFilter = [];
+  phaseSelection = new SelectionModel<string>(true);
+  specialtySelection = new SelectionModel<string>(true);
+  typeSelection = new SelectionModel<string>(true);
 
   constructor(
     private fb: FormBuilder,
     private workoutService: WorkoutService
   ) {}
 
-  ngOnInit() {
-    // Make Form Groups
-    this.phaseCheckboxes = this.fb.group({});
-    this.phaseOptions.forEach((option: any) => {
-      this.phaseCheckboxes.addControl(option, new FormControl(false));
-    });
-    this.specialtyCheckboxes = this.fb.group({});
-    this.specialtyOptions.forEach((option: any) => {
-      this.specialtyCheckboxes.addControl(option, new FormControl(false));
-    });
+  ngOnInit() {}
 
-    // Initialize Form
-    this.filterForm = this.fb.group({
-      phaseCheckboxes: this.phaseCheckboxes,
-      specialtyCheckboxes: this.specialtyCheckboxes
-    });
-  }
-
-  onSubmit() {
-    // Set arrays to be empty
-    this.phaseWorkoutFilter = [];
-    this.specialtyWorkoutFilter = [];
-
-    // Add values to array
-    const phaseCheckboxValues = this.filterForm.value.phaseCheckboxes;
-    const specialtyCheckboxValues = this.filterForm.value.specialtyCheckboxes;
-
-    // Put items into an array instead of as a "true"/"false"
-
-    // Phases Group
-    this.phaseWorkoutFilter = Object.entries(phaseCheckboxValues)
-      .filter(([_, checked]) => checked)
-      .map(([key]) => key);
-    // Specialty Group
-    this.specialtyWorkoutFilter = Object.entries(specialtyCheckboxValues)
-      .filter(([_, checked]) => checked)
-      .map(([key]) => key);
-
-    // View Results of Checkboxes
-    console.log(this.phaseWorkoutFilter);
-
-    this.workoutService.filterWorkouts(this.phaseWorkoutFilter);
+  applyFilter() {
+    this.workoutService.filterWorkouts(
+      this.phaseSelection.selected,
+      this.specialtySelection.selected,
+      this.typeSelection.selected
+    );
   }
 
   // View True/False values
