@@ -7,7 +7,6 @@ import { Observable, BehaviorSubject } from "rxjs";
 })
 export class WorkoutService {
   selectedWorkouts: BehaviorSubject<any>;
-  phaseLowerCase: [] = [];
   workouts: Workout[] = [
     new Workout(
       "SS7-2",
