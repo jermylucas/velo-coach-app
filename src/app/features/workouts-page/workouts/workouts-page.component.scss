@@ -28,7 +28,7 @@
     display: none;
     padding: 0 0.5rem;
 
-    @media (max-width: $breakpoint-mobile) {
+    @media (max-width: $breakpoint-tablet-port) {
       display: block;
     }
   }
@@ -112,7 +112,7 @@
     transition: all 0.2s ease;
   }
 
-  @media (max-width: $breakpoint-mobile) {
+  @media (max-width: $breakpoint-tablet-port) {
     display: none;
   }
 
@@ -123,10 +123,37 @@
   }
 }
 
+.filter {
+  display: none;
+  border: 1px solid $color-grey;
+  border-radius: 5px;
+  padding: 0 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-size: 2.1rem;
+
+  @media (max-width: $breakpoint-tablet-port) {
+    display: block;
+  }
+}
+
 // Main area grid
 .main__workouts {
   display: grid;
   grid-template-columns: 30% 70%;
+
+  &--filter {
+    @media (max-width: $breakpoint-tablet-port) {
+      display: none;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      z-index: 1;
+      top: 56;
+      background-color: rgb(255, 255, 255);
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+  }
 
   @media (max-width: $breakpoint-tablet-port) {
     grid-template-columns: 100%;

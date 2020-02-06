@@ -8,7 +8,12 @@
   <span class="toolbar__sort">Phase</span>
 
   <span class="spacer"></span>
-
+  <button
+    class="filter"
+    (click)="openNav()"
+  >
+    <mat-icon>filter_list</mat-icon>Filter
+  </button>
 
   <div class="search">
 
@@ -45,7 +50,10 @@
 <!-- workouts-filter 
 workouts-list (inside the list there are the items)  -->
 <div class="main__workouts">
-  <div class="main__workouts--filter">
+  <div
+    class="main__workouts--filter"
+    id="filter"
+  >
     <app-workouts-filter></app-workouts-filter>
   </div>
   <div class="main__workouts--list">

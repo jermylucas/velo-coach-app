@@ -71,5 +71,7 @@ export class WorkoutService {
       );
     });
     this.selectedWorkouts.next(workouts);
+
+    document.getElementById("filter").style.display = "none";
   }
 }
