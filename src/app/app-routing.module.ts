@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   { path: "workouts/new", component: WorkoutEditComponent },
   { path: "trainingplans", component: TrainingPlansComponent },
-  { path: "workouts/detail", component: WorkoutDetailComponent },
+  { path: "workouts/:id", component: WorkoutDetailComponent },
   { path: "not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "/not-found" }
 ];
