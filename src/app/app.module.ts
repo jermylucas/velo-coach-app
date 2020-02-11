@@ -16,6 +16,7 @@ import { WorkoutsListComponent } from "./features/workouts-page/workouts/workout
 import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/workouts-filter/workouts-filter.component";
 
 import { FormsModule } from "@angular/forms";
+import { WorkoutDetailComponent } from "./features/workouts-page/workout-detail/workout-detail.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule } from "@angular/forms";
     WorkoutEditComponent,
     TrainingPlansComponent,
     WorkoutsListComponent,
-    WorkoutsFilterComponent
+    WorkoutsFilterComponent,
+    WorkoutDetailComponent
   ],
   imports: [
     BrowserModule,

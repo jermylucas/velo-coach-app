@@ -30,6 +30,7 @@ export class WorkoutsFilterComponent implements OnInit {
     "Time Trial",
     "Cross Country MTB"
   ];
+  durationOptions = [1, 2, 3, 4, 10];
   typeOptions = [
     "Anaerobic",
     "Aerobic / Endurance",
@@ -41,10 +42,13 @@ export class WorkoutsFilterComponent implements OnInit {
     "Tempo",
     "Threshold"
   ];
+  zwoOptions = [true, false];
 
   phaseSelection = new SelectionModel<string>(true);
   specialtySelection = new SelectionModel<string>(true);
+  durationSelection = new SelectionModel<number>(true);
   typeSelection = new SelectionModel<string>(true);
+  zwoSelection = new SelectionModel<boolean>(true);
 
   constructor(private workoutService: WorkoutService) {}
 
@@ -54,7 +58,15 @@ export class WorkoutsFilterComponent implements OnInit {
     this.workoutService.filterWorkouts(
       this.phaseSelection.selected,
       this.specialtySelection.selected,
-      this.typeSelection.selected
+      this.durationSelection.selected,
+      this.typeSelection.selected,
+      this.zwoSelection.selected
     );
   }
 }
+
+// Less than 30min
+// 30 &mdash; 60min
+// 60 &mdash; 90min
+// 90min &mdash; 2hrs
+// 2 &mdash; 3hrs

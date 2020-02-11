@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { WorkoutsComponent } from "./features/workouts-page/workouts/workouts-page.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { WorkoutEditComponent } from "./features/workouts-page/workout-edit/workout-edit.component";
+import { WorkoutDetailComponent } from "./features/workouts-page/workout-detail/workout-detail.component";
 import { TrainingPlansComponent } from "./features/training-plans/training-plans.component";
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   },
   { path: "workouts/new", component: WorkoutEditComponent },
   { path: "trainingplans", component: TrainingPlansComponent },
+  { path: "workouts/detail", component: WorkoutDetailComponent },
   { path: "not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "/not-found" }
 ];

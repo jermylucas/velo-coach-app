@@ -61,17 +61,29 @@ export class WorkoutService {
     return this.selectedWorkouts.asObservable();
   }
 
-  filterWorkouts(phases: string[], specialties: string[], types: string[]) {
+  filterWorkouts(
+    phases: string[],
+    specialties: string[],
+    duration: number[],
+    types: string[],
+    zwo: boolean[]
+  ) {
     const workouts = this.workouts.filter(workout => {
       return (
         (phases.length === 0 || phases.indexOf(workout.phase) >= 0) &&
         (specialties.length === 0 ||
           specialties.indexOf(workout.specialty) >= 0) &&
-        (types.length === 0 || types.indexOf(workout.type) >= 0)
+        (duration.length === 0 || duration.indexOf(workout.duration) >= 0) &&
+        (types.length === 0 || types.indexOf(workout.type) >= 0) &&
+        (zwo.length === 0 || zwo.indexOf(workout.zwo) >= 0)
       );
     });
     this.selectedWorkouts.next(workouts);
 
-    document.getElementById("filter").style.display = "none";
+    if (window.innerWidth < 769) {
+      document.getElementById("filter").style.display = "none";
+    } else {
+      return;
+    }
   }
 }
