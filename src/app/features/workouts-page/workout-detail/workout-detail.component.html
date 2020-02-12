@@ -1,1 +1,31 @@
-<p>workout-detail works!</p>
+<a
+  class="back-btn"
+  (click)="goBack()"
+>Go Back</a>
+<div class="detail__container">
+  <div class="deatail__image">
+    <img
+      [src]="workout.imagePath"
+      alt="placeholder"
+    >
+  </div>
+  <div class="workout__item--info">
+    <h1 style="color:red">this is a temporary UI until json data and routers are working</h1>
+    <h2 class="workout__item--title">{{ workout.title }}</h2>
+
+    <div class="workout__item--specs">
+
+      <h3 class="workout__item--specs-heading">{{ workout.type }}</h3>
+      <span class="break"></span>
+      <h3 class="workout__item--specs-heading">{{ workout.duration}}</h3>
+      <span class="break"></span>
+      <h3 class="workout__item--specs-heading">{{ workout.phase }}</h3>
+
+    </div>
+  </div>
+  <div class="workout__item--notes">
+    <p>{{ workout.description }}, on Zwift? {{ workout.zwo ? 'yes' : 'no' }}
+    </p>
+  </div>
+
+</div>

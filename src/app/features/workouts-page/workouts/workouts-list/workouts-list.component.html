@@ -2,15 +2,15 @@
 <div class="workout__list">
   <!--workout item-->
   <p>Showing {{ listCount }} of {{ listTotal }} Workouts</p>
-  <div *ngFor="let workout of workouts">
+  <div *ngFor="let workout of workouts; let i = index">
     <!--Tag to select workout-->
     <a
-      href="#"
+      [routerLink]="[i]"
       class="workout__item"
     >
       <div class="workout__item--img"><img
           [src]="workout.imagePath"
-          alt="placeholder"
+          alt="{{ workout.title }}"
         ></div>
 
       <div class="workout__item--info">

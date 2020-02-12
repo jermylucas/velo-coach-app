@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Workout } from "../workout.model";
 import { WorkoutService } from "../../workoutservice/workout.service";
 
@@ -11,6 +11,7 @@ export class WorkoutsListComponent implements OnInit {
   workouts: any;
   listCount;
   listTotal;
+  index: number;
 
   constructor(private workoutService: WorkoutService) {
     this.workoutService.getWorkouts().subscribe(res => {
