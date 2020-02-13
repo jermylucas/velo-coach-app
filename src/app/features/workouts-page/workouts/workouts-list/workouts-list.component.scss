@@ -1,18 +1,18 @@
 @import "../../../../../sass/variables";
 
 .break {
-  width: 2.5rem;
+  width: 25px;
   height: 0px;
-  left: 40rem;
-  top: 6.8rem;
-  margin: 0 1.5rem;
+  left: 400px;
+  top: 68px;
+  margin: 0 15px;
 
   border: 1px solid #868686;
   transform: rotate(90deg);
 }
 a {
   text-decoration: none;
-  font-size: 1.6rem;
+  font-size: 14px;
   color: $color-black;
   margin: 0;
   padding: 0;
@@ -26,27 +26,27 @@ img {
 
 /* Workout list */
 .workout__list {
-  width: 90rem;
+  width: 900px;
   max-width: 95%;
 
   margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 /* Workout Items */
 .workout__item {
-  // width: 90rem;
+  // width: 900px;
   // max-width: 90%;
-  min-height: 25.3rem;
+  min-height: 253px;
 
-  margin-top: 2rem;
+  margin-top: 20px;
   border: 1px solid $color-light-grey;
   border-top: 4px solid $color-dark-grey;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.25s ease-in-out;
   border-radius: 2px;
   display: grid;
-  grid-template-columns: 35% 65%;
+  grid-template-columns: 45% 55%;
 
   grid-template-areas:
     "img info"
@@ -58,20 +58,20 @@ img {
 
   &--img {
     margin: auto;
-    padding: 1rem;
+    padding: 10px;
     grid-area: img;
     height: 156px;
   }
 
   &--info {
     grid-area: info;
-    margin: 1rem;
+    margin: 10px;
 
     position: relative;
   }
 
   &--title {
-    font-size: 2.5;
+    font-size: 26px;
     font-weight: 600;
     margin: 0;
 
@@ -87,10 +87,10 @@ img {
     border-top: 1px solid $color-light-grey;
     text-align: center;
     width: 100%;
-    padding: 1.5rem 0 0.8rem 0;
+    padding: 15px 0 8px 0;
 
     color: $color-grey;
-    font-size: 1.6rem;
+    font-size: 14px;
     font-weight: bold;
 
     position: absolute;
@@ -104,16 +104,17 @@ img {
     }
 
     @media (max-width: $breakpoint-tablet-land) {
-      font-size: 1.5rem;
-      padding: 0.8rem 0;
+      font-size: 12px;
+      padding: 8px 0;
       position: relative;
     }
   }
 
   &--notes {
+    font-size: 15px;
     grid-area: notes;
-    padding: 1rem 1rem 0 1rem;
-    margin-bottom: 1rem;
+    padding: 10px 10px 0 10px;
+    margin-bottom: 10px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
