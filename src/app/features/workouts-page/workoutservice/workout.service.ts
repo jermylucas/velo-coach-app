@@ -48,6 +48,16 @@ export class WorkoutService {
       "Road Race",
       "Base 1",
       false
+    ),
+    new Workout(
+      "SS7-2",
+      `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight. Bounce leg press barbell, curl bodyweight training pushup push warm up cardio extension chin up. Fitness pulldown lunge arm heart rate fitness bounce bodyweight. Chin up running jump, squat body composition body fat percentage bodyweight raise burpees leg press lats arm.`,
+      "../../../../assets/img/placeholder.png",
+      "Anaerobic",
+      20,
+      "Road Race",
+      "Base 1",
+      false
     )
   ];
 
@@ -67,10 +77,17 @@ export class WorkoutService {
     this.listTotal = this.workouts.length;
   }
 
+  // For data storage. Always retrieves all workouts even with checked boxes rather than just the selected workouts. This prevents some potential bugs
+  getAllWorkouts() {
+    return this.workouts.slice();
+  }
+
+  //Returning selected workouts so checkboxes still work and I can subscribe to the behavior subject
   getWorkouts() {
     return this.selectedWorkouts;
   }
 
+  // For selected workouts even when boxes are checked (doesn't mess up array with checked boxes)
   getWorkout(index: number) {
     return this.selectedWorkouts.value[index];
   }

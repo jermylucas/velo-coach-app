@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { SidenavService } from "../../../app/services/sidenav.service";
+import { DatastorageService } from 'src/app/services/datastorage.service';
 
 @Component({
   selector: "app-sidenav",
@@ -10,7 +11,7 @@ export class SidenavComponent {
   panelOpenState: boolean = false;
   screenSize: boolean;
 
-  constructor(private sidenavService: SidenavService) {}
+  constructor(private sidenavService: SidenavService, private dataStorageService: DatastorageService) {}
 
   closePanel() {
     this.panelOpenState = false;
@@ -24,4 +25,9 @@ export class SidenavComponent {
       this.sidenavService.open();
     }
   }
+
+  onStore() {
+    this.dataStorageService.storeWorkouts();
+  }
+
 }
