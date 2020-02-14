@@ -48,6 +48,8 @@ img {
   display: grid;
   grid-template-columns: 45% 55%;
 
+  position: relative;
+
   grid-template-areas:
     "img info"
     "notes notes";
@@ -125,6 +127,17 @@ img {
     box-shadow: inset 0px 6px 4px -4px $color-light-grey;
   }
 
+  &--details {
+    padding: 5px 10px;
+    background: $list-light-grey;
+    border-bottom: 1px solid $color-light-grey;
+    border-left: 1px solid $color-light-grey;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: $color-primary-light-blue;
+  }
+
   @media (max-width: $breakpoint-tablet-land) {
     grid-template-columns: 1fr;
 
@@ -132,5 +145,80 @@ img {
       "img"
       "info"
       "notes";
+  }
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  left: -322px;
+  top: 10px;
+
+  color: $color-dark-grey;
+
+  position: absolute;
+  text-decoration: none;
+  background: #ffffff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 3px;
+  line-height: 22px;
+  z-index: 5;
+  width: 200px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  padding: 10px;
+  width: 300px;
+
+  &__title {
+    margin: 10px 0;
+  }
+
+  &__list {
+    border: solid 1px $list-dark-grey;
+    border-top: solid 4px $color-primary-light-blue;
+    padding: 15px 10px 10px 10px;
+    border-radius: 5px;
+    background: $color-white;
+
+    &-wrapper {
+      border: solid 1px $list-dark-grey;
+      background: $list-light-grey;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    &-lh {
+      font-weight: 500;
+      font-size: 15px;
+      padding: 0 0 0 5px;
+      margin: 0;
+      color: $color-dark-grey;
+    }
+    &-li {
+      padding-left: 5px;
+      list-style: none;
+      color: #7e7e7e;
+    }
+  }
+}
+ul {
+  margin: 0;
+  padding-left: 5px;
+}
+ul li {
+  list-style: none;
+}
+.detailsActive {
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2 ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+
+  @media (max-width: $breakpoint-tablet-land) {
+    opacity: 0;
+    visibility: hidden;
+  }
+  @media (min-width: $breakpoint-tablet-land) {
+    opacity: 1;
+    visibility: visible;
   }
 }

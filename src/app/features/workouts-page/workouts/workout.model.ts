@@ -4,7 +4,7 @@ export class Workout {
   public imagePath: string;
   public type: string;
   public duration: number;
-  public specialty: string;
+  public specialty: string[];
   public phase: string[];
   public zwo: boolean;
 
@@ -14,7 +14,7 @@ export class Workout {
     imagePath: string,
     type: string,
     duration: number,
-    specialty: string,
+    specialty: string[],
     phase: string[],
     zwo: boolean
   ) {

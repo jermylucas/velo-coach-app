@@ -24,6 +24,7 @@ export class WorkoutsFilterComponent implements OnInit {
   ];
   specialtyOptions = [
     "Road Race",
+    "Criterium",
     "Hill Climb",
     "Cyclocross",
     "Gravel",

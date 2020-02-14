@@ -15,8 +15,8 @@ export class WorkoutService {
       "../../../../assets/img/workout-sample.png",
       "Anaerobic",
       20,
-      "Road Race",
-      ["Base 1"],
+      ["Hill Climb", "Cross Country MTB"],
+      ["Base 1", "Base 2", "Base 3", "Build 1", "Build 2"],
       false
     ),
     new Workout(
@@ -25,7 +25,7 @@ export class WorkoutService {
       "../../../../assets/img/placeholder.png",
       "Aerobic / Endurance",
       10,
-      "Road Race",
+      ["Road Race", "Gravel", "Time Trial"],
       ["Build 1"],
       true
     ),
@@ -35,8 +35,8 @@ export class WorkoutService {
       "../../../assets/img/placeholder.png",
       "Tempo",
       60,
-      "Road Race",
-      ["Race"],
+      ["Cyclocross", "Cross Country MTB", "Criterium"],
+      ["Race", "Peak", "Testing"],
       true
     ),
     new Workout(
@@ -45,8 +45,8 @@ export class WorkoutService {
       "../../../../assets/img/placeholder.png",
       "Anaerobic",
       20,
-      "Road Race",
-      ["Base 1"],
+      ["Road Race"],
+      ["Base 1", "Base 2"],
       false
     ),
     new Workout(
@@ -55,8 +55,8 @@ export class WorkoutService {
       "../../../../assets/img/placeholder.png",
       "Anaerobic",
       20,
-      "Road Race",
-      ["Base 1", "Build 1"],
+      ["Road Race"],
+      ["Base 3", "Build 1", "Build 2"],
       false
     )
   ];
@@ -92,11 +92,11 @@ export class WorkoutService {
     return this.selectedWorkouts.value[index];
   }
 
-  // Add workouts from workout-edit 
+  // Add workouts from workout-edit
   addWorkout(workout: Workout) {
     this.workouts.push(workout);
     this.selectedWorkouts.next(this.workouts.slice());
-    
+
     console.log(this.workouts);
   }
 
@@ -109,9 +109,12 @@ export class WorkoutService {
   ) {
     const workouts = this.workouts.filter(workout => {
       return (
-        (!phases.length || phases.some(phase => workout.phase.includes(phase))) &&
-        (specialties.length === 0 ||
-          specialties.indexOf(workout.specialty) >= 0) &&
+        (!phases.length ||
+          phases.some(phase => workout.phase.includes(phase))) &&
+        (!specialties.length ||
+          specialties.some(specialty =>
+            workout.specialty.includes(specialty)
+          )) &&
         (duration.length === 0 || duration.indexOf(workout.duration) >= 0) &&
         (types.length === 0 || types.indexOf(workout.type) >= 0) &&
         (zwo.length === 0 || zwo.indexOf(workout.zwo) >= 0)
