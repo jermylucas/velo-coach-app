@@ -7,35 +7,31 @@
         mat-raised-button
         type="submit"
         class="form__btns--save"
-        [disabled]="!f.form.valid"
-      >Save</button>
+        [disabled]="!f.form.valid">Save</button>
       <button
         mat-raised-button
         type="button"
         (click)="onCancel()"
-        class="form__btns--cancel"
-      >Cancel</button>
+        class="form__btns--cancel">Cancel</button>
     </div>
 
 
     <div class="form__group">
       <!-- title -->
-      <mat-form-field 
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="title"
-      >
+        class="title">
         <mat-label>Title</mat-label>
         <input matInput ngModel name="title" id="title" required>
       </mat-form-field>
 
       <!-- phase -->
 
-      <mat-form-field 
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="phase"
-      >
+        class="phase">
         <mat-label>Phase</mat-label>
         <mat-select multiple ngModel id="phase" name="phase" required>
           <mat-option value="Base 1">Base 1</mat-option>
@@ -51,12 +47,11 @@
       </mat-form-field>
 
       <!-- specialty -->
-      <mat-form-field 
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="specialty"
-      >
-        <mat-label >Specialty</mat-label>
+        class="specialty">
+        <mat-label>Specialty</mat-label>
         <mat-select ngModel name="specialty" id="specialty" required>
           <mat-option value="Road Race">Road Race</mat-option>
           <mat-option value="Hill Climb">Hill Climb</mat-option>
@@ -68,11 +63,10 @@
       </mat-form-field>
 
       <!-- type -->
-      <mat-form-field 
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="type"
-      >
+        class="type">
         <mat-label>Type</mat-label>
         <mat-select ngModel id="type" name="type" required>
           <mat-option value="Anaerobic">Anaerobic</mat-option>
@@ -88,11 +82,10 @@
       </mat-form-field>
 
       <!-- zwo -->
-      <mat-form-field 
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="zwo"
-      >
+        class="zwo">
         <mat-label>On Zwift?</mat-label>
         <mat-select ngModel name="zwo" id="zwo" required>
           <mat-option value="Yes">Yes</mat-option>
@@ -101,49 +94,45 @@
       </mat-form-field>
 
       <!-- imagePath -->
-      <mat-form-field 
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="img"
-      >
+        class="img">
         <mat-label>Image Path</mat-label>
-        <input matInput ngModel name="imgPath" id="imgPath" required>
-        <mat-hint align="start">Must include complete url</mat-hint>
+        <input matInput ngModel name="imgPath" id="imgPath" required #imgPath>
+        <mat-hint align="start">Must be a complete url</mat-hint>
       </mat-form-field>
 
       <!-- time input -->
-      <mat-form-field 
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="duration"
-      >
+        class="duration">
         <mat-label>Duration</mat-label>
         <input
           type="number"
           matInput
-          ngModel 
+          ngModel
           name="duration"
           id="duration"
-          required
-        >
+          required>
         <mat-hint align="start">Duration must be in minutes</mat-hint>
       </mat-form-field>
 
       <!-- description -->
-      <mat-form-field 
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="description"
-      >
+        class="description">
         <mat-label>Description</mat-label>
-        <textarea 
-          matInput 
-          ngModel 
+        <textarea
+          matInput
+          ngModel
           id="description"
           name="description"
-          required
-          ></textarea>
+          required></textarea>
       </mat-form-field>
+      <img style="max-height: 300px;" [src]="imgPath.value" alt="  ">
 
     </div>
   </form>
