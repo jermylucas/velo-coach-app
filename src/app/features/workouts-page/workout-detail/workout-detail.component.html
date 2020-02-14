@@ -24,8 +24,8 @@
     </div>
   </div>
   <div class="workout__item--notes">
-    <p>{{ workout.description }}, on Zwift? {{ workout.zwo ? 'yes' : 'no' }}
-    </p>
+    <!-- innerHTML to display WYSIWYG text as well -->
+    <p style="white-space: pre-wrap;" [innerHTML]="workout.description"></p>
   </div>
 
 </div>

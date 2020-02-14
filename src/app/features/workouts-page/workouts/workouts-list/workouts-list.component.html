@@ -28,7 +28,7 @@
       </div>
 
       <div class="workout__item--notes">
-        <p>{{ workout.description }}, on Zwift? {{ workout.zwo ? 'Yes' : 'No' }}
+        <p [innerHTML]="workout.description">
         </p>
       </div>
       <!--Tooltip on details hover-->

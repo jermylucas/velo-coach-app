@@ -30,14 +30,14 @@
   -ms-grid-columns: (24.25%)[4];
       grid-template-columns: repeat(4, 24.25%);
   grid-gap: 1%;
-      grid-template-areas: "title title title title" "phase specialty type zwo" "img img time time" "desc desc desc desc";
+      grid-template-areas: "title title title title" "phase specialty type zwo" "img img duration duration" "desc desc desc desc";
 }
 
 @media (max-width: 1024px) {
   .form__group {
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
-        grid-template-areas: "title title" "phase specialty" "type zwo" "img time" "desc desc";
+        grid-template-areas: "title title" "phase specialty" "type zwo" "img duration" "desc desc";
   }
 }
 
@@ -45,7 +45,7 @@
   .form__group {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-        grid-template-areas: "title" "phase" "specialty" "type" "zwo" "img" "time" "desc";
+        grid-template-areas: "title" "phase" "specialty" "type" "zwo" "img" "duration" "desc";
   }
 }
 
@@ -107,9 +107,10 @@
   grid-area: img;
 }
 
-.time {
+.duration {
   -ms-grid-row: 3;
   -ms-grid-column: 3;
   -ms-grid-column-span: 2;
-  grid-area: time;
+  grid-area: duration;
 }
+/*# sourceMappingURL=workout-edit.component.css.map */

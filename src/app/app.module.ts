@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -18,6 +18,8 @@ import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/worko
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { WorkoutDetailComponent } from "./features/workouts-page/workout-detail/workout-detail.component";
+
+import { AngularEditorModule } from "@kolkov/angular-editor";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { WorkoutDetailComponent } from "./features/workouts-page/workout-detail/
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularEditorModule
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]

@@ -109,7 +109,7 @@
         hideRequiredMarker
         appearance="fill"
         class="duration">
-        <mat-label>Duration</mat-label>
+        <mat-label>Duration (minutes)</mat-label>
         <input
           type="number"
           matInput
@@ -121,23 +121,26 @@
       </mat-form-field>
 
       <!-- description -->
-      <mat-form-field
-        hideRequiredMarker
-        appearance="fill"
+      <div
         class="description">
-        <mat-label>Description</mat-label>
-        <textarea
-          matInput
-          ngModel
-          id="description"
-          name="description"
-          required></textarea>
-      </mat-form-field>
-      <img style="max-height: 300px;" [src]="imgPath.value" alt="  ">
+        <angular-editor ngModel required name="description" id="description" [config]="config"></angular-editor>
+      </div>
+      <img style="max-height: 300px;" [src]="imgPath.value">
 
     </div>
   </form>
 </div>
+
+<!-- Original Description Box (wrapped in form field) -->
+<!-- hideRequiredMarker
+
+<mat-label>Description</mat-label>
+<textarea
+  matInput
+  ngModel
+  id="description"
+  name="description"
+  required></textarea> -->
 
 <!-- 
 title: string,

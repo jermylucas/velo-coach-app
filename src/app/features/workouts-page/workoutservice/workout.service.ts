@@ -12,9 +12,9 @@ export class WorkoutService {
     new Workout(
       "SS7-2",
       `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight. Bounce leg press barbell, curl bodyweight training pushup push warm up cardio extension chin up. Fitness pulldown lunge arm heart rate fitness bounce bodyweight. Chin up running jump, squat body composition body fat percentage bodyweight raise burpees leg press lats arm.`,
-      "../../../../assets/img/workout-sample.png",
+      "../../../../assets/img/placeholder.png",
       "Anaerobic",
-      20,
+      60,
       ["Hill Climb", "Cross Country MTB"],
       ["Base 1", "Base 2", "Base 3", "Build 1", "Build 2"],
       false
@@ -24,7 +24,7 @@ export class WorkoutService {
       `Climp chin up tuck jacks warm up body fat percentage ball pulldown, physical chin up lower body gym. Walking raise legs leg press climp stretch barbell ball. Smith machine plank dip muscles bench BMI raise, deadlift major lower body leg major lower back abs. Chest fly gym pectorals crunch endurance, barbell warm up leg press endurance climp. Running pushup stretch pull extension body fat percentage lower body kettlebell calves.`,
       "../../../../assets/img/placeholder.png",
       "Aerobic / Endurance",
-      10,
+      30,
       ["Road Race", "Gravel", "Time Trial"],
       ["Build 1"],
       true
@@ -34,17 +34,19 @@ export class WorkoutService {
       "Curl tuck flexibility calves climp curl, lower body pullup physical squat dip pectorals kettlebell equipment. Bear crawl aerobic physical burpees upright row train plank, endurance ball bodyweight jacks mountain climber. Body composition mountain climber legs chin up, jump fit plank body fat percentage kick burpees biceps plank physical barbell. ",
       "../../../assets/img/placeholder.png",
       "Tempo",
-      60,
+      90,
       ["Cyclocross", "Cross Country MTB", "Criterium"],
       ["Race", "Peak", "Testing"],
       true
     ),
     new Workout(
       "SS7-2",
-      `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight. Bounce leg press barbell, curl bodyweight training pushup push warm up cardio extension chin up. Fitness pulldown lunge arm heart rate fitness bounce bodyweight. Chin up running jump, squat body composition body fat percentage bodyweight raise burpees leg press lats arm.`,
+      `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight. 
+      
+      Bounce leg press barbell, curl bodyweight training pushup push warm up cardio extension chin up. Fitness pulldown lunge arm heart rate fitness bounce bodyweight. Chin up running jump, squat body composition body fat percentage bodyweight raise burpees leg press lats arm.`,
       "../../../../assets/img/placeholder.png",
       "Anaerobic",
-      20,
+      30,
       ["Road Race"],
       ["Base 1", "Base 2"],
       false
@@ -54,7 +56,7 @@ export class WorkoutService {
       `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight. Bounce leg press barbell, curl bodyweight training pushup push warm up cardio extension chin up. Fitness pulldown lunge arm heart rate fitness bounce bodyweight. Chin up running jump, squat body composition body fat percentage bodyweight raise burpees leg press lats arm.`,
       "../../../../assets/img/placeholder.png",
       "Anaerobic",
-      20,
+      45,
       ["Road Race"],
       ["Base 3", "Build 1", "Build 2"],
       false
