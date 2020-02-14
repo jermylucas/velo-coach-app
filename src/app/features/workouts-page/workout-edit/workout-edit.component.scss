@@ -1,1 +1,88 @@
 @import "../../../../sass/variables";
+
+.form {
+  width: 85%;
+  margin: auto;
+
+  &__btns {
+    margin: 10px 0;
+
+    &--save,
+    &--cancel {
+      color: $color-white;
+      margin-right: 10px;
+    }
+    &--save {
+      background: $color-green;
+    }
+    &--cancel {
+      background: $color-secondary-grey;
+    }
+  }
+
+  &__group {
+    display: grid;
+    grid-template-columns: repeat(4, 24.25%);
+    grid-gap: 1%;
+    grid-template-areas:
+      "title title title title"
+      "phase specialty type zwo"
+      "img img time time"
+      "desc desc desc desc";
+
+    @media (max-width: $breakpoint-tablet-land) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "title title"
+        "phase specialty"
+        "type zwo"
+        "img time"
+        "desc desc";
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "title"
+        "phase"
+        "specialty"
+        "type"
+        "zwo"
+        "img"
+        "time"
+        "desc";
+    }
+  }
+  @media (max-width: $breakpoint-tablet-land) {
+    width: 90%;
+  }
+  @media (max-width: $breakpoint-mobile) {
+    width: 95%;
+  }
+}
+
+.description {
+  grid-area: desc;
+  margin-top: 5px;
+}
+.specialty {
+  grid-area: specialty;
+}
+.title {
+  grid-area: title;
+}
+.phase {
+  grid-area: phase;
+}
+.zwo {
+  grid-area: zwo;
+}
+.type {
+  grid-area: type;
+}
+.img {
+  grid-area: img;
+}
+.time {
+  grid-area: time;
+}

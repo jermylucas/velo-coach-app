@@ -90,7 +90,6 @@ img {
     padding: 15px 0 8px 0;
 
     color: $color-grey;
-    font-size: 14px;
     font-weight: bold;
 
     position: absolute;
@@ -104,7 +103,6 @@ img {
     }
 
     @media (max-width: $breakpoint-tablet-land) {
-      font-size: 12px;
       padding: 8px 0;
       position: relative;
     }

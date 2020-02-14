@@ -1,24 +1,131 @@
-<div>
-  <div>
-    <form>
-      <div class="form__btns">
-        <button
-          type="submit"
-          class="form__btns--save"
-        >Save</button>
-        <button
-          type="button"
-          class="form__btns--cancel"
-        >Cancel</button>
-      </div>
+<!-- form container -->
+<div class="form">
+  <form>
+    <!-- form buttons -->
+    <div class="form__btns">
+      <button
+        mat-raised-button
+        type="submit"
+        class="form__btns--save"
+      >Save</button>
+      <button
+        mat-raised-button
+        type="button"
+        class="form__btns--cancel"
+      >Cancel</button>
+    </div>
 
-      <mat-form-field>
+
+    <div class="form__group">
+      <!-- title -->
+      <mat-form-field
+        appearance="fill"
+        class="title"
+      >
         <mat-label>Title</mat-label>
         <input matInput>
       </mat-form-field>
 
-    </form>
-  </div>
+      <!-- phase -->
+      <mat-form-field
+        appearance="fill"
+        class="phase"
+      >
+        <mat-label>Phase</mat-label>
+        <mat-select>
+          <mat-option value="base1">Base 1</mat-option>
+          <mat-option value="base2">Base 2</mat-option>
+          <mat-option value="base3">Base 3</mat-option>
+          <mat-option value="build1">Build 1</mat-option>
+          <mat-option value="build2">Build 2</mat-option>
+          <mat-option value="recovery">Recovery</mat-option>
+          <mat-option value="peak">Peak</mat-option>
+          <mat-option value="race">Race</mat-option>
+          <mat-option value="testing">Testing</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- specialty -->
+      <mat-form-field
+        appearance="fill"
+        class="specialty"
+      >
+        <mat-label>Specialty</mat-label>
+        <mat-select>
+          <mat-option value="roadrace">Road Race</mat-option>
+          <mat-option value="hillclimb">Hill Climb</mat-option>
+          <mat-option value="cyclocross">Cyclocross</mat-option>
+          <mat-option value="gravel">Gravel</mat-option>
+          <mat-option value="timetrial">Time Trial</mat-option>
+          <mat-option value="xcmtb">Cross Country MTB</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- type -->
+      <mat-form-field
+        appearance="fill"
+        class="type"
+      >
+        <mat-label>Type</mat-label>
+        <mat-select>
+          <mat-option value="anaerobic">Anaerobic</mat-option>
+          <mat-option value="aerobic-endurance">Aerobic / Endurance</mat-option>
+          <mat-option value="muscular-endurance">Musc. Endurance</mat-option>
+          <mat-option value="power">Power</mat-option>
+          <mat-option value="sweet-spot">Sweet Spot</mat-option>
+          <mat-option value="strength">Strength</mat-option>
+          <mat-option value="technique">Technique</mat-option>
+          <mat-option value="tempo">Tempo</mat-option>
+          <mat-option value="threshold">Threshold</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- zwo -->
+      <mat-form-field
+        appearance="fill"
+        class="zwo"
+      >
+        <mat-label>On Zwift?</mat-label>
+        <mat-select>
+          <mat-option value="zwo-yes">Yes</mat-option>
+          <mat-option value="zwo-no">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- imagePath -->
+      <mat-form-field
+        appearance="fill"
+        class="img"
+      >
+        <mat-label>Image Path</mat-label>
+        <input matInput>
+        <mat-hint align="start">Must include complete url</mat-hint>
+      </mat-form-field>
+
+      <!-- time input -->
+      <mat-form-field
+        appearance="fill"
+        class="time"
+      >
+        <mat-label>Time</mat-label>
+        <input
+          type="number"
+          matInput
+        >
+        <mat-hint align="start">Time must be in minutes</mat-hint>
+      </mat-form-field>
+
+      <!-- description -->
+      <mat-form-field
+        appearance="fill"
+        class="description"
+      >
+        <mat-label>Description</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+
+    </div>
+  </form>
 </div>
 
 <!-- 
