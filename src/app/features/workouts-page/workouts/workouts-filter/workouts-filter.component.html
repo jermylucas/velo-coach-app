@@ -2,16 +2,14 @@
   mat-raised-button
   class="checkbox-apply"
   type="button"
-  (click)="applyFilter()"
->Apply</button>
+  (click)="applyFilter()">Apply</button>
 <h4>Phase</h4>
 <div class="checkbox">
   <span *ngFor="let phase of phaseOptions">
     <mat-checkbox
       color="warn"
       type="checkbox"
-      (click)="phaseSelection.toggle(phase)"
-    >
+      (click)="phaseSelection.toggle(phase)">
       {{ phase }}
     </mat-checkbox>
   </span>
@@ -23,21 +21,19 @@
     <mat-checkbox
       color="warn"
       type="checkbox"
-      (click)="specialtySelection.toggle(specialty)"
-    >
+      (click)="specialtySelection.toggle(specialty)">
       {{ specialty }}
     </mat-checkbox>
   </span>
 </div>
 
-<h4>Duration</h4>
+<h4>Duration (filters to be added)</h4>
 <div class="checkbox">
   <span *ngFor="let duration of durationOptions">
     <mat-checkbox
       color="warn"
       type="checkbox"
-      (click)="durationSelection.toggle(duration)"
-    >
+      (click)="durationSelection.toggle(duration)">
       {{ duration }}
     </mat-checkbox>
   </span>
@@ -49,8 +45,7 @@
     <mat-checkbox
       color="warn"
       type="checkbox"
-      (click)="typeSelection.toggle(type)"
-    >
+      (click)="typeSelection.toggle(type)">
       {{ type }}
     </mat-checkbox>
   </span>
@@ -62,8 +57,7 @@
     <mat-checkbox
       color="warn"
       type="checkbox"
-      (click)="zwoSelection.toggle(zwo)"
-    >
+      (click)="zwoSelection.toggle(zwo)">
       {{ zwo ? 'Yes' : 'No' }}
     </mat-checkbox>
   </span>

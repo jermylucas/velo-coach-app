@@ -41,8 +41,8 @@ export class WorkoutService {
     ),
     new Workout(
       "SS7-2",
-      `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight. 
-      
+      `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight.
+
       Bounce leg press barbell, curl bodyweight training pushup push warm up cardio extension chin up. Fitness pulldown lunge arm heart rate fitness bounce bodyweight. Chin up running jump, squat body composition body fat percentage bodyweight raise burpees leg press lats arm.`,
       "../../../../assets/img/placeholder.png",
       "Anaerobic",
@@ -98,6 +98,9 @@ export class WorkoutService {
   addWorkout(workout: Workout) {
     this.workouts.push(workout);
     this.selectedWorkouts.next(this.workouts.slice());
+
+    // update list total on add
+    this.listTotal = this.workouts.length;
 
     console.log(this.workouts);
   }

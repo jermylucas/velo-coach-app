@@ -65,6 +65,7 @@ export class WorkoutEditComponent implements OnInit {
     toolbarHiddenButtons: [
       ["subscript", "superscript"],
       ["justifyRight"],
+      ["justifyFull"],
       ["insertImage"],
       ["insertVideo"],
       ["link"],
