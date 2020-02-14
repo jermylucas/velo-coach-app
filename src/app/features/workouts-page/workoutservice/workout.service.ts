@@ -16,7 +16,7 @@ export class WorkoutService {
       "Anaerobic",
       20,
       "Road Race",
-      "Base 1",
+      ["Base 1"],
       false
     ),
     new Workout(
@@ -26,7 +26,7 @@ export class WorkoutService {
       "Aerobic / Endurance",
       10,
       "Road Race",
-      "Build 1",
+      ["Build 1"],
       true
     ),
     new Workout(
@@ -36,7 +36,7 @@ export class WorkoutService {
       "Tempo",
       60,
       "Road Race",
-      "Race",
+      ["Race"],
       true
     ),
     new Workout(
@@ -46,17 +46,17 @@ export class WorkoutService {
       "Anaerobic",
       20,
       "Road Race",
-      "Base 1",
+      ["Base 1"],
       false
     ),
     new Workout(
-      "SS7-2",
+      "multi sample",
       `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight. Bounce leg press barbell, curl bodyweight training pushup push warm up cardio extension chin up. Fitness pulldown lunge arm heart rate fitness bounce bodyweight. Chin up running jump, squat body composition body fat percentage bodyweight raise burpees leg press lats arm.`,
       "../../../../assets/img/placeholder.png",
       "Anaerobic",
       20,
       "Road Race",
-      "Base 1",
+      ["Base 1", "Build 1"],
       false
     )
   ];

@@ -5,7 +5,7 @@ export class Workout {
   public type: string;
   public duration: number;
   public specialty: string;
-  public phase: string;
+  public phase: string[];
   public zwo: boolean;
 
   constructor(
@@ -15,7 +15,7 @@ export class Workout {
     type: string,
     duration: number,
     specialty: string,
-    phase: string,
+    phase: string[],
     zwo: boolean
   ) {
     this.title = title;
