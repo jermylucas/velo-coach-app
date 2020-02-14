@@ -1,16 +1,18 @@
 <!-- form container -->
 <div class="form">
-  <form>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <!-- form buttons -->
     <div class="form__btns">
       <button
         mat-raised-button
         type="submit"
         class="form__btns--save"
+        [disabled]="!f.form.valid"
       >Save</button>
       <button
         mat-raised-button
         type="button"
+        (click)="onCancel()"
         class="form__btns--cancel"
       >Cancel</button>
     </div>
@@ -18,110 +20,129 @@
 
     <div class="form__group">
       <!-- title -->
-      <mat-form-field
+      <mat-form-field 
+        hideRequiredMarker
         appearance="fill"
         class="title"
       >
         <mat-label>Title</mat-label>
-        <input matInput>
+        <input matInput ngModel name="title" id="title" required>
       </mat-form-field>
 
       <!-- phase -->
-      <mat-form-field
+
+      <mat-form-field 
+        hideRequiredMarker
         appearance="fill"
         class="phase"
       >
         <mat-label>Phase</mat-label>
-        <mat-select>
-          <mat-option value="base1">Base 1</mat-option>
-          <mat-option value="base2">Base 2</mat-option>
-          <mat-option value="base3">Base 3</mat-option>
-          <mat-option value="build1">Build 1</mat-option>
-          <mat-option value="build2">Build 2</mat-option>
-          <mat-option value="recovery">Recovery</mat-option>
-          <mat-option value="peak">Peak</mat-option>
-          <mat-option value="race">Race</mat-option>
-          <mat-option value="testing">Testing</mat-option>
+        <mat-select multiple ngModel id="phase" name="phase" required>
+          <mat-option value="Base 1">Base 1</mat-option>
+          <mat-option value="Base 2">Base 2</mat-option>
+          <mat-option value="Base 3">Base 3</mat-option>
+          <mat-option value="Build 1">Build 1</mat-option>
+          <mat-option value="Build 2">Build 2</mat-option>
+          <mat-option value="Recovery">Recovery</mat-option>
+          <mat-option value="Peak">Peak</mat-option>
+          <mat-option value="Race">Race</mat-option>
+          <mat-option value="Testing">Testing</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- specialty -->
-      <mat-form-field
+      <mat-form-field 
+        hideRequiredMarker
         appearance="fill"
         class="specialty"
       >
-        <mat-label>Specialty</mat-label>
-        <mat-select>
-          <mat-option value="roadrace">Road Race</mat-option>
-          <mat-option value="hillclimb">Hill Climb</mat-option>
-          <mat-option value="cyclocross">Cyclocross</mat-option>
-          <mat-option value="gravel">Gravel</mat-option>
-          <mat-option value="timetrial">Time Trial</mat-option>
-          <mat-option value="xcmtb">Cross Country MTB</mat-option>
+        <mat-label >Specialty</mat-label>
+        <mat-select ngModel name="specialty" id="specialty" required>
+          <mat-option value="Road Race">Road Race</mat-option>
+          <mat-option value="Hill Climb">Hill Climb</mat-option>
+          <mat-option value="Cyclocross">Cyclocross</mat-option>
+          <mat-option value="Gravel">Gravel</mat-option>
+          <mat-option value="Timetrial">Time Trial</mat-option>
+          <mat-option value="Cross Country MTB">Cross Country MTB</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- type -->
-      <mat-form-field
+      <mat-form-field 
+        hideRequiredMarker
         appearance="fill"
         class="type"
       >
         <mat-label>Type</mat-label>
-        <mat-select>
-          <mat-option value="anaerobic">Anaerobic</mat-option>
-          <mat-option value="aerobic-endurance">Aerobic / Endurance</mat-option>
-          <mat-option value="muscular-endurance">Musc. Endurance</mat-option>
-          <mat-option value="power">Power</mat-option>
-          <mat-option value="sweet-spot">Sweet Spot</mat-option>
-          <mat-option value="strength">Strength</mat-option>
-          <mat-option value="technique">Technique</mat-option>
-          <mat-option value="tempo">Tempo</mat-option>
-          <mat-option value="threshold">Threshold</mat-option>
+        <mat-select ngModel id="type" name="type" required>
+          <mat-option value="Anaerobic">Anaerobic</mat-option>
+          <mat-option value="Aerobic / Endurance">Aerobic / Endurance</mat-option>
+          <mat-option value="Muscular Endurance">Musc. Endurance</mat-option>
+          <mat-option value="Power">Power</mat-option>
+          <mat-option value="Sweet Spot">Sweet Spot</mat-option>
+          <mat-option value="Strength">Strength</mat-option>
+          <mat-option value="Technique">Technique</mat-option>
+          <mat-option value="Tempo">Tempo</mat-option>
+          <mat-option value="Threshold">Threshold</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- zwo -->
-      <mat-form-field
+      <mat-form-field 
+        hideRequiredMarker
         appearance="fill"
         class="zwo"
       >
         <mat-label>On Zwift?</mat-label>
-        <mat-select>
-          <mat-option value="zwo-yes">Yes</mat-option>
-          <mat-option value="zwo-no">No</mat-option>
+        <mat-select ngModel name="zwo" id="zwo" required>
+          <mat-option value="Yes">Yes</mat-option>
+          <mat-option value="No">No</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- imagePath -->
-      <mat-form-field
+      <mat-form-field 
+        hideRequiredMarker
         appearance="fill"
         class="img"
       >
         <mat-label>Image Path</mat-label>
-        <input matInput>
+        <input matInput ngModel name="imgPath" id="imgPath" required>
         <mat-hint align="start">Must include complete url</mat-hint>
       </mat-form-field>
 
       <!-- time input -->
-      <mat-form-field
+      <mat-form-field 
+        hideRequiredMarker
         appearance="fill"
-        class="time"
+        class="duration"
       >
-        <mat-label>Time</mat-label>
+        <mat-label>Duration</mat-label>
         <input
           type="number"
           matInput
+          ngModel 
+          name="duration"
+          id="duration"
+          required
         >
-        <mat-hint align="start">Time must be in minutes</mat-hint>
+        <mat-hint align="start">Duration must be in minutes</mat-hint>
       </mat-form-field>
 
       <!-- description -->
-      <mat-form-field
+      <mat-form-field 
+        hideRequiredMarker
         appearance="fill"
         class="description"
       >
         <mat-label>Description</mat-label>
-        <textarea matInput></textarea>
+        <textarea 
+          matInput 
+          ngModel 
+          id="description"
+          name="description"
+          required
+          ></textarea>
       </mat-form-field>
 
     </div>

@@ -1,0 +1,94 @@
+/* whites */
+/* greys and blacks */
+/* colors */
+/* Media Query Breakpoints */
+.sidenav__expansion--title {
+  font-size: 16px;
+  color: #ffffff;
+  position: relative;
+  font-weight: normal;
+}
+
+.sidenav__expansion--panel {
+  cursor: pointer;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-radius: 0;
+  color: #ffffff;
+  border-bottom: 1px solid #444444;
+  background: #1f1f1f;
+  border-left: 4px solid transparent;
+}
+
+.sidenav__expansion--panel:hover {
+  background: #0c0c0c;
+}
+
+.sidenav__expansion--panel-active {
+  background: #0c0c0c;
+  border-left: solid 4px red;
+  position: relative;
+}
+
+.sidenav__expansion--header {
+  padding: 16px;
+}
+
+.sidenav__expansion--list {
+  list-style-type: none;
+  padding-left: 5px;
+  margin-top: -30px;
+}
+
+.sidenav__expansion--list li {
+  padding-left: 0;
+  padding-top: 10px;
+}
+
+.sidenav__expansion--list li:last-child {
+  margin-bottom: -10px;
+}
+
+.sidenav__expansion--link {
+  text-decoration: none;
+  color: #cccccc;
+  font-size: 16px;
+}
+
+.sidenav__expansion--link:hover {
+  color: #8e8e8e;
+}
+
+.wrapper {
+  height: calc(100% - 56px);
+  position: relative;
+}
+
+.logout {
+  padding: 15px 20px;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+}
+
+.logout-link {
+  text-decoration: none;
+  color: #007ee0;
+}
+
+.logout-link:hover {
+  color: #1498ff;
+}
+
+.logout-link-icon {
+  vertical-align: -25%;
+  height: 14px;
+}
+
+::ng-deep .sidenav__expansion--header > .mat-expansion-indicator:after {
+  color: #c1c1c1;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}

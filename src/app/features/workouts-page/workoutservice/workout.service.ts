@@ -92,6 +92,14 @@ export class WorkoutService {
     return this.selectedWorkouts.value[index];
   }
 
+  // Add workouts from workout-edit 
+  addWorkout(workout: Workout) {
+    this.workouts.push(workout);
+    this.selectedWorkouts.next(this.workouts.slice());
+    
+    console.log(this.workouts);
+  }
+
   filterWorkouts(
     phases: string[],
     specialties: string[],
@@ -101,7 +109,7 @@ export class WorkoutService {
   ) {
     const workouts = this.workouts.filter(workout => {
       return (
-        (phases.length === 0 || phases.indexOf(workout.phase) >= 0) &&
+        (!phases.length || phases.some(phase => workout.phase.includes(phase))) &&
         (specialties.length === 0 ||
           specialties.indexOf(workout.specialty) >= 0) &&
         (duration.length === 0 || duration.indexOf(workout.duration) >= 0) &&

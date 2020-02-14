@@ -16,7 +16,7 @@ import { SidenavService } from "./services/sidenav.service";
 import { WorkoutsListComponent } from "./features/workouts-page/workouts/workouts-list/workouts-list.component";
 import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/workouts-filter/workouts-filter.component";
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { WorkoutDetailComponent } from "./features/workouts-page/workout-detail/workout-detail.component";
 
 @NgModule({
@@ -38,7 +38,8 @@ import { WorkoutDetailComponent } from "./features/workouts-page/workout-detail/
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]
