@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { SidenavService } from "../../../app/services/sidenav.service";
 import { DatastorageService } from "src/app/services/datastorage.service";
 
@@ -7,7 +7,7 @@ import { DatastorageService } from "src/app/services/datastorage.service";
   templateUrl: "./sidenav.component.html",
   styleUrls: ["./sidenav.component.scss"]
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit {
   panelOpenState: boolean = false;
   screenSize: boolean;
 
@@ -15,6 +15,10 @@ export class SidenavComponent {
     private sidenavService: SidenavService,
     private dataStorageService: DatastorageService
   ) {}
+
+  ngOnInit() {
+    this.onFetchData();
+  }
 
   closePanel() {
     this.panelOpenState = false;
@@ -29,8 +33,14 @@ export class SidenavComponent {
     }
   }
 
-  onStore() {
+  onStoreData() {
     this.dataStorageService.storeWorkouts();
     alert("These workouts have been stored to the cloud.");
+  }
+
+  onFetchData() {
+    this.dataStorageService.fetchWorkouts().subscribe();
+
+    console.log("Fetch Workouts from Service");
   }
 }

@@ -19,9 +19,14 @@ export class WorkoutsListComponent implements OnInit {
       console.log("List Comp: ", this.workouts);
 
       this.listCount = this.workouts.length;
-    });
 
-    this.listTotal = this.workoutService.listTotal;
+      // "Hack" to get the list total to work... Fix later
+      if (this.workouts.length >= this.workoutService.listTotal) {
+        this.listTotal = this.workouts.length;
+      } else if (this.workoutService.listTotal > this.workouts.length) {
+        this.listTotal = this.workoutService.listTotal;
+      }
+    });
   }
 
   ngOnInit() {}
