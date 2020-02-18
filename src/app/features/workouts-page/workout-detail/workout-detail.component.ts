@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
 import { Location } from "@angular/common";
@@ -16,6 +16,7 @@ export class WorkoutDetailComponent implements OnInit {
   constructor(
     private workoutService: WorkoutService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {}
 
@@ -28,5 +29,9 @@ export class WorkoutDetailComponent implements OnInit {
       this.id = +params["id"];
       this.workout = this.workoutService.getWorkout(this.id);
     });
+  }
+
+  onEditWorkout() {
+    this.router.navigate(["edit"], { relativeTo: this.route });
   }
 }

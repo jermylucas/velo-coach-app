@@ -2,7 +2,7 @@
   <app-loading-spinner></app-loading-spinner>
 </div>
 <!--Container Div-->
-<div class="workout__list" *ngIf="!isLoading">
+<div class="workout__list">
   <!--workout item-->
   <p>Showing {{ listCount }} of {{ listTotal }} Workouts</p>
   <div
@@ -54,21 +54,17 @@
               </li>
               <li><span class="tooltip__list-lh">Types</span>
                 <ul>
-                  <!--if I make this an array later, change to ngfor loop-->
+                  <!--if I make this an array later, change to ngfor loop like above-->
                   <li class="tooltip__list-li"> {{ workout.type }}</li>
                 </ul>
               </li>
               <li><span class="tooltip__list-lh">On Zwift?</span>
                 <ul>
-                  <!--if I make this an array later, change to ngfor loop-->
+                  <!--if I make this an array later, change to ngfor loop like above-->
                   <li class="tooltip__list-li"> {{ workout.zwo ? 'Yes' : 'No' }}</li>
                 </ul>
               </li>
             </ul>
-            <!-- <h3 class="tooltip__list-lh">Phases:</h3>
-          <ul class="tooltip__list-ul">
-            <li *ngFor="let phase of workout.phase" class="tooltip__list-li">{{ phase }}</li>
-          </ul> -->
           </div>
         </div>
       </span>

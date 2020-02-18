@@ -8,27 +8,11 @@ import { TrainingPlansComponent } from "./features/training-plans/training-plans
 
 const routes: Routes = [
   { path: "", redirectTo: "/workouts", pathMatch: "full" },
-  {
-    path: "workouts",
-    component: WorkoutsComponent
-    // This might not be a child... so check when components are made if the edits need to be done as a child or as a seperate component
-    //
-    // children: [
-    //
-    //   {
-    //   path: ':id',
-    //     component: WorkoutDetailComponent
-    //     resolve: [WorkoutResolverService]
-    //   },
-    //   { path: ':id/edit',
-    //     component: WorkoutEditComponent,
-    //     resolve: [WorkoutResolverService]
-    // }
-    // ]
-  },
+  { path: "workouts", component: WorkoutsComponent },
   { path: "workouts/new", component: WorkoutEditComponent },
   { path: "trainingplans", component: TrainingPlansComponent },
   { path: "workouts/:id", component: WorkoutDetailComponent },
+  { path: "workouts/:id/edit", component: WorkoutEditComponent },
   { path: "not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "/not-found" }
 ];
