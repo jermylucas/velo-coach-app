@@ -1,8 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { NgForm, FormControl } from "@angular/forms";
+import {
+  NgForm,
+  FormGroup,
+  Validators,
+  FormControl,
+  FormArray
+} from "@angular/forms";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 // WYSIWYG
 import { AngularEditorConfig } from "@kolkov/angular-editor";
@@ -14,15 +20,9 @@ import { DataStorageService } from "src/app/services/datastorage.service";
   styleUrls: ["./workout-edit.component.scss"]
 })
 export class WorkoutEditComponent implements OnInit {
-  toppings = new FormControl();
-  toppingList: string[] = [
-    "Extra cheese",
-    "Mushroom",
-    "Onion",
-    "Pepperoni",
-    "Sausage",
-    "Tomato"
-  ];
+  id: number;
+  editMode = false;
+  workoutForm: FormGroup;
 
   constructor(
     private workoutService: WorkoutService,
@@ -31,29 +31,71 @@ export class WorkoutEditComponent implements OnInit {
     private dataStorage: DataStorageService
   ) {}
 
-  ngOnInit() {}
-
-  onSubmit(form: NgForm) {
-    const value = form.value;
-    const newWorkout = new Workout(
-      value.title,
-      value.description,
-      value.imgPath,
-      value.type,
-      value.duration,
-      value.specialty,
-      value.phase,
-      value.zwo
-    );
-
-    this.workoutService.addWorkout(newWorkout);
-    this.workoutService;
-    this.onCancel();
-    this.dataStorage.storeWorkouts();
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params["id"];
+      this.editMode = params["id"] != null;
+      this.initForm();
+    });
   }
+
+  onSubmit() {
+    if (this.editMode) {
+      console.log(
+        "Edit Mode... ID: ",
+        this.id,
+        ".. Value: ",
+        this.workoutForm.value
+      );
+    } else {
+      console.log("Not Edit Mode... Submit workout: ", this.workoutForm.value);
+    }
+  }
+
+  // onSubmit(form: NgForm) {
+  //   const value = form.value;
+  //   const newWorkout = new Workout(
+  //     value.title,
+  //     value.description,
+  //     value.imgPath,
+  //     value.type,
+  //     value.duration,
+  //     value.specialty,
+  //     value.phase,
+  //     value.zwo
+  //   );
+
+  //   this.workoutService.addWorkout(newWorkout);
+  //   this.workoutService;
+  //   this.onCancel();
+  //   this.dataStorage.storeWorkouts();
+  // }
 
   onCancel() {
     this.router.navigate(["../"], { relativeTo: this.route });
+  }
+
+  private initForm() {
+    let workoutImgPath = "";
+    let workoutTitle = "";
+    let workoutPhases = new FormArray([]);
+
+    if (this.editMode) {
+      const workout = this.workoutService.getWorkout(this.id);
+
+      workoutTitle = workout.title;
+      workoutImgPath = workout.imagePath;
+
+      workoutPhases = workout.phases;
+
+      console.log(workout);
+    }
+
+    this.workoutForm = new FormGroup({
+      title: new FormControl(workoutTitle, Validators.required),
+      imgPath: new FormControl(workoutImgPath, Validators.required),
+      phases: workoutPhases
+    });
   }
 
   // Configuration for WYSIWYG Editor

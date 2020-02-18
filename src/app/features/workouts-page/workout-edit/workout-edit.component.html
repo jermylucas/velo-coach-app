@@ -1,13 +1,15 @@
 <!-- form container -->
 <div class="form">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
+    <!-- (ngSubmit)="onSubmit(f)" #f="ngForm" -->
+
     <!-- form buttons -->
     <div class="form__btns">
       <button
         mat-raised-button
         type="submit"
-        class="form__btns--save"
-        [disabled]="!f.form.valid">Save</button>
+        class="form__btns--save">Save</button>
+      <!-- [disabled]="!f.form.valid" -->
       <button
         mat-raised-button
         type="button"
@@ -23,7 +25,7 @@
         appearance="fill"
         class="title">
         <mat-label>Title</mat-label>
-        <input autocomplete="off" matInput ngModel name="title" id="title" required>
+        <input autocomplete="off" matInput formControlName="title" name="title" id="title">
       </mat-form-field>
 
       <!-- phase -->
@@ -33,7 +35,7 @@
         appearance="fill"
         class="phase">
         <mat-label>Phase</mat-label>
-        <mat-select multiple ngModel id="phase" name="phase" required>
+        <mat-select multiple id="phase" name="phase" formArrayName="phases">
           <mat-option value="Base 1">Base 1</mat-option>
           <mat-option value="Base 2">Base 2</mat-option>
           <mat-option value="Base 3">Base 3</mat-option>
@@ -47,7 +49,7 @@
       </mat-form-field>
 
       <!-- specialty -->
-      <mat-form-field
+      <!-- <mat-form-field
         hideRequiredMarker
         appearance="fill"
         class="specialty">
@@ -61,10 +63,10 @@
           <mat-option value="Timetrial">Time Trial</mat-option>
           <mat-option value="Cross Country MTB">Cross Country MTB</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <!-- type -->
-      <mat-form-field
+      <!-- <mat-form-field
         hideRequiredMarker
         appearance="fill"
         class="type">
@@ -80,10 +82,10 @@
           <mat-option value="Tempo">Tempo</mat-option>
           <mat-option value="Threshold">Threshold</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <!-- zwo -->
-      <mat-form-field
+      <!-- <mat-form-field
         hideRequiredMarker
         appearance="fill"
         class="zwo">
@@ -92,7 +94,7 @@
           <mat-option value="Yes">Yes</mat-option>
           <mat-option value="No">No</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <!-- imagePath -->
       <mat-form-field
@@ -100,12 +102,12 @@
         appearance="fill"
         class="img">
         <mat-label>Image Path</mat-label>
-        <input matInput ngModel name="imgPath" id="imgPath" required #imgPath>
+        <input matInput formControlName="imgPath" name="imgPath" id="imgPath" #imgPath>
         <mat-hint align="start">Must be a complete url</mat-hint>
       </mat-form-field>
 
       <!-- time input -->
-      <mat-form-field
+      <!-- <mat-form-field
         hideRequiredMarker
         appearance="fill"
         class="duration">
@@ -118,13 +120,13 @@
           id="duration"
           required>
         <mat-hint align="start">Duration must be in minutes</mat-hint>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <!-- description -->
-      <div
+      <!-- <div
         class="description">
         <angular-editor ngModel required name="description" id="description" [config]="config"></angular-editor>
-      </div>
+      </div> -->
       <img style="max-height: 300px;" [src]="imgPath.value">
 
     </div>

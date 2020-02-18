@@ -31,6 +31,7 @@ export class WorkoutDetailComponent implements OnInit {
     });
   }
 
+  // Opens up workout edit page with current workout
   onEditWorkout() {
     this.router.navigate(["edit"], { relativeTo: this.route });
   }
