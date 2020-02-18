@@ -13,9 +13,12 @@ export class WorkoutsListComponent implements OnInit {
   listTotal;
   index: number;
 
+  isLoading = false;
+
   constructor(private workoutService: WorkoutService) {
     this.workoutService.getWorkouts().subscribe(res => {
       this.workouts = res;
+
       console.log("List Comp: ", this.workouts);
 
       this.listCount = this.workouts.length;

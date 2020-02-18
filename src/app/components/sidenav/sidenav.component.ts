@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SidenavService } from "../../../app/services/sidenav.service";
-import { DatastorageService } from "src/app/services/datastorage.service";
+import { DataStorageService } from "src/app/services/datastorage.service";
 
 @Component({
   selector: "app-sidenav",
@@ -13,7 +13,7 @@ export class SidenavComponent implements OnInit {
 
   constructor(
     private sidenavService: SidenavService,
-    private dataStorageService: DatastorageService
+    private dataStorageService: DataStorageService
   ) {}
 
   ngOnInit() {
@@ -35,12 +35,9 @@ export class SidenavComponent implements OnInit {
 
   onStoreData() {
     this.dataStorageService.storeWorkouts();
-    alert("These workouts have been stored to the cloud.");
   }
 
   onFetchData() {
     this.dataStorageService.fetchWorkouts().subscribe();
-
-    console.log("Fetch Workouts from Service");
   }
 }

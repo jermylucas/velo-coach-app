@@ -36,10 +36,8 @@ export class WorkoutService {
     this.workouts.push(workout);
     this.selectedWorkouts.next(this.workouts.slice());
 
-    // update list total on add
+    // update list total on addition of new workout
     this.listTotal = this.workouts.length;
-
-    console.log(this.workouts);
   }
 
   filterWorkouts(
@@ -74,18 +72,12 @@ export class WorkoutService {
   // Set workouts fetched from server
   setWorkouts(workouts: Workout[]) {
     this.workouts = workouts;
-    console.log("Workouts: ", this.workouts);
-
     this.selectedWorkouts.next(this.workouts);
-
     this.listTotal = this.workouts.length;
-    console.log(this.listTotal);
-    console.log(this.selectedWorkouts);
-
-    // this.selectedWorkouts.next(this.workouts.slice());
   }
 }
-
+// Dummy data during testing
+//
 // new Workout(
 //   "SS7-2",
 //   `Chin up dumbbell weightlifting legs, upper back running bounce gym training cardio endurance fit. Arm Smith machine tuck sit, train calves pushup lower body equipment equipment fitness muscles jacks bodyweight. Bounce leg press barbell, curl bodyweight training pushup push warm up cardio extension chin up. Fitness pulldown lunge arm heart rate fitness bounce bodyweight. Chin up running jump, squat body composition body fat percentage bodyweight raise burpees leg press lats arm.`,

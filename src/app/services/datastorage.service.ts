@@ -9,7 +9,7 @@ import { map, tap } from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class DatastorageService {
+export class DataStorageService {
   constructor(
     private http: HttpClient,
     private workoutService: WorkoutService

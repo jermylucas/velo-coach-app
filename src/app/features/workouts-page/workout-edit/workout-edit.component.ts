@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 // WYSIWYG
 import { AngularEditorConfig } from "@kolkov/angular-editor";
+import { DataStorageService } from "src/app/services/datastorage.service";
 
 @Component({
   selector: "app-workout-edit",
@@ -26,7 +27,8 @@ export class WorkoutEditComponent implements OnInit {
   constructor(
     private workoutService: WorkoutService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dataStorage: DataStorageService
   ) {}
 
   ngOnInit() {}
@@ -45,7 +47,9 @@ export class WorkoutEditComponent implements OnInit {
     );
 
     this.workoutService.addWorkout(newWorkout);
+    this.workoutService;
     this.onCancel();
+    this.dataStorage.storeWorkouts();
   }
 
   onCancel() {
