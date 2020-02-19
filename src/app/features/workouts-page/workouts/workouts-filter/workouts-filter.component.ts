@@ -43,7 +43,7 @@ export class WorkoutsFilterComponent implements OnInit {
     "Tempo",
     "Threshold"
   ];
-  zwoOptions = [true, false];
+  zwoOptions = ["Yes", "No"];
 
   phaseSelection = new SelectionModel<string>(true);
   specialtySelection = new SelectionModel<string>(true);

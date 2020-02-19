@@ -43,9 +43,11 @@ export class WorkoutEditComponent implements OnInit {
     if (this.editMode) {
       console.log("In Edit Mode. Workout updated: ", this.workoutForm.value);
       this.workoutService.updateWorkout(this.id, this.workoutForm.value);
+      this.onCancel();
     } else {
       this.workoutService.addWorkout(this.workoutForm.value);
       console.log("Not Edit Mode... Workout Added: ", this.workoutForm.value);
+      this.onCancel();
     }
     return;
   }
@@ -55,7 +57,7 @@ export class WorkoutEditComponent implements OnInit {
   }
 
   private initForm() {
-    let workoutImgPath = "";
+    let workoutImagePath = "";
     let workoutTitle = "";
     let workoutPhase = [];
     let workoutType = "";
@@ -67,7 +69,7 @@ export class WorkoutEditComponent implements OnInit {
     if (this.editMode) {
       const workout = this.workoutService.getWorkout(this.id);
       workoutTitle = workout.title;
-      workoutImgPath = workout.imagePath;
+      workoutImagePath = workout.imagePath;
 
       workoutPhase = workout.phase;
       workoutType = workout.type;
@@ -81,7 +83,7 @@ export class WorkoutEditComponent implements OnInit {
 
     this.workoutForm = new FormGroup({
       title: new FormControl(workoutTitle, Validators.required),
-      imgPath: new FormControl(workoutImgPath, Validators.required),
+      imagePath: new FormControl(workoutImagePath, Validators.required),
       phase: new FormControl(workoutPhase, Validators.required),
       duration: new FormControl(workoutDuration, Validators.required),
       type: new FormControl(workoutType, Validators.required),

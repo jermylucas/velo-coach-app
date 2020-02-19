@@ -8,7 +8,8 @@
       <button
         mat-raised-button
         type="submit"
-        class="form__btns--save"> {{ editMode ? 'Update' : 'Save' }} </button>
+        class="form__btns--save"
+        [disabled]="!workoutForm.valid"> {{ editMode ? 'Update' : 'Save' }} </button>
       <!-- [disabled]="!f.form.valid" -->
       <button
         mat-raised-button
@@ -101,7 +102,7 @@
         appearance="fill"
         class="img">
         <mat-label>Image Path</mat-label>
-        <input matInput formControlName="imgPath" name="imgPath" id="imgPath" #imgPath>
+        <input matInput formControlName="imagePath" name="imagePath" id="imagePath" #imagePath>
         <mat-hint align="start">Must be a complete url</mat-hint>
       </mat-form-field>
 
@@ -126,7 +127,7 @@
         <angular-editor formControlName="description" name="description" id="description" [config]="config">
         </angular-editor>
       </div>
-      <img style="max-height: 300px;" [src]="imgPath.value">
+      <img style="max-height: 300px;" [src]="imagePath.value">
 
     </div>
   </form>

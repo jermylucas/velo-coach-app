@@ -45,6 +45,9 @@ export class WorkoutService {
     this.workouts[index] = newWorkout;
     this.selectedWorkouts.next(this.workouts.slice());
     console.log("Updated from Service: ");
+
+    // // update list total on addition of new workout
+    // this.listTotal = this.workouts.length;
   }
 
   filterWorkouts(
