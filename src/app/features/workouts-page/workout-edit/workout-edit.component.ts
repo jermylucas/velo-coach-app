@@ -78,23 +78,18 @@ export class WorkoutEditComponent implements OnInit {
   private initForm() {
     let workoutImgPath = "";
     let workoutTitle = "";
-    let workoutPhases = new FormArray([]);
 
     if (this.editMode) {
       const workout = this.workoutService.getWorkout(this.id);
-
       workoutTitle = workout.title;
       workoutImgPath = workout.imagePath;
-
-      workoutPhases = workout.phases;
 
       console.log(workout);
     }
 
     this.workoutForm = new FormGroup({
       title: new FormControl(workoutTitle, Validators.required),
-      imgPath: new FormControl(workoutImgPath, Validators.required),
-      phases: workoutPhases
+      imgPath: new FormControl(workoutImgPath, Validators.required)
     });
   }
 
