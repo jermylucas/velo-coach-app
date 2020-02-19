@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
+import { DataStorageService } from "src/app/services/datastorage.service";
 
 @Component({
   selector: "app-workout-detail",
@@ -15,7 +16,8 @@ export class WorkoutDetailComponent implements OnInit {
   constructor(
     private workoutService: WorkoutService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dataStorage: DataStorageService
   ) {}
 
   goBack() {
@@ -32,5 +34,17 @@ export class WorkoutDetailComponent implements OnInit {
   // Opens up workout edit page with current workout
   onEditWorkout() {
     this.router.navigate(["edit"], { relativeTo: this.route });
+  }
+
+  onDeleteWorkout() {
+    if (
+      confirm(
+        "Are you sure you want to delete this workout? This action cannot be undone."
+      )
+    ) {
+      this.workoutService.deleteWorkout(this.id);
+      this.router.navigate(["/workouts"]);
+      this.dataStorage.storeWorkouts();
+    }
   }
 }

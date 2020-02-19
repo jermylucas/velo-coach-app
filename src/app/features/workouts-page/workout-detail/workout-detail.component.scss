@@ -10,14 +10,43 @@
   cursor: pointer;
   text-decoration: underline;
   color: $color-primary-blue;
-  z-index: 100000;
+  z-index: 1;
 }
 img {
   position: relative;
   width: 100%;
   height: 300px;
 }
+.heading__wrapper {
+  position: relative;
+  margin-left: 5px;
+
+  &-button {
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 10px;
+
+    @media (max-width: $breakpoint-mobile) {
+      float: none;
+      position: relative;
+    }
+  }
+}
+
+.manage-btn {
+  padding-left: 5px;
+  background: #dfdfdf;
+
+  @media (max-width: $breakpoint-mobile) {
+    background: none;
+  }
+}
+
 .detail {
+  border-top: 1px solid $list-dark-grey;
+  padding-top: 5px;
   width: 100%;
   display: grid;
   grid-template-columns: 70% 30%;
@@ -31,10 +60,10 @@ img {
 
   &__container {
     &--heading {
-      display: inline;
-      vertical-align: bottom;
+      display: inline-block;
+
       font-size: 35px;
-      margin: 0;
+      margin: 5px 5px;
       @media (max-width: $breakpoint-mobile) {
         margin-left: 5px;
       }
@@ -42,7 +71,7 @@ img {
     &--sub-heading {
       color: #7e7e7e;
       font-weight: normal;
-      margin: 5px 0;
+      margin: 5px 5px;
       padding: 0;
       @media (max-width: $breakpoint-mobile) {
         margin-left: 5px;
@@ -77,9 +106,10 @@ img {
         margin: 0;
       }
       &-description {
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        border: solid 1px $list-dark-grey;
         background: $color-white;
-        border-radius: 3px;
+        border-radius: 1px;
         border-top: solid 4px $color-primary-light-blue;
         padding: 10px;
         font-size: 16px;
@@ -103,12 +133,12 @@ img {
     border: solid 1px $list-dark-grey;
     border-top: solid 4px $color-primary-light-blue;
     padding: 15px 10px 10px 10px;
-    border-radius: 5px;
+    border-radius: 1px;
     background: $color-white;
 
     line-height: 22px;
 
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     @media (max-width: $breakpoint-mobile) {
       padding: 5px;

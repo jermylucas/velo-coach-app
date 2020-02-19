@@ -101,6 +101,14 @@ export class WorkoutService {
     this.selectedWorkouts.next(this.workouts.slice());
   }
 
+  deleteWorkout(index: number) {
+    this.workouts.splice(index, 1);
+    this.selectedWorkouts.next(this.workouts.slice());
+
+    // update list total on addition of new workout
+    this.listTotal = this.workouts.length;
+  }
+
   filterWorkouts(
     phases: string[],
     specialties: string[],

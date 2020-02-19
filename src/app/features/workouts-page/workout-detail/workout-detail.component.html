@@ -6,34 +6,40 @@
 <a
   class="back-btn"
   (click)="goBack()">Go Back</a>
-<div class="detail">
+<div class="heading__wrapper">
+  <h2 class="detail__container--heading">{{ workout.title }}</h2>
+  <h3 class="detail__container--sub-heading"> {{ workout.type }}&nbsp; <span class="break"></span> &nbsp;
+    {{ workout.duration }}
+    minutes</h3>
 
-  <div class="detail__container-left">
-
-    <h2 class="detail__container--heading">{{ workout.title }}</h2>
-    <!--3 dots edit-->
-    <button mat-icon-button [matMenuTriggerFor]="menu"
-      aria-label="workout config menu button">
+  <div class="heading__wrapper-button">
+    <button mat-button [matMenuTriggerFor]="menu"
+      aria-label="workout config menu button" class="manage-btn">
       <mat-icon>more_vert</mat-icon>
+      Manage Workout
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="onEditWorkout()">
+      <button mat-menu-item type="button" (click)="onEditWorkout()">
         <mat-icon>edit</mat-icon>
         <span>Edit Workout</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item type="button" (click)="onDeleteWorkout()">
         <mat-icon>delete</mat-icon>
         <span>Delete Workout</span>
       </button>
-      <button mat-menu-item disabled>
+      <button mat-menu-item type="button" disabled>
         <mat-icon>directions_bike</mat-icon>
         <span>Disabled test</span>
       </button>
     </mat-menu>
+  </div>
+</div>
 
-    <h3 class="detail__container--sub-heading"> {{ workout.type }}&nbsp; <span class="break"></span> &nbsp;
-      {{ workout.duration }}
-      minutes</h3>
+
+<div class="detail">
+  <div class="detail__container-left">
+
+
 
     <div class="detail__container-left-description">
       <!-- innerHTML to display WYSIWYG text as well -->
