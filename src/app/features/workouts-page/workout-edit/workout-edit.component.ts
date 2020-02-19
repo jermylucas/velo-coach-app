@@ -41,35 +41,14 @@ export class WorkoutEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      console.log(
-        "Edit Mode... ID: ",
-        this.id,
-        ".. Value: ",
-        this.workoutForm.value
-      );
+      console.log("In Edit Mode. Workout updated: ", this.workoutForm.value);
+      this.workoutService.updateWorkout(this.id, this.workoutForm.value);
     } else {
-      console.log("Not Edit Mode... Submit workout: ", this.workoutForm.value);
+      this.workoutService.addWorkout(this.workoutForm.value);
+      console.log("Not Edit Mode... Workout Added: ", this.workoutForm.value);
     }
+    return;
   }
-
-  // onSubmit(form: NgForm) {
-  //   const value = form.value;
-  //   const newWorkout = new Workout(
-  //     value.title,
-  //     value.description,
-  //     value.imgPath,
-  //     value.type,
-  //     value.duration,
-  //     value.specialty,
-  //     value.phase,
-  //     value.zwo
-  //   );
-
-  //   this.workoutService.addWorkout(newWorkout);
-  //   this.workoutService;
-  //   this.onCancel();
-  //   this.dataStorage.storeWorkouts();
-  // }
 
   onCancel() {
     this.router.navigate(["../"], { relativeTo: this.route });
@@ -78,18 +57,37 @@ export class WorkoutEditComponent implements OnInit {
   private initForm() {
     let workoutImgPath = "";
     let workoutTitle = "";
+    let workoutPhase = [];
+    let workoutType = "";
+    let workoutDuration = "";
+    let workoutSpecialty = [];
+    let workoutDescription = "";
+    let workoutZwo = "";
 
     if (this.editMode) {
       const workout = this.workoutService.getWorkout(this.id);
       workoutTitle = workout.title;
       workoutImgPath = workout.imagePath;
 
+      workoutPhase = workout.phase;
+      workoutType = workout.type;
+      workoutDuration = workout.duration;
+      workoutSpecialty = workout.specialty;
+      workoutZwo = workout.zwo;
+      workoutDescription = workout.description;
+
       console.log(workout);
     }
 
     this.workoutForm = new FormGroup({
       title: new FormControl(workoutTitle, Validators.required),
-      imgPath: new FormControl(workoutImgPath, Validators.required)
+      imgPath: new FormControl(workoutImgPath, Validators.required),
+      phase: new FormControl(workoutPhase, Validators.required),
+      duration: new FormControl(workoutDuration, Validators.required),
+      type: new FormControl(workoutType, Validators.required),
+      specialty: new FormControl(workoutSpecialty, Validators.required),
+      zwo: new FormControl(workoutZwo, Validators.required),
+      description: new FormControl(workoutDescription, Validators.required)
     });
   }
 

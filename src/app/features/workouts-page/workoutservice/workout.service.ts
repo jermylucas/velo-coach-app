@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Workout } from "../workouts/workout.model";
-import { Observable, BehaviorSubject, Subject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -40,12 +40,19 @@ export class WorkoutService {
     this.listTotal = this.workouts.length;
   }
 
+  //Updates workout instead of creating a new one while in editMode
+  updateWorkout(index: number, newWorkout: Workout) {
+    this.workouts[index] = newWorkout;
+    this.selectedWorkouts.next(this.workouts.slice());
+    console.log("Updated from Service: ");
+  }
+
   filterWorkouts(
     phases: string[],
     specialties: string[],
     duration: number[],
     types: string[],
-    zwo: boolean[]
+    zwo: string[]
   ) {
     const workouts = this.workouts.filter(workout => {
       return (

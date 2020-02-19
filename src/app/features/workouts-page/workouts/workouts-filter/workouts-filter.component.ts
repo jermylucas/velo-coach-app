@@ -49,7 +49,7 @@ export class WorkoutsFilterComponent implements OnInit {
   specialtySelection = new SelectionModel<string>(true);
   durationSelection = new SelectionModel<number>(true);
   typeSelection = new SelectionModel<string>(true);
-  zwoSelection = new SelectionModel<boolean>(true);
+  zwoSelection = new SelectionModel<string>(true);
 
   constructor(private workoutService: WorkoutService) {}
 

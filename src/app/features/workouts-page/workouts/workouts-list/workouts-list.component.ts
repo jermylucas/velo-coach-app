@@ -23,6 +23,8 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
         this.workouts = res;
         this.listCount = this.workouts.length;
 
+        console.log("list comp");
+
         // "Hack" to get the list total to work... Fix later
         if (this.workouts.length >= this.workoutService.listTotal) {
           this.listTotal = this.workouts.length;

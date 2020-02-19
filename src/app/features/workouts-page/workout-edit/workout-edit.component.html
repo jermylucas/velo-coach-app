@@ -8,7 +8,7 @@
       <button
         mat-raised-button
         type="submit"
-        class="form__btns--save">Save</button>
+        class="form__btns--save"> {{ editMode ? 'Update' : 'Save' }} </button>
       <!-- [disabled]="!f.form.valid" -->
       <button
         mat-raised-button
@@ -34,7 +34,7 @@
         appearance="fill"
         class="phase">
         <mat-label>Phase</mat-label>
-        <mat-select multiple id="phase" name="phase" formControlName="phases">
+        <mat-select multiple id="phase" name="phase" formControlName="phase">
           <mat-option value="Base 1">Base 1</mat-option>
           <mat-option value="Base 2">Base 2</mat-option>
           <mat-option value="Base 3">Base 3</mat-option>
@@ -48,12 +48,12 @@
       </mat-form-field>
 
       <!-- specialty -->
-      <!-- <mat-form-field
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
         class="specialty">
         <mat-label>Specialty</mat-label>
-        <mat-select multiple ngModel name="specialty" id="specialty" required>
+        <mat-select multiple formControlName="specialty" name="specialty" id="specialty">
           <mat-option value="Road Race">Road Race</mat-option>
           <mat-option value="Criterium">Criterium</mat-option>
           <mat-option value="Hill Climb">Hill Climb</mat-option>
@@ -62,15 +62,15 @@
           <mat-option value="Timetrial">Time Trial</mat-option>
           <mat-option value="Cross Country MTB">Cross Country MTB</mat-option>
         </mat-select>
-      </mat-form-field> -->
+      </mat-form-field>
 
       <!-- type -->
-      <!-- <mat-form-field
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
         class="type">
         <mat-label>Type</mat-label>
-        <mat-select ngModel id="type" name="type" required>
+        <mat-select formControlName="type" id="type" name="type">
           <mat-option value="Anaerobic">Anaerobic</mat-option>
           <mat-option value="Aerobic / Endurance">Aerobic / Endurance</mat-option>
           <mat-option value="Muscular Endurance">Musc. Endurance</mat-option>
@@ -81,19 +81,19 @@
           <mat-option value="Tempo">Tempo</mat-option>
           <mat-option value="Threshold">Threshold</mat-option>
         </mat-select>
-      </mat-form-field> -->
+      </mat-form-field>
 
       <!-- zwo -->
-      <!-- <mat-form-field
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
         class="zwo">
         <mat-label>On Zwift?</mat-label>
-        <mat-select ngModel name="zwo" id="zwo" required>
+        <mat-select formControlName="zwo" name="zwo" id="zwo">
           <mat-option value="Yes">Yes</mat-option>
           <mat-option value="No">No</mat-option>
         </mat-select>
-      </mat-form-field> -->
+      </mat-form-field>
 
       <!-- imagePath -->
       <mat-form-field
@@ -106,7 +106,7 @@
       </mat-form-field>
 
       <!-- time input -->
-      <!-- <mat-form-field
+      <mat-form-field
         hideRequiredMarker
         appearance="fill"
         class="duration">
@@ -114,34 +114,23 @@
         <input
           type="number"
           matInput
-          ngModel
+          formControlName="duration"
           name="duration"
-          id="duration"
-          required>
+          id="duration">
         <mat-hint align="start">Duration must be in minutes</mat-hint>
-      </mat-form-field> -->
+      </mat-form-field>
 
       <!-- description -->
-      <!-- <div
+      <div
         class="description">
-        <angular-editor ngModel required name="description" id="description" [config]="config"></angular-editor>
-      </div> -->
+        <angular-editor formControlName="description" name="description" id="description" [config]="config">
+        </angular-editor>
+      </div>
       <img style="max-height: 300px;" [src]="imgPath.value">
 
     </div>
   </form>
 </div>
-
-<!-- Original Description Box (wrapped in form field) -->
-<!-- hideRequiredMarker
-
-<mat-label>Description</mat-label>
-<textarea
-  matInput
-  ngModel
-  id="description"
-  name="description"
-  required></textarea> -->
 
 <!-- 
 title: string,

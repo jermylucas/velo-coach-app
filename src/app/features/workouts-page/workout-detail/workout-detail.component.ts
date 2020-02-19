@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
-import { Location } from "@angular/common";
 
 @Component({
   selector: "app-workout-detail",
@@ -16,12 +15,11 @@ export class WorkoutDetailComponent implements OnInit {
   constructor(
     private workoutService: WorkoutService,
     private route: ActivatedRoute,
-    private router: Router,
-    private location: Location
+    private router: Router
   ) {}
 
   goBack() {
-    this.location.back();
+    this.router.navigate(["../"], { relativeTo: this.route });
   }
 
   ngOnInit() {
