@@ -41,15 +41,16 @@ export class WorkoutEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      console.log("In Edit Mode. Workout updated: ", this.workoutForm.value);
       this.workoutService.updateWorkout(this.id, this.workoutForm.value);
       this.onCancel();
+      //store workouts
+      this.dataStorage.storeWorkouts();
     } else {
       this.workoutService.addWorkout(this.workoutForm.value);
-      console.log("Not Edit Mode... Workout Added: ", this.workoutForm.value);
       this.onCancel();
+      // store workouts
+      this.dataStorage.storeWorkouts();
     }
-    return;
   }
 
   onCancel() {
@@ -102,7 +103,7 @@ export class WorkoutEditComponent implements OnInit {
     placeholder: "Enter text here...",
     translate: "no",
     defaultParagraphSeparator: "p",
-    defaultFontName: "Arial",
+    defaultFontName: "Roboto",
     toolbarHiddenButtons: [
       ["subscript", "superscript"],
       ["justifyRight"],

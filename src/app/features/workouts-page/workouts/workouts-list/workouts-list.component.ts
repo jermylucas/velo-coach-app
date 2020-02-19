@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Workout } from "../workout.model";
 import { WorkoutService } from "../../workoutservice/workout.service";
 
 @Component({
@@ -22,8 +21,6 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         this.workouts = res;
         this.listCount = this.workouts.length;
-
-        console.log("list comp");
 
         // "Hack" to get the list total to work... Fix later
         if (this.workouts.length >= this.workoutService.listTotal) {

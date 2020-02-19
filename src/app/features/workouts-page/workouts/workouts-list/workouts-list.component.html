@@ -52,7 +52,7 @@
                   <li class="tooltip__list-li" *ngFor="let specialty of workout.specialty"> {{ specialty }}</li>
                 </ul>
               </li>
-              <li><span class="tooltip__list-lh">Types</span>
+              <li><span class="tooltip__list-lh">Type</span>
                 <ul>
                   <!--if I make this an array later, change to ngfor loop like above-->
                   <li class="tooltip__list-li"> {{ workout.type }}</li>
@@ -60,8 +60,7 @@
               </li>
               <li><span class="tooltip__list-lh">On Zwift?</span>
                 <ul>
-                  <!--if I make this an array later, change to ngfor loop like above-->
-                  <li class="tooltip__list-li"> {{ workout.zwo ? 'Yes' : 'No' }}</li>
+                  <li class="tooltip__list-li"> {{ workout.zwo  }}</li>
                 </ul>
               </li>
             </ul>

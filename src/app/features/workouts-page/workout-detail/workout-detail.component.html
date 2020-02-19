@@ -1,32 +1,88 @@
+<div class="deatail__image">
+  <img
+    [src]="workout.imagePath"
+    alt="placeholder">
+</div>
 <a
   class="back-btn"
   (click)="goBack()">Go Back</a>
-<button type="button" (click)="onEditWorkout()">Edit</button>
-<div class="detail__container">
-  <div class="deatail__image">
-    <img
-      [src]="workout.imagePath"
-      alt="placeholder">
-  </div>
-  <div class="workout__item--info">
-    <h1 style="color:red">this is a temporary UI until json data and routers are working</h1>
-    <h2 class="workout__item--title">{{ workout.title }}</h2>
+<div class="detail">
 
-    <div class="workout__item--specs">
+  <div class="detail__container-left">
 
-      <h3 class="workout__item--specs-heading">{{ workout.type }}</h3>
-      <span class="break"></span>
-      <h3 class="workout__item--specs-heading">{{ workout.duration}}</h3>
-      <span class="break"></span>
-      <h3 class="workout__item--specs-heading">{{ workout.phase.join(', ') }}</h3>
-      <span class="break"></span>
-      <h3 class="workout__item--specs-heading">{{ workout.specialty.join(', ') }}</h3>
+    <h2 class="detail__container--heading">{{ workout.title }}</h2>
+    <!--3 dots edit-->
+    <button mat-icon-button [matMenuTriggerFor]="menu"
+      aria-label="workout config menu button">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onEditWorkout()">
+        <mat-icon>edit</mat-icon>
+        <span>Edit Workout</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete Workout</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>directions_bike</mat-icon>
+        <span>Disabled test</span>
+      </button>
+    </mat-menu>
 
+    <h3 class="detail__container--sub-heading"> {{ workout.type }}&nbsp; <span class="break"></span> &nbsp;
+      {{ workout.duration }}
+      minutes</h3>
+
+    <div class="detail__container-left-description">
+      <!-- innerHTML to display WYSIWYG text as well -->
+      <p [innerHTML]="workout.description"></p>
     </div>
   </div>
-  <div class="workout__item--notes">
-    <!-- innerHTML to display WYSIWYG text as well -->
-    <p style="white-space: pre-wrap;" [innerHTML]="workout.description"></p>
+  <div class="detail__container-right">
+    <h3 class="detail__container--secondary-heading">Details</h3>
+    <div class="detail__list-wrapper">
+      <ul class="detail__list">
+        <li><span class="detail__list-lh">Phases</span>
+          <ul>
+            <li class="detail__list-li" *ngFor="let phase of workout.phase"> {{ phase }}</li>
+          </ul>
+        </li>
+        <li><span class="detail__list-lh">Specialties</span>
+          <ul>
+            <li class="detail__list-li" *ngFor="let specialty of workout.specialty"> {{ specialty }}</li>
+          </ul>
+        </li>
+        <li><span class="detail__list-lh">Type</span>
+          <ul>
+            <!--if I make this an array later, change to ngfor loop like above-->
+            <li class="detail__list-li"> {{ workout.type }}</li>
+          </ul>
+        </li>
+        <li><span class="detail__list-lh">Duration</span>
+          <ul>
+            <li class="detail__list-li"> {{ workout.duration }}</li>
+          </ul>
+        </li>
+        <li><span class="detail__list-lh">On Zwift?</span>
+          <ul>
+            <li class="detail__list-li"> {{ workout.zwo }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
-
 </div>
+
+
+<!-- WORKOUT MODEL
+//
+title: string,
+description: string,
+imagePath: string,
+type: string,
+duration: number,
+specialty: string[],
+phase: string[],
+zwo: boolean -->
