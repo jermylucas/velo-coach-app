@@ -97,14 +97,29 @@
       </mat-form-field>
 
       <!-- imagePath -->
-      <mat-form-field
+
+      <!-- <mat-form-field
         hideRequiredMarker
         appearance="fill"
-        class="img">
-        <mat-label>Image Path</mat-label>
-        <input matInput formControlName="imagePath" name="imagePath" id="imagePath" #imagePath>
-        <mat-hint align="start">Must be a complete url</mat-hint>
-      </mat-form-field>
+        class="img"> -->
+
+
+      <label>Image Path</label>
+      <input class="img" type="file" id="file" formControlName="imagePath" name="imagePath"
+        (change)="handleFileInput($event.target.files)">
+
+
+      <!--older version (working)-->
+      <!--
+         <mat-form-field
+        hideRequiredMarker
+        appearance="fill"
+        class="img"> 
+        <mat-label>image path</mat-label>
+         <input matInput formControlName="imagePath" name="imagePath" id="imagePath" #imagePath>
+         <mat-hint align="start">use image path</mat-hint>
+      </mat-form-field> -->
+
 
       <!-- time input -->
       <mat-form-field
@@ -127,7 +142,7 @@
         <angular-editor formControlName="description" name="description" id="description" [config]="config">
         </angular-editor>
       </div>
-      <img style="max-height: 300px;" [src]="imagePath.value">
+      <!-- <img style="max-height: 300px;" [src]="imagePath.value"> -->
 
     </div>
   </form>

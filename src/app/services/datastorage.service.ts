@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-
 import { WorkoutService } from "../features/workouts-page/workoutservice/workout.service";
 import { Workout } from "../features/workouts-page/workouts/workout.model";
-
 import { map, tap } from "rxjs/operators";
+
+//
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -34,5 +35,17 @@ export class DataStorageService {
           this.workoutService.setWorkouts(workouts);
         })
       );
+  }
+
+  postFile(fileToUpload: File): Observable<boolean> {
+    const endpoint = "gs://velo-coach-app.appspot.com/";
+
+    const formData: FormData = new FormData();
+    formData.append("fileKey", fileToUpload, fileToUpload.name);
+    return this.http.post(endpoint, formData).pipe(
+      map(() => {
+        return true;
+      })
+    );
   }
 }

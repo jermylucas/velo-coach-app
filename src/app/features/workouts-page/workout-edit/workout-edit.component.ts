@@ -94,6 +94,27 @@ export class WorkoutEditComponent implements OnInit {
     });
   }
 
+  fileToUpload: File = null;
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+
+    console.log("handled...");
+
+    this.uploadFileToActivity();
+  }
+
+  uploadFileToActivity() {
+    this.dataStorage.postFile(this.fileToUpload).subscribe(
+      data => {
+        console.log("Success");
+      },
+      error => {
+        console.log("error: ", error);
+      }
+    );
+  }
+
   // Configuration for WYSIWYG Editor
   config: AngularEditorConfig = {
     editable: true,
