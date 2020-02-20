@@ -1,10 +1,12 @@
-import { BrowserModule } from "@angular/platform-browser";
+// @Angular imports
 import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material.module";
 import { HeaderComponent } from "./components/header/header.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
@@ -17,10 +19,18 @@ import { WorkoutsListComponent } from "./features/workouts-page/workouts/workout
 import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/workouts-filter/workouts-filter.component";
 import { LoadingSpinnerComponent } from "./shared/loading-spinner.component";
 
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { WorkoutDetailComponent } from "./features/workouts-page/workout-detail/workout-detail.component";
 
+// WYSIWYG
 import { AngularEditorModule } from "@kolkov/angular-editor";
+
+////// Firebase
+import { AngularFireModule } from "@angular/fire";
+//storage
+import { AngularFireStorageModule } from "@angular/fire/storage";
+//database
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -44,7 +54,10 @@ import { AngularEditorModule } from "@kolkov/angular-editor";
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AngularEditorModule
+    AngularEditorModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]
