@@ -102,24 +102,11 @@
       </mat-form-field>
 
       <!-- imagePath -->
-
-      <!--older version (working)-->
-      <!-- <mat-form-field
-        hideRequiredMarker
-        appearance="fill"
-        class="img">
-        <mat-label>image path</mat-label>
-        <input matInput formControlName="imagePath" name="imagePath" id="imagePath" #imagePath>
-        <mat-hint align="start">use image path</mat-hint>
-      </mat-form-field> -->
-
-      <!-- <button type="button" (click)="fileInput.click()" class="img"> -->
-        <!-- <span style="color: #6e6e6e;">Upload image</span> <mat-icon>library_add</mat-icon> -->
-        <input  class="img" type="file" accept="image/*" formControlName="imageUrl"
-          name="imagePath"
+      <button class="img" type="button" (click)="fileInput.click()">
+        <input #fileInput type="file" accept="image/*" formControlName="imageUrl"
+          name="imagePath" class="img-input"
           (change)="showPreview($event)">
-      <!-- </button> -->
-
+      </button>
 
       <!-- time input -->
       <mat-form-field
@@ -133,7 +120,7 @@
           formControlName="duration"
           name="duration"
           id="duration">
-        <mat-hint align="start">Duration must be in minutes</mat-hint>
+
       </mat-form-field>
 
       <!-- description -->
@@ -145,11 +132,10 @@
 
       <!-- <img style="max-height: 300px;" [src]="imgSrc"> -->
       <div class="img-display">
-        <img style="display: inline;" style="height: auto; max-width: 100%;" [src]="imgSrc">
+        <img style="display: inline;" style="max-height: 300px; max-width: 100%;" [src]="imgSrc"
+          alt="Please Upload Image To View Preview" class="img-preview">
 
       </div>
-
-
     </div>
   </form>
   <!--making sure i can get image upload to work-->

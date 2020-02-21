@@ -19,7 +19,7 @@ import { finalize } from "rxjs/operators";
 export class WorkoutEditComponent implements OnInit {
   id: number;
   editMode = false;
-  imgSrc = "../../../../assets/img/placeholder.png";
+  imgSrc = "";
   selectedImage: any = null;
   isLoading = false;
 
@@ -46,10 +46,7 @@ export class WorkoutEditComponent implements OnInit {
       if (this.workoutForm.valid) {
         this.isLoading = true;
 
-        console.log(
-          "complete form before image upload: ",
-          this.workoutForm.value
-        );
+        // Upload Image, upload workoutForm value, and store workouts to dataStorage
         // add date and time to image to avoid duplication
         let filePath = `workout-images/${
           this.selectedImage.name
@@ -68,14 +65,17 @@ export class WorkoutEditComponent implements OnInit {
                 console.log("new url: ", url);
                 this.workoutForm.value.imageUrl = url;
                 this.isLoading = false;
-                this.workoutService.updateWorkout(this.id, this.workoutForm.value);
+                this.workoutService.updateWorkout(
+                  this.id,
+                  this.workoutForm.value
+                );
 
                 this.resetForm();
 
                 this.onCancel();
 
                 // store workouts
-                this.dataStorage.storeWorkouts();
+                // this.dataStorage.storeWorkouts();
               });
             })
           )
@@ -87,10 +87,7 @@ export class WorkoutEditComponent implements OnInit {
       if (this.workoutForm.valid) {
         this.isLoading = true;
 
-        console.log(
-          "complete form before image upload: ",
-          this.workoutForm.value
-        );
+        // Upload Image, upload workoutForm value, and store workouts to dataStorage
         // add date and time to avoid duplication
         let filePath = `workout-images/${
           this.selectedImage.name
@@ -115,8 +112,8 @@ export class WorkoutEditComponent implements OnInit {
 
                 this.onCancel();
 
-                // store workouts
-                this.dataStorage.storeWorkouts();
+                // store workouts (disabled due to API security)
+                // this.dataStorage.storeWorkouts();
               });
             })
           )
@@ -131,7 +128,7 @@ export class WorkoutEditComponent implements OnInit {
     this.workoutForm.reset();
     console.log("Form is reset here... ");
     this.selectedImage = null;
-    this.imgSrc = "../../../../assets/img/placeholder.png";
+    this.imgSrc = "";
   }
 
   onCancel() {
@@ -160,12 +157,12 @@ export class WorkoutEditComponent implements OnInit {
       workoutZwo = workout.zwo;
       workoutDescription = workout.description;
 
-      console.log(workout);
+      console.log("workout that should be here: ", workout);
     }
 
     this.workoutForm = new FormGroup({
       title: new FormControl(workoutTitle, Validators.required),
-      imageUrl: new FormControl(workoutImageUrl, Validators.required),
+      imageUrl: new FormControl(workoutImageUrl),
       phase: new FormControl(workoutPhase, Validators.required),
       duration: new FormControl(workoutDuration, Validators.required),
       type: new FormControl(workoutType, Validators.required),
@@ -182,8 +179,9 @@ export class WorkoutEditComponent implements OnInit {
       reader.onload = (e: any) => (this.imgSrc = e.target.result);
       reader.readAsDataURL(currentImage);
       this.selectedImage = currentImage;
+      console.log(this.imgSrc);
     } else {
-      this.imgSrc = "../../../../assets/img/placeholder.png";
+      this.imgSrc = "";
       this.selectedImage = null;
     }
   }

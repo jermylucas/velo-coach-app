@@ -44,7 +44,7 @@ export class WorkoutDetailComponent implements OnInit {
     ) {
       this.workoutService.deleteWorkout(this.id);
       this.router.navigate(["/workouts"]);
-      this.dataStorage.storeWorkouts();
+      //this.dataStorage.storeWorkouts();
     }
   }
 }

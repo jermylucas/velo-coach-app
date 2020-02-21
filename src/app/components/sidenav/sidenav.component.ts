@@ -17,7 +17,7 @@ export class SidenavComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onFetchData();
+    // this.onFetchData();
   }
 
   closePanel() {
@@ -33,12 +33,12 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  onStoreData() {
-    this.dataStorageService.storeWorkouts();
-  }
+  // onStoreData() {
+  //   this.dataStorageService.storeWorkouts();
+  // }
 
-  onFetchData() {
-    this.dataStorageService.fetchWorkouts().subscribe();
-    console.log("fetched");
-  }
+  // onFetchData() {
+  //   this.dataStorageService.fetchWorkouts().subscribe();
+  //   console.log("fetched");
+  // }
 }
