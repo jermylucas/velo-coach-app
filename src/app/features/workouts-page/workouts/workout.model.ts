@@ -1,7 +1,7 @@
 export class Workout {
   public title: string;
   public description: string;
-  public imagePath: string;
+  public imageUrl: string;
   public type: string;
   public duration: number;
   public specialty: string[];
@@ -11,7 +11,7 @@ export class Workout {
   constructor(
     title: string,
     description: string,
-    imagePath: string,
+    imageUrl: string,
     type: string,
     duration: number,
     specialty: string[],
@@ -20,7 +20,7 @@ export class Workout {
   ) {
     this.title = title;
     this.description = description;
-    this.imagePath = imagePath;
+    this.imageUrl = imageUrl;
     this.type = type;
     this.duration = duration;
     this.specialty = specialty;

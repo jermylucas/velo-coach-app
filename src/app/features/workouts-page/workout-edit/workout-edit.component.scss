@@ -1,5 +1,15 @@
 @import "../../../../sass/variables";
 
+//mat-spinner color
+.uploader-status {
+  margin-top: 20px;
+}
+.uploader-status ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: $color-primary-light-blue;
+}
+
+//form
 .form {
   width: 85%;
   margin: auto;

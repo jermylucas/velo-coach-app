@@ -36,16 +36,4 @@ export class DataStorageService {
         })
       );
   }
-
-  postFile(fileToUpload: File): Observable<boolean> {
-    const endpoint = "gs://velo-coach-app.appspot.com/";
-
-    const formData: FormData = new FormData();
-    formData.append("fileKey", fileToUpload, fileToUpload.name);
-    return this.http.post(endpoint, formData).pipe(
-      map(() => {
-        return true;
-      })
-    );
-  }
 }

@@ -1,5 +1,10 @@
 <!-- form container -->
-<div class="form">
+<div class="uploader-status" *ngIf="isLoading">
+  <mat-spinner style="margin:0 auto;"
+    mode="indeterminate"></mat-spinner>
+</div>
+
+<div class="form" *ngIf="!isLoading">
   <form [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
     <!-- (ngSubmit)="onSubmit(f)" #f="ngForm" -->
 
@@ -98,16 +103,6 @@
 
       <!-- imagePath -->
 
-      <!-- <mat-form-field
-        hideRequiredMarker
-        appearance="fill"
-        class="img"> -->
-
-      <label>Image Path</label>
-      <input class="img" type="file" id="file" formControlName="imagePath" name="imagePath"
-        (change)="handleFileInput($event.target.files)">
-
-
       <!--older version (working)-->
       <!-- <mat-form-field
         hideRequiredMarker
@@ -118,6 +113,9 @@
         <mat-hint align="start">use image path</mat-hint>
       </mat-form-field> -->
 
+
+      <input class="img" type="file" accept="image/*" formControlName="imageUrl" name="imagePath"
+        (change)="showPreview($event)">
 
       <!-- time input -->
       <mat-form-field
@@ -140,19 +138,35 @@
         <angular-editor formControlName="description" name="description" id="description" [config]="config">
         </angular-editor>
       </div>
-      <img style="max-height: 300px;" [src]="imagePath.value">
+
+      <!-- <img style="max-height: 300px;" [src]="imgSrc"> -->
+      <img style="display: inline;" style="max-height: 300px;" [src]="imgSrc">
+
 
     </div>
   </form>
+  <!--making sure i can get image upload to work-->
+  <!-- <br>
+  <br>
+  <br>
+  <form [formGroup]="imageTest" (ngSubmit)="onSubmitImage(imageTest.value)">
+    <label>Image Path</label>
+    <input class="imgUrl" type="file" accept="image/*" formControlName="imageUrl" name="imagePath"
+      (change)="showPreview($event)">
+    <button type="submit">submit image</button>
+    <br>
+    <br>
+    <img style="display: inline;" style="max-height: 300px;" [src]="imgSrc">
+  </form> -->
 </div>
 
 <!-- 
-title: string,
-description: string,
-imagePath: string,
-type: string,
-duration: number,
-specialty: string[],
-phase: string[],
+  title: string,
+  description: string,
+  imagePath: string,
+  type: string,
+  duration: number,
+  specialty: string[],
+  phase: string[],
 zwo: boolean 
 -->
