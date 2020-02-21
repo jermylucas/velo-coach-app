@@ -170,15 +170,14 @@ export class WorkoutEditComponent implements OnInit {
       zwo: new FormControl(workoutZwo, Validators.required),
       description: new FormControl(workoutDescription, Validators.required)
     });
+    let image_name = workoutImageUrl.split("/").pop();
+    image_name = image_name.split("?")[0];
     fetch(workoutImageUrl, { mode: "no-cors" })
       .then(res => res.blob())
       .then(blob => {
         const data = new ClipboardEvent("").clipboardData || new DataTransfer();
-        data.items.add(new File([blob], workoutImageUrl));
+        data.items.add(new File([blob], image_name));
         this.fileInput.nativeElement.files = data.files;
-
-        let html = data.files[0].name.replace(":", "/");
-        console.log(data.files[0].name);
       });
   }
 
@@ -192,7 +191,6 @@ export class WorkoutEditComponent implements OnInit {
       console.log(this.imgSrc);
     } else {
       this.imgSrc = "";
-      this.selectedImage = null;
     }
   }
 
