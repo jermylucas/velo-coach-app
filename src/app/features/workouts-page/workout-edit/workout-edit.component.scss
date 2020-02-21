@@ -90,9 +90,21 @@
 .type {
   grid-area: type;
 }
+
 .img {
   grid-area: img;
+  background: #f0f0f0;
+  border: none;
+  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid #8b8b8b;
+  cursor: pointer;
+  transition: all 0.1s;
+
+  &:hover {
+    border-bottom: 1px solid black;
+  }
 }
+
 .duration {
   grid-area: duration;
 }

@@ -113,9 +113,13 @@
         <mat-hint align="start">use image path</mat-hint>
       </mat-form-field> -->
 
+      <button type="button" (click)="fileInput.click()" class="img">
+        <mat-icon>library_add</mat-icon>
+        <input #fileInput style="display: none" type="file" accept="image/*" formControlName="imageUrl"
+          name="imagePath"
+          (change)="showPreview($event)">
+      </button>
 
-      <input class="img" type="file" accept="image/*" formControlName="imageUrl" name="imagePath"
-        (change)="showPreview($event)">
 
       <!-- time input -->
       <mat-form-field
