@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 
 // WYSIWYG
 import { AngularEditorConfig } from "@kolkov/angular-editor";
-import { DataStorageService } from "src/app/services/datastorage.service";
+import { DataStorageService } from "../../../../app/services/datastorage.service";
 //Firebase Storage
 import { AngularFireStorage } from "@angular/fire/storage";
 // Finalize for upload operator
@@ -17,6 +17,8 @@ import { finalize } from "rxjs/operators";
   styleUrls: ["./workout-edit.component.scss"]
 })
 export class WorkoutEditComponent implements OnInit {
+  @ViewChild("fileInput", { static: false }) fileInput: ElementRef; //declaration
+
   id: number;
   editMode = false;
   imgSrc = "";
@@ -156,13 +158,11 @@ export class WorkoutEditComponent implements OnInit {
       workoutSpecialty = workout.specialty;
       workoutZwo = workout.zwo;
       workoutDescription = workout.description;
-
-      console.log("workout that should be here: ", workout);
     }
 
     this.workoutForm = new FormGroup({
       title: new FormControl(workoutTitle, Validators.required),
-      imageUrl: new FormControl(workoutImageUrl),
+      imageUrl: new FormControl(""),
       phase: new FormControl(workoutPhase, Validators.required),
       duration: new FormControl(workoutDuration, Validators.required),
       type: new FormControl(workoutType, Validators.required),
@@ -170,6 +170,16 @@ export class WorkoutEditComponent implements OnInit {
       zwo: new FormControl(workoutZwo, Validators.required),
       description: new FormControl(workoutDescription, Validators.required)
     });
+    fetch(workoutImageUrl, { mode: "no-cors" })
+      .then(res => res.blob())
+      .then(blob => {
+        const data = new ClipboardEvent("").clipboardData || new DataTransfer();
+        data.items.add(new File([blob], workoutImageUrl));
+        this.fileInput.nativeElement.files = data.files;
+
+        let html = data.files[0].name.replace(":", "/");
+        console.log(data.files[0].name);
+      });
   }
 
   showPreview(event: any) {

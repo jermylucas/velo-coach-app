@@ -16,29 +16,24 @@ export class DataStorageService {
     private workoutService: WorkoutService
   ) {}
 
-  // storeWorkouts() {
-  //   const workouts = this.workoutService.getAllWorkouts();
-  //   this.http
-  //     .put(
-  //       "https://stack-overflow-sample.firebaseio.com/workouts.json",
-  //       workouts
-  //     )
-  //     .subscribe(response => console.log(response));
-  //   console.log(workouts);
-  // }
+  storeWorkouts() {
+    const workouts = this.workoutService.getAllWorkouts();
+    this.http
+      .put("https://velo-coach-app.firebaseio.com/workouts.json", workouts)
+      .subscribe(response => console.log(response));
+    console.log(workouts);
+  }
 
-  // fetchWorkouts() {
-  //   return this.http
-  //     .get<Workout[]>(
-  //       "https://stack-overflow-sample.firebaseio.com/workouts.json"
-  //     )
-  //     .pipe(
-  //       map(workouts => {
-  //         return workouts;
-  //       }),
-  //       tap(workouts => {
-  //         this.workoutService.setWorkouts(workouts);
-  //       })
-  //     );
-  // }
+  fetchWorkouts() {
+    return this.http
+      .get<Workout[]>("https://velo-coach-app.firebaseio.com/workouts.json")
+      .pipe(
+        map(workouts => {
+          return workouts;
+        }),
+        tap(workouts => {
+          this.workoutService.setWorkouts(workouts);
+        })
+      );
+  }
 }
