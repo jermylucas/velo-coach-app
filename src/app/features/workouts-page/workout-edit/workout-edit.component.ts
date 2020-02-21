@@ -43,10 +43,46 @@ export class WorkoutEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      this.workoutService.updateWorkout(this.id, this.workoutForm.value);
-      this.onCancel();
-      //store workouts
-      this.dataStorage.storeWorkouts();
+      if (this.workoutForm.valid) {
+        this.isLoading = true;
+
+        console.log(
+          "complete form before image upload: ",
+          this.workoutForm.value
+        );
+        // add date and time to image to avoid duplication
+        let filePath = `workout-images/${
+          this.selectedImage.name
+        }_${new Date().getTime()}`;
+        const fileRef = this.storage.ref(filePath);
+
+        this.storage
+          .upload(filePath, this.selectedImage)
+          .snapshotChanges()
+          .pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe(url => {
+                this.workoutForm["imageUrl"] = url;
+                // returns object with imageUrl of what I want
+                console.log("uploaded from: ", this.workoutForm.value.imageUrl);
+                console.log("new url: ", url);
+                this.workoutForm.value.imageUrl = url;
+                this.isLoading = false;
+                this.workoutService.updateWorkout(this.id, this.workoutForm.value);
+
+                this.resetForm();
+
+                this.onCancel();
+
+                // store workouts
+                this.dataStorage.storeWorkouts();
+              });
+            })
+          )
+          .subscribe();
+      } else {
+        alert("image not valid");
+      }
     } else {
       if (this.workoutForm.valid) {
         this.isLoading = true;

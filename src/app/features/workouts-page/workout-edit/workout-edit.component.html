@@ -113,12 +113,12 @@
         <mat-hint align="start">use image path</mat-hint>
       </mat-form-field> -->
 
-      <button type="button" (click)="fileInput.click()" class="img">
-        <mat-icon>library_add</mat-icon>
-        <input #fileInput style="display: none" type="file" accept="image/*" formControlName="imageUrl"
+      <!-- <button type="button" (click)="fileInput.click()" class="img"> -->
+        <!-- <span style="color: #6e6e6e;">Upload image</span> <mat-icon>library_add</mat-icon> -->
+        <input  class="img" type="file" accept="image/*" formControlName="imageUrl"
           name="imagePath"
           (change)="showPreview($event)">
-      </button>
+      <!-- </button> -->
 
 
       <!-- time input -->
@@ -144,7 +144,10 @@
       </div>
 
       <!-- <img style="max-height: 300px;" [src]="imgSrc"> -->
-      <img style="display: inline;" style="max-height: 300px;" [src]="imgSrc">
+      <div class="img-display">
+        <img style="display: inline;" style="height: auto; max-width: 100%;" [src]="imgSrc">
+
+      </div>
 
 
     </div>

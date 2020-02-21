@@ -38,7 +38,8 @@
       "title title title title"
       "phase specialty type zwo"
       "img img duration duration"
-      "desc desc desc desc";
+      "desc desc desc desc"
+      "img-display img-display img-display img-display";
 
     @media (max-width: $breakpoint-tablet-land) {
       grid-template-columns: 1fr 1fr;
@@ -47,7 +48,8 @@
         "phase specialty"
         "type zwo"
         "img duration"
-        "desc desc";
+        "desc desc"
+        "img-display img-display";
     }
 
     @media (max-width: $breakpoint-mobile) {
@@ -60,7 +62,8 @@
         "zwo"
         "img"
         "duration"
-        "desc";
+        "desc"
+        "img-display";
     }
   }
   @media (max-width: $breakpoint-tablet-land) {
@@ -105,6 +108,9 @@
   }
 }
 
+.img-display {
+  grid-area: img-display;
+}
 .duration {
   grid-area: duration;
 }
