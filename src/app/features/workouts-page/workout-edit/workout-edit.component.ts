@@ -53,8 +53,7 @@ export class WorkoutEditComponent implements OnInit {
     private dataStorage: DataStorageService,
     private fireStorage: AngularFireStorage,
     private fb: FormBuilder,
-    private dialog: MatDialog,
-    private fireStorageService: FirebaseStorageService
+    private dialog: MatDialog
   ) {
     this.createForms();
   }
@@ -92,11 +91,14 @@ export class WorkoutEditComponent implements OnInit {
         this.isLoading = true;
 
         if (this.newImage) {
+          console.log("new image");
           // Upload Image, upload workoutForm value, and store workouts to dataStorage
-          // add date and time to image to avoid duplication
+          // Adds date and time to image to avoid duplication
           let filePath = `workout-images/${
             this.selectedImage.name
           }_${new Date().getTime()}`;
+
+          console.log(filePath);
           const fileRef = this.fireStorage.ref(filePath);
           this.fireStorage
             .upload(filePath, this.selectedImage)
@@ -134,7 +136,7 @@ export class WorkoutEditComponent implements OnInit {
         this.isLoading = true;
 
         // Upload Image, upload workoutForm value, and store workouts to dataStorage
-        // add date and time to avoid duplication
+        // Adds date and time to avoid duplication
         let filePath = `workout-images/${
           this.selectedImage.name
         }_${new Date().getTime()}`;
@@ -181,19 +183,17 @@ export class WorkoutEditComponent implements OnInit {
     this.router.navigate(["../"], { relativeTo: this.route });
   }
 
-  showPreview(event: any) {
+  onImageChange(event: any) {
     this.workoutForm.controls["imageUrl"].setErrors(null);
-
-    //// If you want to preview the image elsewhere (I stopped using this 2/24/2020)
-    // if (event.target.files && event.target.files[0]) {
-    //   const currentImage = event.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.onload = (e: any) => (this.imgSrc = e.target.result);
-    //   reader.readAsDataURL(currentImage);
-    //   this.selectedImage = currentImage;
-    // } else {
-    //   this.imgSrc = "";
-    // }
+    if (event.target.files && event.target.files[0]) {
+      const currentImage = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => (this.imgSrc = e.target.result);
+      reader.readAsDataURL(currentImage);
+      this.selectedImage = currentImage;
+    } else {
+      this.imgSrc = "";
+    }
   }
 
   openModal() {

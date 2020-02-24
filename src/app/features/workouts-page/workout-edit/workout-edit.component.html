@@ -104,7 +104,7 @@
       <!-- imagePath -->
       <button *ngIf="!editMode || replaceImage" class="img" type="button" (click)="fileInput.click()">
         <input #fileInput type="file" accept="image/*" formControlName="imageUrl"
-          name="imagePath" class="img-input" (change)="showPreview($event)">
+          name="imagePath" class="img-input" (change)="onImageChange($event)">
       </button>
 
       <div *ngIf="editMode && !replaceImage" class="image-edit">
@@ -144,7 +144,6 @@
       <img [src]="imageUrl" class="modal-image">
     </div>
   </ng-template>
-  <button type="button" (click)="storageDeleteTest()">Delete Test</button>
 </div>
 
 <!-- 
