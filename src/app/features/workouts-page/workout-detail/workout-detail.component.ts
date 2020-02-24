@@ -2,7 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
+import { StorageService } from "../../../services/storage.service";
 import { DataStorageService } from "src/app/services/datastorage.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-workout-detail",
@@ -17,7 +19,8 @@ export class WorkoutDetailComponent implements OnInit {
     private workoutService: WorkoutService,
     private route: ActivatedRoute,
     private router: Router,
-    private dataStorage: DataStorageService
+    private dataStorage: DataStorageService,
+    private storageService: StorageService
   ) {}
 
   goBack() {
@@ -29,6 +32,23 @@ export class WorkoutDetailComponent implements OnInit {
       this.id = +params["id"];
       this.workout = this.workoutService.getWorkout(this.id);
     });
+
+    if (this.workout) {
+      this.storageService.setItem(
+        "activeWorkout",
+        JSON.stringify(this.workout)
+      );
+      console.log("Saved to storage.");
+    }
+
+    const activeWorkout = JSON.parse(
+      this.storageService.getItem("activeWorkout")
+    );
+
+    if (activeWorkout) {
+      this.workout = activeWorkout;
+      console.log("Workout loaded from storage");
+    }
   }
 
   // Opens up workout edit page with current workout

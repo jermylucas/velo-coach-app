@@ -1,7 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { FormGroup, Validators, FormControl } from "@angular/forms";
+import {
+  FormGroup,
+  Validators,
+  FormControl,
+  FormBuilder
+} from "@angular/forms";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { StorageService } from "../../../services/storage.service";
 
 // WYSIWYG
 import { AngularEditorConfig } from "@kolkov/angular-editor";
@@ -24,6 +30,7 @@ export class WorkoutEditComponent implements OnInit {
   imgSrc = "";
   selectedImage: any = null;
   isLoading = false;
+  imageUrl = "";
 
   workoutForm: FormGroup;
 
@@ -32,14 +39,44 @@ export class WorkoutEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dataStorage: DataStorageService,
-    private storage: AngularFireStorage
-  ) {}
+    private storage: AngularFireStorage,
+    private fb: FormBuilder,
+    private storageService: StorageService
+  ) {
+    this.createForms();
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = +params["id"];
       this.editMode = params["id"] != null;
-      this.initForm();
+    });
+
+    const activeWorkout = JSON.parse(
+      this.storageService.getItem("activeWorkout")
+    );
+    const workout = this.workoutService.getWorkout(this.id);
+
+    if (this.editMode) {
+      this.workoutForm.patchValue(workout);
+      this.imageUrl = workout.imageUrl;
+      console.log("Workout: ", workout);
+    } else if (this.editMode && activeWorkout) {
+      this.workoutForm.patchValue(activeWorkout);
+      console.log("Active: ", activeWorkout);
+    }
+  }
+
+  createForms() {
+    this.workoutForm = this.fb.group({
+      title: ["", Validators.required],
+      imageUrl: [""],
+      phase: ["", Validators.required],
+      duration: ["", Validators.required],
+      type: ["", Validators.required],
+      specialty: ["", Validators.required],
+      zwo: ["", Validators.required],
+      description: ["", Validators.required]
     });
   }
 
@@ -77,7 +114,7 @@ export class WorkoutEditComponent implements OnInit {
                 this.onCancel();
 
                 // store workouts
-                // this.dataStorage.storeWorkouts();
+                this.dataStorage.storeWorkouts();
               });
             })
           )
@@ -114,8 +151,7 @@ export class WorkoutEditComponent implements OnInit {
 
                 this.onCancel();
 
-                // store workouts (disabled due to API security)
-                // this.dataStorage.storeWorkouts();
+                this.dataStorage.storeWorkouts();
               });
             })
           )
@@ -135,50 +171,6 @@ export class WorkoutEditComponent implements OnInit {
 
   onCancel() {
     this.router.navigate(["../"], { relativeTo: this.route });
-  }
-
-  private initForm() {
-    let workoutImageUrl = "";
-    let workoutTitle = "";
-    let workoutPhase = [];
-    let workoutType = "";
-    let workoutDuration = "";
-    let workoutSpecialty = [];
-    let workoutDescription = "";
-    let workoutZwo = "";
-
-    if (this.editMode) {
-      const workout = this.workoutService.getWorkout(this.id);
-      workoutTitle = workout.title;
-      workoutImageUrl = workout.imageUrl;
-
-      workoutPhase = workout.phase;
-      workoutType = workout.type;
-      workoutDuration = workout.duration;
-      workoutSpecialty = workout.specialty;
-      workoutZwo = workout.zwo;
-      workoutDescription = workout.description;
-    }
-
-    this.workoutForm = new FormGroup({
-      title: new FormControl(workoutTitle, Validators.required),
-      imageUrl: new FormControl(""),
-      phase: new FormControl(workoutPhase, Validators.required),
-      duration: new FormControl(workoutDuration, Validators.required),
-      type: new FormControl(workoutType, Validators.required),
-      specialty: new FormControl(workoutSpecialty, Validators.required),
-      zwo: new FormControl(workoutZwo, Validators.required),
-      description: new FormControl(workoutDescription, Validators.required)
-    });
-    let image_name = workoutImageUrl.split("/").pop();
-    image_name = image_name.split("?")[0];
-    fetch(workoutImageUrl, { mode: "no-cors" })
-      .then(res => res.blob())
-      .then(blob => {
-        const data = new ClipboardEvent("").clipboardData || new DataTransfer();
-        data.items.add(new File([blob], image_name));
-        this.fileInput.nativeElement.files = data.files;
-      });
   }
 
   showPreview(event: any) {

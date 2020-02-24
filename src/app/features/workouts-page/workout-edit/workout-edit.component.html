@@ -102,11 +102,16 @@
       </mat-form-field>
 
       <!-- imagePath -->
-      <button class="img" type="button" (click)="fileInput.click()">
+      <button *ngIf="!editMode" class="img" type="button" (click)="fileInput.click()">
         <input #fileInput type="file" accept="image/*" formControlName="imageUrl"
           name="imagePath" class="img-input"
           (change)="showPreview($event)">
       </button>
+
+      <a *ngIf="editMode" href="{{imageUrl}}" target="_blank" class="img">
+        View Image
+      </a>
+
 
       <!-- time input -->
       <mat-form-field
@@ -130,27 +135,11 @@
         </angular-editor>
       </div>
 
-      <!-- <img style="max-height: 300px;" [src]="imgSrc"> -->
-      <!-- <div class="img-display">
-        <img style="display: inline;" style="max-height: 300px; max-width: 100%;" [src]="imgSrc"
-          alt="Please Upload Image To View Preview" class="img-preview">
-
-      </div> -->
+      <div class="img-display">
+        <img style="display: inline;" style="max-height: 300px; max-width: 100%;" [src]="imageUrl" class="img-preview">
+      </div>
     </div>
   </form>
-  <!--making sure i can get image upload to work-->
-  <!-- <br>
-  <br>
-  <br>
-  <form [formGroup]="imageTest" (ngSubmit)="onSubmitImage(imageTest.value)">
-    <label>Image Path</label>
-    <input class="imgUrl" type="file" accept="image/*" formControlName="imageUrl" name="imagePath"
-      (change)="showPreview($event)">
-    <button type="submit">submit image</button>
-    <br>
-    <br>
-    <img style="display: inline;" style="max-height: 300px;" [src]="imgSrc">
-  </form> -->
 </div>
 
 <!-- 
