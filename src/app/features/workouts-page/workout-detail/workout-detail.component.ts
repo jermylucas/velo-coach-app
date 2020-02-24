@@ -33,6 +33,7 @@ export class WorkoutDetailComponent implements OnInit {
       this.workout = this.workoutService.getWorkout(this.id);
     });
 
+    // Sets current workout to local storage
     if (this.workout) {
       this.storageService.setItem(
         "activeWorkout",
@@ -45,13 +46,14 @@ export class WorkoutDetailComponent implements OnInit {
       this.storageService.getItem("activeWorkout")
     );
 
+    // Gets workout from storage if there is one
     if (activeWorkout) {
       this.workout = activeWorkout;
       console.log("Workout loaded from storage");
     }
   }
 
-  // Opens up workout edit page with current workout
+  // Opens workout edit page with current workout
   onEditWorkout() {
     this.router.navigate(["edit"], { relativeTo: this.route });
   }
