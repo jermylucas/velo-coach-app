@@ -38,8 +38,7 @@
       "title title title title"
       "phase specialty type zwo"
       "img img duration duration"
-      "desc desc desc desc"
-      "img-display img-display img-display img-display";
+      "desc desc desc desc";
 
     @media (max-width: $breakpoint-tablet-land) {
       grid-template-columns: 1fr 1fr;
@@ -48,8 +47,7 @@
         "phase specialty"
         "type zwo"
         "img duration"
-        "desc desc"
-        "img-display img-display";
+        "desc desc";
     }
 
     @media (max-width: $breakpoint-mobile) {
@@ -62,8 +60,7 @@
         "zwo"
         "img"
         "duration"
-        "desc"
-        "img-display";
+        "desc";
     }
   }
   @media (max-width: $breakpoint-tablet-land) {
@@ -116,10 +113,18 @@
     color: #9b9b9b;
   }
 }
-
-.img-display {
-  grid-area: img-display;
-}
 .duration {
   grid-area: duration;
+}
+.image-edit {
+  grid-area: img;
+  height: 59px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+// Modal Image
+.modal-image {
+  max-width: 100%;
 }

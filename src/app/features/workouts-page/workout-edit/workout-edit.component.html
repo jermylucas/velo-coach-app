@@ -104,15 +104,14 @@
       <!-- imagePath -->
       <button *ngIf="!editMode || replaceImage" class="img" type="button" (click)="fileInput.click()">
         <input #fileInput type="file" accept="image/*" formControlName="imageUrl"
-          name="imagePath" class="img-input"
-          (change)="showPreview($event)">
+          name="imagePath" class="img-input" (change)="showPreview($event)">
       </button>
 
-      <div *ngIf="editMode && !replaceImage" class="img">
-        <a href="{{imageUrl}}" target="_blank">
-          View image
-        </a>
-        <button (click)="replaceImage = true; changeImage()">Replace Image</button>
+      <div *ngIf="editMode && !replaceImage" class="image-edit">
+        <button mat-stroked-button type="button" (click)="openModal()">View Image</button>
+        <button mat-stroked-button type="button"
+          (click)="replaceImage = true; changeImage()">Replace
+          Image</button>
       </div>
 
 
@@ -138,11 +137,13 @@
         </angular-editor>
       </div>
 
-      <div class="img-display">
-        <img style="display: inline;" style="max-height: 300px; max-width: 100%;" [src]="imageUrl" class="img-preview">
-      </div>
     </div>
   </form>
+  <ng-template #modalImageDialog>
+    <div>
+      <img [src]="imageUrl" class="modal-image">
+    </div>
+  </ng-template>
 </div>
 
 <!-- 

@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  TemplateRef,
+  ElementRef
+} from "@angular/core";
 import {
   FormGroup,
   Validators,
@@ -16,6 +22,7 @@ import { DataStorageService } from "../../../../app/services/datastorage.service
 import { AngularFireStorage } from "@angular/fire/storage";
 // Finalize for upload operator
 import { finalize } from "rxjs/operators";
+import { MatDialog } from "@angular/material";
 
 @Component({
   selector: "app-workout-edit",
@@ -24,6 +31,9 @@ import { finalize } from "rxjs/operators";
 })
 export class WorkoutEditComponent implements OnInit {
   @ViewChild("fileInput", { static: false }) fileInput: ElementRef; //declaration
+
+  @ViewChild("modalImageDialog", { static: false })
+  modalImageDialog: TemplateRef<any>;
 
   id: number;
   editMode = false;
@@ -42,7 +52,8 @@ export class WorkoutEditComponent implements OnInit {
     private route: ActivatedRoute,
     private dataStorage: DataStorageService,
     private storage: AngularFireStorage,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialog: MatDialog
   ) {
     this.createForms();
   }
@@ -52,6 +63,13 @@ export class WorkoutEditComponent implements OnInit {
       this.id = +params["id"];
       this.editMode = params["id"] != null;
     });
+
+    // Patches workout values to formbuilder
+    const workout = this.workoutService.getWorkout(this.id);
+    if (this.editMode) {
+      this.workoutForm.patchValue(workout);
+      this.imageUrl = workout.imageUrl;
+    }
   }
 
   createForms() {
@@ -93,11 +111,8 @@ export class WorkoutEditComponent implements OnInit {
                     this.id,
                     this.workoutForm.value
                   );
-
                   this.resetForm();
-
                   this.onCancel();
-
                   // store workouts
                   this.dataStorage.storeWorkouts();
                 });
@@ -107,9 +122,7 @@ export class WorkoutEditComponent implements OnInit {
         } else {
           this.workoutService.updateWorkout(this.id, this.workoutForm.value);
           this.resetForm();
-
           this.onCancel();
-
           // store workouts
           this.dataStorage.storeWorkouts();
         }
@@ -137,11 +150,8 @@ export class WorkoutEditComponent implements OnInit {
                 this.workoutForm.value.imageUrl = url;
                 this.isLoading = false;
                 this.workoutService.addWorkout(this.workoutForm.value);
-
                 this.resetForm();
-
                 this.onCancel();
-
                 this.dataStorage.storeWorkouts();
               });
             })
@@ -161,7 +171,7 @@ export class WorkoutEditComponent implements OnInit {
 
   resetForm() {
     this.workoutForm.reset();
-    console.log("Form is reset");
+    console.log("Form is reset ");
     this.selectedImage = null;
     this.imgSrc = "";
   }
@@ -172,15 +182,21 @@ export class WorkoutEditComponent implements OnInit {
 
   showPreview(event: any) {
     this.workoutForm.controls["imageUrl"].setErrors(null);
-    if (event.target.files && event.target.files[0]) {
-      const currentImage = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (e: any) => (this.imgSrc = e.target.result);
-      reader.readAsDataURL(currentImage);
-      this.selectedImage = currentImage;
-    } else {
-      this.imgSrc = "";
-    }
+
+    //// If you want to preview the image elsewhere (I stopped using this 2/24/2020)
+    // if (event.target.files && event.target.files[0]) {
+    //   const currentImage = event.target.files[0];
+    //   const reader = new FileReader();
+    //   reader.onload = (e: any) => (this.imgSrc = e.target.result);
+    //   reader.readAsDataURL(currentImage);
+    //   this.selectedImage = currentImage;
+    // } else {
+    //   this.imgSrc = "";
+    // }
+  }
+
+  openModal() {
+    this.dialog.open(this.modalImageDialog);
   }
 
   // Configuration for WYSIWYG Editor
