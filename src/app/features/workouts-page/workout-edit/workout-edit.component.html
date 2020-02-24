@@ -102,15 +102,18 @@
       </mat-form-field>
 
       <!-- imagePath -->
-      <button *ngIf="!editMode" class="img" type="button" (click)="fileInput.click()">
+      <button *ngIf="!editMode || replaceImage" class="img" type="button" (click)="fileInput.click()">
         <input #fileInput type="file" accept="image/*" formControlName="imageUrl"
           name="imagePath" class="img-input"
           (change)="showPreview($event)">
       </button>
 
-      <a *ngIf="editMode" href="{{imageUrl}}" target="_blank" class="img">
-        View Image
-      </a>
+      <div *ngIf="editMode && !replaceImage" class="img">
+        <a href="{{imageUrl}}" target="_blank">
+          View image
+        </a>
+        <button (click)="replaceImage = true">Replace Image</button>
+      </div>
 
 
       <!-- time input -->
