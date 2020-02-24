@@ -13,7 +13,7 @@ import {
 } from "@angular/forms";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { StorageService } from "../../../services/storage.service";
+import { LocalStorageService } from "../../../services/local-storage.service";
 
 // WYSIWYG
 import { AngularEditorConfig } from "@kolkov/angular-editor";
@@ -23,6 +23,8 @@ import { AngularFireStorage } from "@angular/fire/storage";
 // Finalize for upload operator
 import { finalize } from "rxjs/operators";
 import { MatDialog } from "@angular/material";
+import { FirebaseStorage } from "@angular/fire";
+import { FirebaseStorageService } from "src/app/services/firebase-storage.service";
 
 @Component({
   selector: "app-workout-edit",
@@ -30,8 +32,6 @@ import { MatDialog } from "@angular/material";
   styleUrls: ["./workout-edit.component.scss"]
 })
 export class WorkoutEditComponent implements OnInit {
-  @ViewChild("fileInput", { static: false }) fileInput: ElementRef; //declaration
-
   @ViewChild("modalImageDialog", { static: false })
   modalImageDialog: TemplateRef<any>;
 
@@ -51,9 +51,10 @@ export class WorkoutEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dataStorage: DataStorageService,
-    private storage: AngularFireStorage,
+    private fireStorage: AngularFireStorage,
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private fireStorageService: FirebaseStorageService
   ) {
     this.createForms();
   }
@@ -96,8 +97,8 @@ export class WorkoutEditComponent implements OnInit {
           let filePath = `workout-images/${
             this.selectedImage.name
           }_${new Date().getTime()}`;
-          const fileRef = this.storage.ref(filePath);
-          this.storage
+          const fileRef = this.fireStorage.ref(filePath);
+          this.fireStorage
             .upload(filePath, this.selectedImage)
             .snapshotChanges()
             .pipe(
@@ -137,9 +138,9 @@ export class WorkoutEditComponent implements OnInit {
         let filePath = `workout-images/${
           this.selectedImage.name
         }_${new Date().getTime()}`;
-        const fileRef = this.storage.ref(filePath);
+        const fileRef = this.fireStorage.ref(filePath);
 
-        this.storage
+        this.fireStorage
           .upload(filePath, this.selectedImage)
           .snapshotChanges()
           .pipe(

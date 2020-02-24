@@ -15,7 +15,7 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { WorkoutEditComponent } from "./features/workouts-page/workout-edit/workout-edit.component";
 import { TrainingPlansComponent } from "./features/training-plans/training-plans.component";
 import { SidenavService } from "./services/sidenav.service";
-import { StorageService } from "./services/storage.service";
+import { LocalStorageService } from "./services/local-storage.service";
 
 import { WorkoutsListComponent } from "./features/workouts-page/workouts/workouts-list/workouts-list.component";
 import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/workouts-filter/workouts-filter.component";
@@ -61,7 +61,7 @@ import { environment } from "../environments/environment";
     AngularFireStorageModule,
     AngularFireDatabaseModule
   ],
-  providers: [SidenavService, StorageService],
+  providers: [SidenavService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

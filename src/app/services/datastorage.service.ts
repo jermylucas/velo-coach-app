@@ -4,9 +4,6 @@ import { WorkoutService } from "../features/workouts-page/workoutservice/workout
 import { Workout } from "../features/workouts-page/workouts/workout.model";
 import { map, tap } from "rxjs/operators";
 
-//
-import { Observable } from "rxjs";
-
 @Injectable({
   providedIn: "root"
 })

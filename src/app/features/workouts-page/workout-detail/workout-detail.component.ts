@@ -2,9 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
-import { StorageService } from "../../../services/storage.service";
+import { LocalStorageService } from "../../../services/local-storage.service";
 import { DataStorageService } from "src/app/services/datastorage.service";
 import { Subscription } from "rxjs";
+import { FirebaseStorageService } from "src/app/services/firebase-storage.service";
 
 @Component({
   selector: "app-workout-detail",
@@ -20,7 +21,8 @@ export class WorkoutDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dataStorage: DataStorageService,
-    private storageService: StorageService
+    private storageService: LocalStorageService,
+    private fireStorageService: FirebaseStorageService
   ) {}
 
   goBack() {
@@ -64,6 +66,7 @@ export class WorkoutDetailComponent implements OnInit {
         "Are you sure you want to delete this workout? This action cannot be undone."
       )
     ) {
+      this.fireStorageService.onDeleteImage(this.workout.imageUrl);
       this.workoutService.deleteWorkout(this.id);
       this.router.navigate(["/workouts"]);
       this.dataStorage.storeWorkouts();
