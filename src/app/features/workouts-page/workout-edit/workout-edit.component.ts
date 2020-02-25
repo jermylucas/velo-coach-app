@@ -41,7 +41,6 @@ export class WorkoutEditComponent implements OnInit {
   selectedImage: any = null;
   isLoading = false;
   imageUrl = "";
-
   newImage: boolean = false;
 
   workoutForm: FormGroup;
@@ -53,7 +52,8 @@ export class WorkoutEditComponent implements OnInit {
     private dataStorage: DataStorageService,
     private fireStorage: AngularFireStorage,
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private fireStorageService: FirebaseStorageService
   ) {
     this.createForms();
   }
@@ -92,8 +92,8 @@ export class WorkoutEditComponent implements OnInit {
 
         if (this.newImage) {
           console.log("new image");
-          // Upload Image, upload workoutForm value, and store workouts to dataStorage
-          // Adds date and time to image to avoid duplication
+          //// Upload Image, upload workoutForm value, and store workouts to dataStorage
+          //// Adds date and time to image to avoid duplication
           let filePath = `workout-images/${
             this.selectedImage.name
           }_${new Date().getTime()}`;
@@ -167,6 +167,9 @@ export class WorkoutEditComponent implements OnInit {
   }
 
   changeImage() {
+    //// Delete image from storage when replace is clicked
+    this.fireStorageService.onDeleteImage(this.imageUrl);
+
     this.workoutForm.controls["imageUrl"].setErrors({ incorrect: true });
     this.imageUrl = "";
     this.newImage = true;
