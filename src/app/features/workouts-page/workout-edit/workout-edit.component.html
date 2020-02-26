@@ -50,6 +50,8 @@
           <mat-option value="Peak">Peak</mat-option>
           <mat-option value="Race">Race</mat-option>
           <mat-option value="Testing">Testing</mat-option>
+          <mat-option value="Strength Build">Strength Build</mat-option>
+          <mat-option value="Strength Maintenance">Strength Maintenance</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -67,6 +69,7 @@
           <mat-option value="Gravel">Gravel</mat-option>
           <mat-option value="Timetrial">Time Trial</mat-option>
           <mat-option value="Cross Country MTB">Cross Country MTB</mat-option>
+          <mat-option value="Gym Work">Gym Work</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -86,6 +89,7 @@
           <mat-option value="Technique">Technique</mat-option>
           <mat-option value="Tempo">Tempo</mat-option>
           <mat-option value="Threshold">Threshold</mat-option>
+          <mat-option value="Vo2 Max">Vo2 Max</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -114,11 +118,6 @@
           (click)="replaceImage = true; changeImage()">Replace
           Image</button>
       </div>
-
-      <div class="img" *ngIf="imageDeleting && !replaceImage">
-        <app-loading-spinner></app-loading-spinner>
-      </div>
-
 
       <!-- time input -->
       <mat-form-field

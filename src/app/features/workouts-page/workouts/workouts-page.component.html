@@ -1,7 +1,7 @@
 <mat-toolbar class="toolbar">
   <span class="toolbar__title">Sort By:</span>
 
-  <span class="toolbar__sort">Type</span>
+  <span class="toolbar__sort">Name</span>
   <span class="break"></span>
   <span class="toolbar__sort">Duration</span>
   <span class="break"></span>
@@ -10,8 +10,7 @@
   <span class="spacer"></span>
   <button
     class="filter"
-    (click)="openNav()"
-  >
+    (click)="openNav()">
     <mat-icon>filter_list</mat-icon>Filter
   </button>
 
@@ -20,8 +19,7 @@
     <input
       type="text"
       class="search__input"
-      placeholder="&nbsp;"
-    >
+      placeholder="&nbsp;">
     <span class="search__label">Search...</span>
     <span class="search__highlight"></span>
     <div class="search__btn">
@@ -36,8 +34,7 @@
     <input
       type="text"
       class="search__input"
-      placeholder="&nbsp;"
-    >
+      placeholder="&nbsp;">
     <span class="search__label">Search...</span>
     <span class="search__highlight"></span>
     <div class="search__btn">
@@ -52,8 +49,7 @@ workouts-list (inside the list there are the items)  -->
 <div class="main__workouts">
   <div
     class="main__workouts--filter"
-    id="filter"
-  >
+    id="filter">
 
     <app-workouts-filter></app-workouts-filter>
 

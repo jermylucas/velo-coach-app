@@ -20,7 +20,9 @@ export class WorkoutsFilterComponent implements OnInit {
     "Recovery",
     "Peak",
     "Race",
-    "Testing"
+    "Testing",
+    "Strength Build",
+    "Strength Maintenance"
   ];
   specialtyOptions = [
     "Road Race",
@@ -29,7 +31,8 @@ export class WorkoutsFilterComponent implements OnInit {
     "Cyclocross",
     "Gravel",
     "Time Trial",
-    "Cross Country MTB"
+    "Cross Country MTB",
+    "Gym Work"
   ];
   durationOptions = [1, 2, 3, 4, 10];
   typeOptions = [
@@ -41,7 +44,8 @@ export class WorkoutsFilterComponent implements OnInit {
     "Strength",
     "Technique",
     "Tempo",
-    "Threshold"
+    "Threshold",
+    "Vo2 Max"
   ];
   zwoOptions = ["Yes", "No"];
 
