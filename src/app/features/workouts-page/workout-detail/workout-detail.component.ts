@@ -4,8 +4,9 @@ import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
 import { LocalStorageService } from "../../../services/local-storage.service";
 import { DataStorageService } from "src/app/services/datastorage.service";
-import { Subscription } from "rxjs";
 import { FirebaseStorageService } from "src/app/services/firebase-storage.service";
+
+import { PopupService } from "src/app/services/snackbar.service";
 
 @Component({
   selector: "app-workout-detail",
@@ -22,7 +23,8 @@ export class WorkoutDetailComponent implements OnInit {
     private router: Router,
     private dataStorage: DataStorageService,
     private storageService: LocalStorageService,
-    private fireStorageService: FirebaseStorageService
+    private fireStorageService: FirebaseStorageService,
+    private popupService: PopupService
   ) {}
 
   goBack() {
@@ -70,6 +72,7 @@ export class WorkoutDetailComponent implements OnInit {
       this.workoutService.deleteWorkout(this.id);
       this.router.navigate(["/workouts"]);
       this.dataStorage.storeWorkouts();
+      this.popupService.openSnackBar("Workout Deleted From Server");
     }
   }
 }

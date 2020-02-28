@@ -1,20 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  TemplateRef,
-  ElementRef
-} from "@angular/core";
-import {
-  FormGroup,
-  Validators,
-  FormControl,
-  FormBuilder
-} from "@angular/forms";
+import { Component, OnInit, ViewChild, TemplateRef } from "@angular/core";
+import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { LocalStorageService } from "../../../services/local-storage.service";
-
 // WYSIWYG
 import { AngularEditorConfig } from "@kolkov/angular-editor";
 import { DataStorageService } from "../../../../app/services/datastorage.service";
@@ -23,7 +10,6 @@ import { AngularFireStorage } from "@angular/fire/storage";
 // Finalize for upload operator
 import { finalize } from "rxjs/operators";
 import { MatDialog } from "@angular/material";
-import { FirebaseStorage } from "@angular/fire";
 import { FirebaseStorageService } from "src/app/services/firebase-storage.service";
 
 @Component({
@@ -91,7 +77,6 @@ export class WorkoutEditComponent implements OnInit {
         this.isLoading = true;
 
         if (this.newImage) {
-          console.log("new image");
           //// Upload Image, upload workoutForm value, and store workouts to dataStorage
           //// Adds date and time to image to avoid duplication
           let filePath = `workout-images/${
@@ -177,7 +162,6 @@ export class WorkoutEditComponent implements OnInit {
 
   resetForm() {
     this.workoutForm.reset();
-    console.log("Form is reset ");
     this.selectedImage = null;
     this.imgSrc = "";
   }

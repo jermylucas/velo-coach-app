@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { WorkoutService } from "../features/workouts-page/workoutservice/workout.service";
 import { Workout } from "../features/workouts-page/workouts/workout.model";
 import { map, tap } from "rxjs/operators";
+import { PopupService } from "./snackbar.service";
 
 @Injectable({
   providedIn: "root"
@@ -10,15 +11,16 @@ import { map, tap } from "rxjs/operators";
 export class DataStorageService {
   constructor(
     private http: HttpClient,
-    private workoutService: WorkoutService
+    private workoutService: WorkoutService,
+    private popupService: PopupService
   ) {}
 
   storeWorkouts() {
     const workouts = this.workoutService.getAllWorkouts();
     this.http
       .put("https://velo-coach-app.firebaseio.com/workouts.json", workouts)
-      .subscribe(response => console.log(response));
-    console.log(workouts);
+      .subscribe(response => console.log("Workouts Saved: ", response));
+    this.popupService.openSnackBar("Workouts Saved to Server");
   }
 
   fetchWorkouts() {
@@ -30,6 +32,7 @@ export class DataStorageService {
         }),
         tap(workouts => {
           this.workoutService.setWorkouts(workouts);
+          this.popupService.openSnackBar("Workouts Fetch From Server");
         })
       );
   }
