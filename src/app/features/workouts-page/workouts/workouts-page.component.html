@@ -1,11 +1,11 @@
 <mat-toolbar class="toolbar">
   <span class="toolbar__title">Sort By:</span>
 
-  <span class="toolbar__sort">Name</span>
+  <span class="toolbar__sort" (click)="onTitleSort()">Name</span>
   <span class="break"></span>
-  <span class="toolbar__sort">Duration</span>
+  <span class="toolbar__sort" (click)="onDurationSort()">Duration</span>
   <span class="break"></span>
-  <span class="toolbar__sort">Phase</span>
+  <span class="toolbar__sort" (click)="onPhaseSort()">Phase</span>
 
   <span class="spacer"></span>
   <button

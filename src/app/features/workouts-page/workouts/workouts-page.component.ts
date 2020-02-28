@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { WorkoutService } from "../workoutservice/workout.service";
 
 @Component({
   selector: "app-workouts",
@@ -10,7 +11,7 @@ export class WorkoutsComponent implements OnInit {
   value = "";
   opened = false;
 
-  constructor() {}
+  constructor(private workoutService: WorkoutService) {}
 
   ngOnInit() {}
 
@@ -22,5 +23,16 @@ export class WorkoutsComponent implements OnInit {
       document.getElementById("filter").style.display = "block";
       this.opened = true;
     }
+  }
+
+  // Sort by events to service
+  onTitleSort() {
+    this.workoutService.sortByTitle();
+  }
+  onPhaseSort() {
+    this.workoutService.sortByPhase();
+  }
+  onDurationSort() {
+    this.workoutService.sortByDuration();
   }
 }

@@ -6,11 +6,13 @@
   top: 0;
   left: 0;
   font-size: 16px;
-  margin: 5px 10px;
+  padding: 5px 10px;
   cursor: pointer;
   text-decoration: underline;
-  color: $color-primary-blue;
+  color: $color-primary-light-blue;
   z-index: 1;
+
+  background: transparentize($color-light-grey, 0.75);
 }
 img {
   position: relative;

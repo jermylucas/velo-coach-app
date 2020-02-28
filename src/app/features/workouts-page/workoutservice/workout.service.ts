@@ -1,15 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Workout } from "../workouts/workout.model";
 import { BehaviorSubject } from "rxjs";
+import { WorkoutsListComponent } from "../workouts/workouts-list/workouts-list.component";
 
 @Injectable({
   providedIn: "root"
 })
 export class WorkoutService {
   listTotal: number;
-
   selectedWorkouts: BehaviorSubject<any>;
   workouts: Workout[] = [];
+
+  filteredList;
 
   constructor() {
     this.selectedWorkouts = new BehaviorSubject(this.workouts);
@@ -76,6 +78,10 @@ export class WorkoutService {
     });
     this.selectedWorkouts.next(workouts);
 
+    // sets filteredList to workouts to allow sort functionality
+    this.filteredList = workouts;
+
+    // Removes overlay after select on small devices
     if (window.innerWidth < 981) {
       document.getElementById("filter").style.display = "none";
     } else {
@@ -88,6 +94,48 @@ export class WorkoutService {
     this.workouts = workouts;
     this.selectedWorkouts.next(this.workouts);
     this.listTotal = this.workouts.length;
+  }
+
+  //// Sort By: events
+  sortByTitle() {
+    if (!this.filteredList) {
+      this.workouts.sort(this.sortTitle);
+    } else {
+      this.filteredList.sort(this.sortTitle);
+      // Keeps entire list sorted instead of only filtered list
+      this.workouts.sort(this.sortTitle);
+    }
+    return;
+  }
+  sortByPhase() {
+    if (!this.filteredList) {
+      this.workouts.sort(this.sortPhase);
+    } else {
+      this.filteredList.sort(this.sortPhase);
+      // Keeps entire list sorted instead of only filtered list
+      this.workouts.sort(this.sortPhase);
+    }
+    return;
+  }
+  sortByDuration() {
+    if (!this.filteredList) {
+      this.workouts.sort(this.sortDuration);
+    } else {
+      this.filteredList.sort(this.sortDuration);
+      // Keeps entire list sorted instead of only filtered list
+      this.workouts.sort(this.sortDuration);
+    }
+    return;
+  }
+
+  sortTitle(a, b) {
+    return a.title > b.title ? 1 : b.title > a.title ? -1 : 0;
+  }
+  sortPhase(a, b) {
+    return a.phase > b.phase ? -1 : b.phase > a.phase ? 1 : 0;
+  }
+  sortDuration(a, b) {
+    return a.duration - b.duration;
   }
 }
 
