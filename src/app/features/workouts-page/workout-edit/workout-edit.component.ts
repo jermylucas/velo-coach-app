@@ -28,6 +28,7 @@ export class WorkoutEditComponent implements OnInit {
   isLoading = false;
   imageUrl = "";
   newImage: boolean = false;
+  replaceImage: boolean;
 
   workoutForm: FormGroup;
 

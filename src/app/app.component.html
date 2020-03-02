@@ -1,12 +1,8 @@
 <app-header></app-header>
 <mat-sidenav-container class="main-sidenav">
   <mat-sidenav
-    [disableClose]="closeDisabled"
-    autosize
-    class="sidenav"
-    mode="side"
-    opened
-    #sidenav>
+
+    class="sidenav" #sidenav [mode]="mode" [opened]="openSidenav">
     <app-sidenav></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>

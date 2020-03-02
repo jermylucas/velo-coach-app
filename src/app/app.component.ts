@@ -1,6 +1,12 @@
-import { Component, ViewChild, HostListener } from "@angular/core";
+import {
+  Component,
+  ViewChild,
+  HostListener,
+  ChangeDetectionStrategy
+} from "@angular/core";
 import { SidenavService } from "./services/sidenav.service";
 import { MatSidenav } from "@angular/material";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Component({
   selector: "app-root",
@@ -9,32 +15,36 @@ import { MatSidenav } from "@angular/material";
 })
 export class AppComponent {
   title = "velo-coach-app";
-  smallScreen;
-  closeDisabled = true;
+  showToggle: string;
+  mode: string;
+  openSidenav: boolean;
+  private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
 
-  @ViewChild("sidenav", { static: true }) public sidenav: MatSidenav;
+  @ViewChild("sidenav", { static: true }) matSidenav: MatSidenav;
 
   constructor(private sidenavService: SidenavService) {}
 
-  ngOnInit(): void {
-    this.sidenavService.setSidenav(this.sidenav);
+  ngOnInit() {
+    this.sidenavService.setSidenav(this.matSidenav);
+
+    this.getScreenWidth().subscribe(width => {
+      if (width < 640) {
+        this.showToggle = "show";
+        this.mode = "over";
+        this.openSidenav = false;
+      } else if (width > 640) {
+        this.showToggle = "hide";
+        this.mode = "side";
+        this.openSidenav = true;
+      }
+    });
   }
 
   @HostListener("window:resize", ["$event"])
   onResize(event) {
-    this.configureSideNav();
+    this.screenWidth$.next(event.target.innerWidth);
   }
-
-  configureSideNav() {
-    this.smallScreen = window.innerWidth < 769 ? true : false;
-    if (!this.smallScreen) {
-      this.sidenav.mode = "side";
-      this.sidenav.opened = true;
-      this.closeDisabled = true;
-    } else {
-      this.sidenav.mode = "over";
-      this.sidenav.opened = false;
-      this.closeDisabled = false;
-    }
+  getScreenWidth(): Observable<number> {
+    return this.screenWidth$.asObservable();
   }
 }
