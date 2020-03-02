@@ -36,11 +36,6 @@ export class AppComponent {
     });
   }
 
-  onActivate(event) {
-    console.log("should scroll..");
-    window.scrollTo(0, 0);
-  }
-
   @HostListener("window:resize", ["$event"])
   onResize(event) {
     this.screenWidth$.next(event.target.innerWidth);
