@@ -2,17 +2,18 @@
 
 .back-btn {
   display: block;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 56px;
   left: 0;
   font-size: 16px;
   padding: 5px 10px;
   cursor: pointer;
   text-decoration: underline;
-  color: $color-primary-light-blue;
+  color: $color-primary-dark-blue;
   z-index: 1;
+  border-bottom-right-radius: 3px;
 
-  background: transparentize($color-light-grey, 0.75);
+  background: transparentize($color-light-grey, 0.05);
 }
 img {
   position: relative;

@@ -31,7 +31,9 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("loaded list");
+  }
 
   ngOnDestroy() {
     this.workoutSubscription.unsubscribe();

@@ -1,12 +1,8 @@
-import {
-  Component,
-  ViewChild,
-  HostListener,
-  ChangeDetectionStrategy
-} from "@angular/core";
+import { Component, ViewChild, HostListener } from "@angular/core";
 import { SidenavService } from "./services/sidenav.service";
 import { MatSidenav } from "@angular/material";
 import { BehaviorSubject, Observable } from "rxjs";
+import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -22,7 +18,7 @@ export class AppComponent {
 
   @ViewChild("sidenav", { static: true }) matSidenav: MatSidenav;
 
-  constructor(private sidenavService: SidenavService) {}
+  constructor(private sidenavService: SidenavService, private router: Router) {}
 
   ngOnInit() {
     this.sidenavService.setSidenav(this.matSidenav);
@@ -38,6 +34,11 @@ export class AppComponent {
         this.openSidenav = true;
       }
     });
+  }
+
+  onActivate(event) {
+    console.log("should scroll..");
+    window.scrollTo(0, 0);
   }
 
   @HostListener("window:resize", ["$event"])

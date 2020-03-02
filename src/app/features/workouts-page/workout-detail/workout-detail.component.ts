@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params, Router } from "@angular/router";
+import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
 import { LocalStorageService } from "../../../services/local-storage.service";
@@ -32,6 +32,9 @@ export class WorkoutDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    console.log("should have moved to top");
+
     this.route.params.subscribe((params: Params) => {
       this.id = +params["id"];
       this.workout = this.workoutService.getWorkout(this.id);
