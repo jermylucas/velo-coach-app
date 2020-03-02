@@ -3,10 +3,10 @@ import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { WorkoutService } from "../workoutservice/workout.service";
 import { Workout } from "../workouts/workout.model";
 import { LocalStorageService } from "../../../services/local-storage.service";
-import { DataStorageService } from "src/app/services/datastorage.service";
-import { FirebaseStorageService } from "src/app/services/firebase-storage.service";
+import { DataStorageService } from "../../../../app/services/datastorage.service";
+import { FirebaseStorageService } from "../../../../app/services/firebase-storage.service";
 
-import { PopupService } from "src/app/services/snackbar.service";
+import { PopupService } from "./../../../../app/services/snackbar.service";
 
 @Component({
   selector: "app-workout-detail",
