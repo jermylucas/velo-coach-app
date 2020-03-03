@@ -32,9 +32,6 @@ export class WorkoutDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.body.scrollTop = 0;
-    console.log("should have moved to top");
-
     this.route.params.subscribe((params: Params) => {
       this.id = +params["id"];
       this.workout = this.workoutService.getWorkout(this.id);
@@ -46,7 +43,6 @@ export class WorkoutDetailComponent implements OnInit {
         "activeWorkout",
         JSON.stringify(this.workout)
       );
-      console.log("Saved to storage.");
     }
 
     const activeWorkout = JSON.parse(
@@ -56,7 +52,6 @@ export class WorkoutDetailComponent implements OnInit {
     // Gets workout from storage if there is one
     if (activeWorkout) {
       this.workout = activeWorkout;
-      console.log("Workout loaded from storage");
     }
   }
 

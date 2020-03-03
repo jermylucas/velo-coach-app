@@ -6,6 +6,7 @@ import { BehaviorSubject } from "rxjs";
   providedIn: "root"
 })
 export class WorkoutService {
+  previousPosition: number;
   listTotal: number;
   selectedWorkouts: BehaviorSubject<any>;
   workouts: Workout[] = [];

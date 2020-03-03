@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import { WorkoutService } from "../../workoutservice/workout.service";
 
 @Component({
@@ -12,6 +12,7 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   listTotal;
   index: number;
   workoutSubscription;
+  @Input() previousPosition: number;
 
   isLoading = false;
 
@@ -31,11 +32,15 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnInit() {
-    console.log("loaded list");
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.workoutSubscription.unsubscribe();
+  }
+  scrollPosition() {
+    // Keeps previous scroll position in service for when back button is clicked on the workoutdetail page
+    this.workoutService.previousPosition = document.getElementById(
+      "detail"
+    ).scrollTop;
   }
 }
