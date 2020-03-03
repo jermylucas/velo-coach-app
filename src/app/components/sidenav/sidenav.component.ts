@@ -39,6 +39,5 @@ export class SidenavComponent implements OnInit {
 
   onFetchData() {
     this.dataStorageService.fetchWorkouts().subscribe();
-    console.log("fetched");
   }
 }

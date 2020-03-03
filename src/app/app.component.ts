@@ -2,12 +2,7 @@ import { Component, ViewChild, HostListener } from "@angular/core";
 import { SidenavService } from "./services/sidenav.service";
 import { MatSidenav } from "@angular/material";
 import { BehaviorSubject, Observable } from "rxjs";
-import {
-  Router,
-  NavigationEnd,
-  ActivatedRoute,
-  RoutesRecognized
-} from "@angular/router";
+import { Router, RoutesRecognized } from "@angular/router";
 import { WorkoutService } from "./features/workouts-page/workoutservice/workout.service";
 
 @Component({
@@ -19,7 +14,6 @@ export class AppComponent {
   title = "velo-coach-app";
 
   id;
-  // event;
   showToggle: string;
   mode: string;
   openSidenav: boolean;
