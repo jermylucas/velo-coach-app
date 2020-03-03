@@ -8,39 +8,31 @@
   <span class="toolbar__sort" (click)="onPhaseSort()">Phase</span>
 
   <span class="spacer"></span>
-  <button
-    class="filter"
-    (click)="openNav()">
-    <mat-icon>filter_list</mat-icon>Filter
-  </button>
 
-  <div class="search">
-
-    <input
-      type="text"
-      class="search__input"
-      placeholder="&nbsp;">
-    <span class="search__label">Search...</span>
-    <span class="search__highlight"></span>
-    <div class="search__btn">
-      <mat-icon>search</mat-icon>
+  <div class="search__wrapper">
+    <div class="search__main">
+      <input type="text" class="search__main--term" placeholder="Search...">
+      <button type="submit" class="search__main--button">
+        <mat-icon class="search__icon">search</mat-icon>
+      </button>
     </div>
   </div>
 
 
 </mat-toolbar>
 <mat-toolbar class="toolbar__mobile">
-  <div class="search search__mobile">
-    <input
-      type="text"
-      class="search__input"
-      placeholder="&nbsp;">
-    <span class="search__label">Search...</span>
-    <span class="search__highlight"></span>
-    <div class="search__btn">
-      <mat-icon>search</mat-icon>
-    </div>
+  <div class="search__mobile">
+    <input type="text" class="search__mobile--term" placeholder="Search...">
+    <button type="submit" class="search__mobile--button">
+      <mat-icon class="search__icon">search</mat-icon>
+    </button>
   </div>
+  <button
+    class="filter"
+    (click)="openNav()">
+    <mat-icon>filter_list</mat-icon>Filter
+  </button>
+
 </mat-toolbar>
 
 <!-- will link with different workout components here -->

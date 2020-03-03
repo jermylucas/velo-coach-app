@@ -50,77 +50,81 @@
 }
 
 .search {
-  height: 30px;
-  width: 200px;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  padding: 0 0 0 10px;
-  position: relative;
-  background: #fff;
-  border: $color-grey 1px solid;
+  &__main {
+    position: relative;
+    display: flex;
 
-  &__input {
-    border: none;
-    height: 25px;
-    width: 150px;
-    color: #1b1b1b;
-    font-size: 15px;
-    outline: none;
+    width: 300px;
 
-    &:not(:placeholder-shown) + .search__label {
+    padding: 0;
+
+    &--term {
+      width: 100%;
+      border: 1px solid $color-dark-grey;
+      border-right: none;
+      padding: 5px;
+      height: 20px;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      color: #9dbfaf;
+      &:focus {
+        color: $color-dark-grey;
+      }
+    }
+
+    &--button {
+      width: 40px;
+      border: 1px solid $color-dark-grey;
+      background: $color-light-grey;
+      text-align: center;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    @media (max-width: $breakpoint-tablet-port) {
       display: none;
     }
-    &:focus ~ .search__highlight {
-      width: 150px;
-      transition: all 0.2s ease;
-    }
-  }
-
-  &__label {
-    color: #aaaaaa;
-    position: absolute;
-    top: 0;
-    pointer-events: none;
-    transition: all 0.2s ease;
-  }
-
-  &__btn {
-    background: $color-light-grey;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-    height: 30px;
-    min-width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    right: 0;
-    position: absolute;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: lighten($color-light-grey, 10%);
-    }
-  }
-
-  &__highlight {
-    width: 0px;
-    height: 1px;
-    background: #4279a3;
-    position: absolute;
-    bottom: 1px;
-    transition: all 0.2s ease;
-  }
-
-  @media (max-width: $breakpoint-tablet-port) {
-    display: none;
   }
 
   &__mobile {
+    position: relative;
+    float: left;
     display: flex;
-    width: 100%;
+    width: 50%;
+    max-width: 250px;
     padding: 0;
+
+    &--term {
+      width: 100%;
+      border: 1px solid $color-dark-grey;
+      border-right: none;
+      padding: 5px;
+      height: 20px;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      color: #9dbfaf;
+
+      &:focus {
+        color: $color-dark-grey;
+      }
+    }
+    &--button {
+      width: 40px;
+      border: 1px solid $color-dark-grey;
+      background: $color-light-grey;
+      text-align: center;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+
+  &__icon {
+    vertical-align: bottom;
+    color: black;
   }
 }
 
@@ -132,9 +136,10 @@
   margin-right: 10px;
   cursor: pointer;
   font-size: 21px;
+  float: right;
 
   @media (max-width: $breakpoint-tablet-port) {
-    display: block;
+    display: inline-block;
   }
 }
 
