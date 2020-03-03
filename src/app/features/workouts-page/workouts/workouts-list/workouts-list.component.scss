@@ -136,6 +136,9 @@ img {
     right: 0;
     top: 0;
     color: $color-primary-light-blue;
+    @media (max-width: $breakpoint-mobile) {
+      display: none;
+    }
   }
 
   @media (max-width: $breakpoint-tablet-land) {
