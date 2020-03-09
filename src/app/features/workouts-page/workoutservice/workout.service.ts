@@ -99,6 +99,7 @@ export class WorkoutService {
   //// Sort By: events
   sortByTitle() {
     if (!this.filteredList) {
+      console.log(this.workouts);
       this.workouts.sort(this.sortTitle);
     } else {
       this.filteredList.sort(this.sortTitle);

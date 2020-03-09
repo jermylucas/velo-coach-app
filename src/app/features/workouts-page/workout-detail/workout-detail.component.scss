@@ -40,10 +40,6 @@ img {
 .manage-btn {
   padding-left: 5px;
   background: #dfdfdf;
-
-  @media (max-width: $breakpoint-mobile) {
-    background: none;
-  }
 }
 
 .detail {
