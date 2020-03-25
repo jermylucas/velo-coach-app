@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SidenavService } from "../../../app/services/sidenav.service";
-import { DataStorageService } from "src/app/services/datastorage.service";
+import { DataStorageService } from "../../../app/services/datastorage.service";
 
 @Component({
   selector: "app-sidenav",

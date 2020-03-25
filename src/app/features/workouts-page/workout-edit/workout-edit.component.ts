@@ -10,7 +10,7 @@ import { AngularFireStorage } from "@angular/fire/storage";
 // Finalize for upload operator
 import { finalize } from "rxjs/operators";
 import { MatDialog } from "@angular/material";
-import { FirebaseStorageService } from "src/app/services/firebase-storage.service";
+import { FirebaseStorageService } from "../../../../app/services/firebase-storage.service";
 
 @Component({
   selector: "app-workout-edit",

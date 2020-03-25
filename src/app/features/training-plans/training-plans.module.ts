@@ -20,10 +20,10 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from "../../../environments/environment";
 //Modules
-import { MaterialModule } from "src/app/material.module";
+import { MaterialModule } from "../../../app/material.module";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { SharedModule } from "src/app/shared/shared.module";
+import { SharedModule } from "../../../app/shared/shared.module";
 
 @NgModule({
   declarations: [TrainingPlansComponent],

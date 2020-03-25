@@ -26,8 +26,8 @@ import { environment } from "../../../environments/environment";
 // Routing
 import { WorkoutsRoutingModule } from "./workouts-routing.module";
 // Modules
-import { MaterialModule } from "src/app/material.module";
-import { SharedModule } from "src/app/shared/shared.module";
+import { MaterialModule } from "../../../app/material.module";
+import { SharedModule } from "../../../app/shared/shared.module";
 import { CommonModule } from "@angular/common";
 
 @NgModule({
