@@ -14,16 +14,15 @@ import { AngularEditorModule } from "@kolkov/angular-editor";
 
 ////// Firebase
 import { AngularFireModule } from "@angular/fire";
-//storage
+//Storage
 import { AngularFireStorageModule } from "@angular/fire/storage";
-//database
+//Database
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from "../../../environments/environment";
-
+//Modules
 import { MaterialModule } from "src/app/material.module";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-
 import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
