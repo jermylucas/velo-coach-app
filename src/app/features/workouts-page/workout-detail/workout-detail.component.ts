@@ -32,9 +32,9 @@ export class WorkoutDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params["id"];
-      this.workout = this.workoutService.getWorkout(this.id);
+    this.route.data.subscribe(data => {
+      const resolvedData: Workout = data["resolveData"];
+      this.workout = resolvedData;
     });
 
     // Sets current workout to local storage

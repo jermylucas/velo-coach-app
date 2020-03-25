@@ -28,3 +28,8 @@ export class Workout {
     this.zwo = zwo;
   }
 }
+
+export interface WorkoutResolved {
+  workout: Workout;
+  error?: any;
+}
