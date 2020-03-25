@@ -1,4 +1,15 @@
 <div class="wrapper">
+  <div
+    class="sidenav__expansion--panel"
+    routerLinkActive="sidenav__expansion--panel-active">
+    <div
+      class="sidenav__expansion--header"
+      routerLink="/dashboard"
+      (click)="closePanel()"
+      (click)="closeNav()">
+      <h2 class="sidenav__expansion--title">Dashboard</h2>
+    </div>
+  </div>
   <mat-expansion-panel
     [(expanded)]="panelOpenState"
     class="sidenav__expansion--panel"
