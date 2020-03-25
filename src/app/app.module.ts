@@ -14,16 +14,9 @@ import { SidenavService } from "./services/sidenav.service";
 import { LocalStorageService } from "./services/local-storage.service";
 
 // Components
-import { WorkoutsListComponent } from "./features/workouts-page/workouts/workouts-list/workouts-list.component";
-import { WorkoutsFilterComponent } from "./features/workouts-page/workouts/workouts-filter/workouts-filter.component";
-import { LoadingSpinnerComponent } from "./shared/loading-spinner.component";
-import { WorkoutDetailComponent } from "./features/workouts-page/workout-detail/workout-detail.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
-import { WorkoutsComponent } from "./features/workouts-page/workouts/workouts-page.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { WorkoutEditComponent } from "./features/workouts-page/workout-edit/workout-edit.component";
-import { TrainingPlansComponent } from "./features/training-plans/training-plans.component";
 
 // WYSIWYG
 import { AngularEditorModule } from "@kolkov/angular-editor";
@@ -41,14 +34,7 @@ import { environment } from "../environments/environment";
     AppComponent,
     HeaderComponent,
     SidenavComponent,
-    WorkoutsComponent,
-    PageNotFoundComponent,
-    WorkoutEditComponent,
-    TrainingPlansComponent,
-    WorkoutsListComponent,
-    WorkoutsFilterComponent,
-    WorkoutDetailComponent,
-    LoadingSpinnerComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
