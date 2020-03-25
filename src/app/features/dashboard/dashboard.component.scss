@@ -1,0 +1,19 @@
+.wheel {
+	stroke-dasharray: 160px;
+	animation: spin .3s linear infinite;
+}
+@keyframes spin {
+  to {
+    stroke-dashoffset: 450;
+  }
+}
+
+.road {
+	stroke-dasharray: 60px;
+	animation: dash .25s linear infinite;
+}
+@keyframes dash {
+	to {
+		stroke-dashoffset: 120;
+	}
+}
