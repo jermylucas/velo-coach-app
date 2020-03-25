@@ -30,6 +30,11 @@ const routes: Routes = [
         m => m.TrainingPlansModule
       )
   },
+  {
+    path: "account",
+    loadChildren: () =>
+      import("./features/account/account.module").then(m => m.AccountModule)
+  },
   { path: "not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "/not-found" }
 ];
