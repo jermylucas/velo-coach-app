@@ -6,8 +6,8 @@
     <app-sidenav></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content id="detail">
-    <router-outlet *ngIf="loadingRouteConfig" (activate)="resetPosition();"></router-outlet>
-    <ng-container *ngIf="!loadingRouteConfig">
+    <router-outlet *ngIf="!loadingRouteConfig" (activate)="resetPosition();"></router-outlet>
+    <ng-container *ngIf="loadingRouteConfig">
       <div class="sk-cube-grid">
         <div class="sk-cube sk-cube1"></div>
         <div class="sk-cube sk-cube2"></div>
