@@ -2,7 +2,12 @@ import { Component, ViewChild, HostListener } from "@angular/core";
 import { SidenavService } from "./services/sidenav.service";
 import { MatSidenav } from "@angular/material";
 import { BehaviorSubject, Observable } from "rxjs";
-import { Router, RoutesRecognized } from "@angular/router";
+import {
+  Router,
+  RoutesRecognized,
+  RouteConfigLoadStart,
+  RouteConfigLoadEnd
+} from "@angular/router";
 import { WorkoutService } from "./features/workouts-page/workoutservice/workout.service";
 
 @Component({
@@ -12,7 +17,7 @@ import { WorkoutService } from "./features/workouts-page/workoutservice/workout.
 })
 export class AppComponent {
   title = "velo-coach-app";
-
+  loadingRouteConfig: boolean;
   id;
   showToggle: string;
   mode: string;
@@ -29,6 +34,13 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof RouteConfigLoadStart) {
+        this.loadingRouteConfig = true;
+      } else if (event instanceof RouteConfigLoadEnd) {
+        this.loadingRouteConfig = false;
+      }
+    });
     this.sidenavService.setSidenav(this.matSidenav);
 
     this.getScreenWidth().subscribe(width => {

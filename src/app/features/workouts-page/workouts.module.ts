@@ -16,13 +16,6 @@ import { WorkoutEditComponent } from "../../features/workouts-page/workout-edit/
 // WYSIWYG
 import { AngularEditorModule } from "@kolkov/angular-editor";
 
-////// Firebase
-import { AngularFireModule } from "@angular/fire";
-//Storage
-import { AngularFireStorageModule } from "@angular/fire/storage";
-//Database
-import { AngularFireDatabaseModule } from "@angular/fire/database";
-import { environment } from "../../../environments/environment";
 // Routing
 import { WorkoutsRoutingModule } from "./workouts-routing.module";
 // Modules
@@ -46,10 +39,7 @@ import { CommonModule } from "@angular/common";
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AngularEditorModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularEditorModule
   ],
   providers: [LocalStorageService]
 })

@@ -43,8 +43,6 @@ import { environment } from "../environments/environment";
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    AngularEditorModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule

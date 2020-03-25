@@ -1,24 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { SidenavService } from "../../../app/services/sidenav.service";
-import { DataStorageService } from "../../../app/services/datastorage.service";
 
 @Component({
   selector: "app-sidenav",
   templateUrl: "./sidenav.component.html",
   styleUrls: ["./sidenav.component.scss"]
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent {
   panelOpenState: boolean = false;
   screenSize: boolean;
 
-  constructor(
-    private sidenavService: SidenavService,
-    private dataStorageService: DataStorageService
-  ) {}
-
-  ngOnInit() {
-    this.onFetchData();
-  }
+  constructor(private sidenavService: SidenavService) {}
 
   closePanel() {
     this.panelOpenState = false;
@@ -31,13 +23,5 @@ export class SidenavComponent implements OnInit {
     } else {
       this.sidenavService.open();
     }
-  }
-
-  onStoreData() {
-    this.dataStorageService.storeWorkouts();
-  }
-
-  onFetchData() {
-    this.dataStorageService.fetchWorkouts().subscribe();
   }
 }

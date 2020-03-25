@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { WorkoutService } from "../workoutservice/workout.service";
+import { DataStorageService } from "src/app/services/datastorage.service";
 
 @Component({
   selector: "app-workouts",
@@ -11,9 +12,14 @@ export class WorkoutsComponent implements OnInit {
   value = "";
   opened = false;
 
-  constructor(private workoutService: WorkoutService) {}
+  constructor(
+    private workoutService: WorkoutService,
+    private dataStorageService: DataStorageService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onFetchData();
+  }
 
   openNav() {
     if (this.opened) {
@@ -34,5 +40,8 @@ export class WorkoutsComponent implements OnInit {
   }
   onDurationSort() {
     this.workoutService.sortByDuration();
+  }
+  onFetchData() {
+    this.dataStorageService.fetchWorkouts().subscribe();
   }
 }
