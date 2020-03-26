@@ -14,8 +14,6 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   workoutSubscription;
   @Input() previousPosition: number;
 
-  isLoading = false;
-
   constructor(private workoutService: WorkoutService) {
     this.workoutSubscription = this.workoutService
       .getWorkouts()
