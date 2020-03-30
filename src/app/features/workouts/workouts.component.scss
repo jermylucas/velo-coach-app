@@ -1,0 +1,167 @@
+@import "../../../sass/variables";
+
+.toolbar {
+  background: $color-light-grey;
+  height: 48px;
+  font-weight: normal;
+
+  &__title {
+    font-size: 16px;
+    margin-right: 2rem;
+  }
+
+  &__sort {
+    font-size: 16px;
+    color: $color-primary-blue;
+    cursor: pointer;
+  }
+
+  &__search {
+    &-icon {
+      display: inline;
+    }
+  }
+
+  &__mobile {
+    background: $color-light-grey;
+    height: 36px;
+    font-weight: normal;
+    display: none;
+    padding: 0 5px;
+
+    @media (max-width: $breakpoint-tablet-port) {
+      display: block;
+    }
+  }
+}
+
+.break {
+  width: 25px;
+  height: 0px;
+  left: 400px;
+  top: 68px;
+
+  border: 1px solid #868686;
+  transform: rotate(90deg);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.search {
+  &__main {
+    position: relative;
+    display: flex;
+
+    width: 300px;
+
+    padding: 0;
+
+    &--term {
+      width: 100%;
+      border: 1px solid $color-dark-grey;
+      border-right: none;
+      padding: 5px;
+      height: 20px;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      color: #9dbfaf;
+      &:focus {
+        color: $color-dark-grey;
+      }
+    }
+
+    &--button {
+      width: 40px;
+      border: 1px solid $color-dark-grey;
+      background: $color-light-grey;
+      text-align: center;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    @media (max-width: $breakpoint-tablet-port) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    position: relative;
+    float: left;
+    display: flex;
+    width: 50%;
+    max-width: 250px;
+    padding: 0;
+
+    &--term {
+      width: 100%;
+      border: 1px solid $color-dark-grey;
+      border-right: none;
+      padding: 5px;
+      height: 20px;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      color: #9dbfaf;
+
+      &:focus {
+        color: $color-dark-grey;
+      }
+    }
+    &--button {
+      width: 40px;
+      border: 1px solid $color-dark-grey;
+      background: $color-light-grey;
+      text-align: center;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+
+  &__icon {
+    vertical-align: bottom;
+    color: black;
+  }
+}
+
+.filter {
+  display: none;
+  border: 1px solid $color-grey;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 21px;
+  float: right;
+
+  @media (max-width: $breakpoint-tablet-port) {
+    display: inline-block;
+  }
+}
+
+// Main area grid
+.main__workouts {
+  display: grid;
+  grid-template-columns: 30% 70%;
+
+  &--filter {
+    @media (max-width: $breakpoint-tablet-port) {
+      display: none;
+      height: 100%;
+      width: 100%;
+
+      z-index: 1;
+      top: 56;
+      background-color: rgb(255, 255, 255);
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+  }
+
+  @media (max-width: $breakpoint-tablet-port) {
+    grid-template-columns: 100%;
+  }
+}
