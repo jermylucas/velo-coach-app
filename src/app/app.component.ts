@@ -5,8 +5,11 @@ import { BehaviorSubject, Observable } from "rxjs";
 import {
   Router,
   RoutesRecognized,
-  RouteConfigLoadStart,
-  RouteConfigLoadEnd
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError,
+  Event
 } from "@angular/router";
 import { WorkoutService } from "../app/features/workouts/workouts-service/workout.service";
 
@@ -31,16 +34,13 @@ export class AppComponent {
     private sidenavService: SidenavService,
     private router: Router,
     private workoutService: WorkoutService
-  ) {}
+  ) {
+    router.events.subscribe((routerEvent: Event) => {
+      this.checkRouterEvent(routerEvent);
+    });
+  }
 
   ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof RouteConfigLoadStart) {
-        this.loadingRouteConfig = true;
-      } else if (event instanceof RouteConfigLoadEnd) {
-        this.loadingRouteConfig = false;
-      }
-    });
     this.sidenavService.setSidenav(this.matSidenav);
 
     this.getScreenWidth().subscribe(width => {
@@ -54,6 +54,19 @@ export class AppComponent {
         this.openSidenav = true;
       }
     });
+  }
+
+  checkRouterEvent(routerEvent: Event): void {
+    if (routerEvent instanceof NavigationStart) {
+      this.loadingRouteConfig = true;
+    }
+    if (
+      routerEvent instanceof NavigationEnd ||
+      routerEvent instanceof NavigationCancel ||
+      routerEvent instanceof NavigationError
+    ) {
+      this.loadingRouteConfig = false;
+    }
   }
 
   resetPosition() {
