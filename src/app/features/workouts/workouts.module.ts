@@ -4,14 +4,14 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //Services
-import { LocalStorageService } from "../../services/local-storage.service";
+import { LocalStorageService } from "../../core/services/storage/local-storage.service";
 
 // Components
-import { WorkoutsListComponent } from "../../features/workouts-page/workouts/workouts-list/workouts-list.component";
-import { WorkoutsFilterComponent } from "../../features/workouts-page/workouts/workouts-filter/workouts-filter.component";
-import { WorkoutDetailComponent } from "../../features/workouts-page/workout-detail/workout-detail.component";
-import { WorkoutsComponent } from "../../features/workouts-page/workouts/workouts-page.component";
-import { WorkoutEditComponent } from "../../features/workouts-page/workout-edit/workout-edit.component";
+import { WorkoutsListComponent } from "../workouts/workouts-page/workouts-list/workouts-list.component";
+import { WorkoutsFilterComponent } from "../workouts/workouts-page/workouts-filter/workouts-filter.component";
+import { WorkoutDetailComponent } from "../workouts/workout-detail/workout-detail.component";
+import { WorkoutsComponent } from "../workouts/workouts-page/workouts-page.component";
+import { WorkoutEditComponent } from "../workouts/workout-edit/workout-edit.component";
 
 // WYSIWYG
 import { AngularEditorModule } from "@kolkov/angular-editor";

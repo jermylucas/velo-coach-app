@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
-import { WorkoutService } from "../workoutservice/workout.service";
-import { Workout } from "../workouts/workout.model";
-import { LocalStorageService } from "../../../services/local-storage.service";
-import { DataStorageService } from "../../../../app/services/datastorage.service";
-import { FirebaseStorageService } from "../../../../app/services/firebase-storage.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { WorkoutService } from "../workouts-service/workout.service";
+import { Workout } from "../workouts-page/workout.model";
+import { LocalStorageService } from "../../../core/services/storage/local-storage.service";
+import { DataStorageService } from "../../../core/services/storage/datastorage.service";
+import { FirebaseStorageService } from "../../../core/services/storage/firebase-storage.service";
 
-import { PopupService } from "./../../../../app/services/snackbar.service";
+import { PopupService } from "../../../core/services/snackbar.service";
 
 @Component({
   selector: "app-workout-detail",

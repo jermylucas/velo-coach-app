@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { WorkoutsComponent } from "../../features/workouts-page/workouts/workouts-page.component";
-import { WorkoutEditComponent } from "../../features/workouts-page/workout-edit/workout-edit.component";
-import { WorkoutDetailComponent } from "../../features/workouts-page/workout-detail/workout-detail.component";
-import { WorkoutResolver } from "./workout-resolver.service";
+import { WorkoutsComponent } from "../workouts/workouts-page/workouts-page.component";
+import { WorkoutEditComponent } from "../workouts/workout-edit/workout-edit.component";
+import { WorkoutDetailComponent } from "../workouts/workout-detail/workout-detail.component";
+import { WorkoutResolver } from "./workouts-resolver.service";
 
 const routes: Routes = [
   { path: "", component: WorkoutsComponent },

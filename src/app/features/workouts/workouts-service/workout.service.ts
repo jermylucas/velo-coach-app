@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Workout } from "../workouts/workout.model";
+import { Workout } from "../workouts-page/workout.model";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({

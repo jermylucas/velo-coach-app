@@ -1,9 +1,6 @@
 // @Angular imports
 import { NgModule } from "@angular/core";
 
-//Services
-import { LocalStorageService } from "../../services/local-storage.service";
-
 // Components
 import { DashboardComponent } from "../dashboard/dashboard.component";
 

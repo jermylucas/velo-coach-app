@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { WorkoutService } from "../workoutservice/workout.service";
-import { DataStorageService } from "src/app/services/datastorage.service";
+import { WorkoutService } from "../workouts-service/workout.service";
+import { DataStorageService } from "../../../core/services/storage/datastorage.service";
 
 @Component({
   selector: "app-workouts",

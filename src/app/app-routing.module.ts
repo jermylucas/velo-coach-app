@@ -19,9 +19,7 @@ const routes: Routes = [
   {
     path: "workouts",
     loadChildren: () =>
-      import("./features/workouts-page/workouts.module").then(
-        m => m.WorkoutsModule
-      )
+      import("./features/workouts/workouts.module").then(m => m.WorkoutsModule)
   },
   {
     path: "trainingplans",

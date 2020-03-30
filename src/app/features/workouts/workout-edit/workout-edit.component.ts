@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewChild, TemplateRef } from "@angular/core";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
-import { WorkoutService } from "../workoutservice/workout.service";
+import { WorkoutService } from "../workouts-service/workout.service";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 // WYSIWYG
 import { AngularEditorConfig } from "@kolkov/angular-editor";
-import { DataStorageService } from "../../../../app/services/datastorage.service";
+import { DataStorageService } from "../../../core/services/storage/datastorage.service";
 //Firebase Storage
 import { AngularFireStorage } from "@angular/fire/storage";
 // Finalize for upload operator
 import { finalize } from "rxjs/operators";
 import { MatDialog } from "@angular/material";
-import { FirebaseStorageService } from "../../../../app/services/firebase-storage.service";
+import { FirebaseStorageService } from "../../../core/services/storage/firebase-storage.service";
 
 @Component({
   selector: "app-workout-edit",

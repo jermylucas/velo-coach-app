@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from "@angular/core";
-import { WorkoutService } from "../../workoutservice/workout.service";
+import { WorkoutService } from "../../workouts-service/workout.service";
 
 @Component({
   selector: "app-workouts-list",

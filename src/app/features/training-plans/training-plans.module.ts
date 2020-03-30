@@ -4,7 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //Services
-import { LocalStorageService } from "../../services/local-storage.service";
+import { LocalStorageService } from "../../core/services/storage/local-storage.service";
 
 // Components
 import { TrainingPlansComponent } from "../training-plans/training-plans.component";

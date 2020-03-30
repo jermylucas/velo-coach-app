@@ -7,19 +7,16 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 //Services
-import { SidenavService } from "./services/sidenav.service";
-import { LocalStorageService } from "./services/local-storage.service";
+import { SidenavService } from "../app/core/services/sidenav.service";
+import { LocalStorageService } from "../app/core/services/storage/local-storage.service";
 
 // Components
 import { HeaderComponent } from "./components/header/header.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-
-// WYSIWYG
-import { AngularEditorModule } from "@kolkov/angular-editor";
 
 ////// Firebase
 import { AngularFireModule } from "@angular/fire";

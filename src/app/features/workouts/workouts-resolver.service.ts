@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Resolve, ActivatedRouteSnapshot, Router } from "@angular/router";
 
-import { WorkoutResolved } from "../workouts-page/workouts/workout.model";
-import { WorkoutService } from "../workouts-page/workoutservice/workout.service";
+import { WorkoutResolved } from "../workouts/workouts-page/workout.model";
+import { WorkoutService } from "../workouts/workouts-service/workout.service";
 
 @Injectable({
   providedIn: "root"

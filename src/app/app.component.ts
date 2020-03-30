@@ -1,5 +1,5 @@
 import { Component, ViewChild, HostListener } from "@angular/core";
-import { SidenavService } from "./services/sidenav.service";
+import { SidenavService } from "../app/core/services/sidenav.service";
 import { MatSidenav } from "@angular/material";
 import { BehaviorSubject, Observable } from "rxjs";
 import {
@@ -8,7 +8,7 @@ import {
   RouteConfigLoadStart,
   RouteConfigLoadEnd
 } from "@angular/router";
-import { WorkoutService } from "./features/workouts-page/workoutservice/workout.service";
+import { WorkoutService } from "../app/features/workouts/workouts-service/workout.service";
 
 @Component({
   selector: "app-root",

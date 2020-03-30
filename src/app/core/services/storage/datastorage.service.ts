@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { WorkoutService } from "../features/workouts-page/workoutservice/workout.service";
-import { Workout } from "../features/workouts-page/workouts/workout.model";
+import { WorkoutService } from "../../../features/workouts/workouts-service/workout.service";
+import { Workout } from "../../../features/workouts/workouts-page/workout.model";
 import { map, tap } from "rxjs/operators";
-import { PopupService } from "./snackbar.service";
+import { PopupService } from "../snackbar.service";
 
 @Injectable({
   providedIn: "root"
