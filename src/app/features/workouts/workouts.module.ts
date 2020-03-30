@@ -7,10 +7,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LocalStorageService } from "../../core/services/storage/local-storage.service";
 
 // Components
-import { WorkoutsListComponent } from "../workouts/workouts-page/workouts-list/workouts-list.component";
-import { WorkoutsFilterComponent } from "../workouts/workouts-page/workouts-filter/workouts-filter.component";
+import { WorkoutsListComponent } from "./workouts-list/workouts-list.component";
+import { WorkoutsFilterComponent } from "./workouts-filter/workouts-filter.component";
 import { WorkoutDetailComponent } from "../workouts/workout-detail/workout-detail.component";
-import { WorkoutsComponent } from "../workouts/workouts-page/workouts-page.component";
+import { WorkoutsComponent } from "../workouts/workouts.component";
 import { WorkoutEditComponent } from "../workouts/workout-edit/workout-edit.component";
 
 // WYSIWYG

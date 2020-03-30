@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { WorkoutService } from "../workouts-service/workout.service";
-import { Workout } from "../workouts-page/workout.model";
+import { Workout } from "../workout.model";
 import { LocalStorageService } from "../../../core/services/storage/local-storage.service";
 import { DataStorageService } from "../../../core/services/storage/datastorage.service";
 import { FirebaseStorageService } from "../../../core/services/storage/firebase-storage.service";

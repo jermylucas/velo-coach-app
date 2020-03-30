@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Resolve, ActivatedRouteSnapshot, Router } from "@angular/router";
 
-import { WorkoutResolved } from "../workouts/workouts-page/workout.model";
+import { WorkoutResolved } from "./workout.model";
 import { WorkoutService } from "../workouts/workouts-service/workout.service";
 
 @Injectable({

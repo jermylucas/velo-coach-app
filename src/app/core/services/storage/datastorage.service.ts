@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { WorkoutService } from "../../../features/workouts/workouts-service/workout.service";
-import { Workout } from "../../../features/workouts/workouts-page/workout.model";
+import { Workout } from "../../../features/workouts/workout.model";
 import { map, tap } from "rxjs/operators";
 import { PopupService } from "../snackbar.service";
 

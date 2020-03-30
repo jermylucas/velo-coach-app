@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { WorkoutsComponent } from "../workouts/workouts-page/workouts-page.component";
+import { WorkoutsComponent } from "./workouts.component";
 import { WorkoutEditComponent } from "../workouts/workout-edit/workout-edit.component";
 import { WorkoutDetailComponent } from "../workouts/workout-detail/workout-detail.component";
 import { WorkoutResolver } from "./workouts-resolver.service";
