@@ -1,5 +1,9 @@
 import { NgModule } from "@angular/core";
-import { MatIconModule, MatSelectModule } from "@angular/material";
+import {
+  MatIconModule,
+  MatSelectModule,
+  MatCardModule
+} from "@angular/material";
 import { MatInputModule, MatFormFieldModule } from "@angular/material";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -11,8 +15,11 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule } from "@angular/material";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 const MaterialComponents = [
+  MatCardModule,
+  MatInputModule,
   MatButtonModule,
   MatToolbarModule,
   MatButtonModule,
@@ -28,7 +35,8 @@ const MaterialComponents = [
   MatMenuModule,
   MatProgressSpinnerModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTooltipModule
 ];
 
 @NgModule({

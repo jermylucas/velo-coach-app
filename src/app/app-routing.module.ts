@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { SelectiveStrategy } from "./selective-strategy.service";
+import { AuthComponent } from "./core/auth/auth.component";
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     loadChildren: () =>
       import("./features/account/account.module").then(m => m.AccountModule)
   },
+  { path: "auth", component: AuthComponent },
   { path: "not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "/not-found" }
 ];
