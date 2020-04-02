@@ -29,8 +29,6 @@ export class AuthComponent {
     const email = form.value.email;
     const password = form.value.password;
     const name = form.value.name;
-
-    console.log(form.value);
     if (this.loginMode) {
       this.isLoading = true;
       this.authService

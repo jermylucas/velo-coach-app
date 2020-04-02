@@ -5,14 +5,18 @@ import * as firebase from "firebase/app";
 import { Observable, BehaviorSubject } from "rxjs";
 
 import { User } from "../../auth/user.model";
+import { LocalStorageService } from "../storage/local-storage.service";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
   activeUser = new BehaviorSubject<User>(null);
   user: Observable<firebase.User>;
-  name;
+  private tokenExpirationTimer: any;
 
-  constructor(private firebaseAuth: AngularFireAuth) {
+  constructor(
+    private firebaseAuth: AngularFireAuth,
+    private localStorage: LocalStorageService
+  ) {
     this.user = firebaseAuth.authState;
   }
 
@@ -64,12 +68,51 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, uid, displayName, token, expirationDate);
     this.activeUser.next(user);
+    this.autoLogout(expiresIn * 1000);
+    this.localStorage.setItemLocally("userData", JSON.stringify(user));
+  }
 
-    this.name = displayName;
-    console.log(user);
+  autoLogin() {
+    const userData: {
+      email: string;
+      uid: string;
+      displayName: string;
+      _token: string;
+      _expiresIn: number;
+    } = JSON.parse(this.localStorage.getItemLocally("userData"));
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      userData.email,
+      userData.uid,
+      userData.displayName,
+      userData._token,
+      new Date(userData._expiresIn)
+    );
+
+    if (loadedUser.token) {
+      this.activeUser.next(loadedUser);
+      const expirationDuration =
+        new Date(userData._expiresIn).getTime() - new Date().getTime();
+      this.autoLogout(expirationDuration);
+    }
   }
 
   logout() {
     this.firebaseAuth.auth.signOut();
+    this.activeUser.next(null);
+    this.localStorage.removeLocalItem("userData");
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  autoLogout(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout;
+    }, expirationDuration);
   }
 }

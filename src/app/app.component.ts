@@ -12,6 +12,7 @@ import {
   Event
 } from "@angular/router";
 import { WorkoutService } from "../app/features/workouts/workouts-service/workout.service";
+import { AuthService } from "./core/services/auth/auth.service";
 
 @Component({
   selector: "app-root",
@@ -33,7 +34,8 @@ export class AppComponent {
   constructor(
     private sidenavService: SidenavService,
     private router: Router,
-    private workoutService: WorkoutService
+    private workoutService: WorkoutService,
+    private authService: AuthService
   ) {
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);
@@ -42,7 +44,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.sidenavService.setSidenav(this.matSidenav);
-
+    this.authService.autoLogin();
     this.getScreenWidth().subscribe(width => {
       if (width < 640) {
         this.showToggle = "show";
