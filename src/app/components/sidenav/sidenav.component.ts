@@ -49,6 +49,6 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
   onLogin() {
-    window.alert("this hasn't been set up yet");
+    this.router.navigate(["/auth"]);
   }
 }
