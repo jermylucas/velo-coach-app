@@ -51,6 +51,12 @@
 }
 
 .profile {
+  @media (min-width: $breakpoint-tablet-port) {
+    display: none;
+  }
+  @media (min-width: $breakpoint-tablet-port) {
+    display: block;
+  }
   &__name {
     color: $color-white;
   }
