@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { WorkoutService } from "../../../features/workouts/workouts-service/workout.service";
 import { Workout } from "../../../features/workouts/workout.model";
-import { map, tap, take, exhaustMap } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 
 import { PopupService } from "../snackbar.service";
 import { AuthService } from "../auth/auth.service";
@@ -27,21 +27,16 @@ export class DataStorageService {
   }
 
   fetchWorkouts() {
-    return this.authService.activeUser.pipe(
-      take(1),
-      exhaustMap(user => {
-        return this.http.get<Workout[]>(
-          "https://velo-coach-app.firebaseio.com/workouts.json?auth=" +
-            user.token
-        );
-      }),
-      map(workouts => {
-        return workouts;
-      }),
-      tap(workouts => {
-        this.workoutService.setWorkouts(workouts);
-        this.popupService.openSnackBar("Workouts Fetch From Server");
-      })
-    );
+    return this.http
+      .get<Workout[]>("https://velo-coach-app.firebaseio.com/workouts.json")
+      .pipe(
+        map(workouts => {
+          return workouts;
+        }),
+        tap(workouts => {
+          this.workoutService.setWorkouts(workouts);
+          this.popupService.openSnackBar("Workouts Fetch From Server");
+        })
+      );
   }
 }

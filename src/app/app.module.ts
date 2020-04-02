@@ -5,7 +5,7 @@ import { MaterialModule } from "./material.module";
 // @Angular imports
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 
@@ -29,6 +29,7 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from "../environments/environment";
 
 import { SharedModule } from "./shared/shared.module";
+import { AuthInterceptorService } from "./core/services/auth/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,15 @@ import { SharedModule } from "./shared/shared.module";
     AngularFireDatabaseModule,
     SharedModule
   ],
-  providers: [SidenavService, LocalStorageService],
+  providers: [
+    SidenavService,
+    LocalStorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
