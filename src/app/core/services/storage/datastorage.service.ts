@@ -5,7 +5,6 @@ import { Workout } from "../../../features/workouts/workout.model";
 import { map, tap } from "rxjs/operators";
 
 import { PopupService } from "../snackbar.service";
-import { AuthService } from "../auth/auth.service";
 
 @Injectable({
   providedIn: "root"
@@ -14,8 +13,7 @@ export class DataStorageService {
   constructor(
     private http: HttpClient,
     private workoutService: WorkoutService,
-    private popupService: PopupService,
-    private authService: AuthService
+    private popupService: PopupService
   ) {}
 
   storeWorkouts() {

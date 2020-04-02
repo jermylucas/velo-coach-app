@@ -71,6 +71,5 @@ export class AuthService {
   logout() {
     this.firebaseAuth.auth.signOut();
   }
-
-  // "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]";
+  s;
 }
