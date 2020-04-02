@@ -6,6 +6,7 @@ import { Observable, BehaviorSubject } from "rxjs";
 
 import { User } from "../../auth/user.model";
 import { LocalStorageService } from "../storage/local-storage.service";
+import { Router } from "@angular/router";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
@@ -15,7 +16,8 @@ export class AuthService {
 
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private router: Router
   ) {
     this.user = firebaseAuth.authState;
   }
@@ -58,20 +60,6 @@ export class AuthService {
       });
   }
 
-  private handleAuthentication(
-    email: string,
-    uid: string,
-    displayName: string,
-    token: string,
-    expiresIn: number
-  ) {
-    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new User(email, uid, displayName, token, expirationDate);
-    this.activeUser.next(user);
-    this.autoLogout(expiresIn * 1000);
-    this.localStorage.setItemLocally("userData", JSON.stringify(user));
-  }
-
   autoLogin() {
     const userData: {
       email: string;
@@ -102,6 +90,7 @@ export class AuthService {
 
   logout() {
     this.firebaseAuth.auth.signOut();
+    this.router.navigate(["/auth"]);
     this.activeUser.next(null);
     this.localStorage.removeLocalItem("userData");
     if (this.tokenExpirationTimer) {
@@ -112,7 +101,21 @@ export class AuthService {
 
   autoLogout(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {
-      this.logout;
+      this.logout();
     }, expirationDuration);
+  }
+
+  private handleAuthentication(
+    email: string,
+    uid: string,
+    displayName: string,
+    token: string,
+    expiresIn: number
+  ) {
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const user = new User(email, uid, displayName, token, expirationDate);
+    this.activeUser.next(user);
+    this.autoLogout(expiresIn * 1000);
+    this.localStorage.setItemLocally("userData", JSON.stringify(user));
   }
 }

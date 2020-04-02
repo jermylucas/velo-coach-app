@@ -4,6 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { SelectiveStrategy } from "./selective-strategy.service";
 import { AuthComponent } from "./core/auth/auth.component";
+import { AuthGuard } from "./core/auth/auth.guard";
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   },
   {
     path: "dashboard",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("./features/dashboard/dashboard.module").then(
         m => m.DashboardModule
@@ -20,12 +22,14 @@ const routes: Routes = [
   },
   {
     path: "workouts",
+    canActivate: [AuthGuard],
     data: { preload: true },
     loadChildren: () =>
       import("./features/workouts/workouts.module").then(m => m.WorkoutsModule)
   },
   {
     path: "trainingplans",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("./features/training-plans/training-plans.module").then(
         m => m.TrainingPlansModule
@@ -33,6 +37,7 @@ const routes: Routes = [
   },
   {
     path: "account",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("./features/account/account.module").then(m => m.AccountModule)
   },
