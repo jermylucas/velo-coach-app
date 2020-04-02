@@ -2,37 +2,65 @@ import { Injectable } from "@angular/core";
 
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from "firebase/app";
+import { Observable, Subject } from "rxjs";
 
-import { Observable } from "rxjs";
+import { User } from "./user.model";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
+  activeUser = new Subject<User>();
+
   user: Observable<firebase.User>;
 
   constructor(private firebaseAuth: AngularFireAuth) {
     this.user = firebaseAuth.authState;
   }
 
-  signup(email: string, password: string) {
-    this.firebaseAuth.auth
+  signup(email: string, password: string, name: string) {
+    return this.firebaseAuth.auth
       .createUserWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log("Success!", value);
-      })
-      .catch(err => {
-        console.log("Something went wrong:", err.message);
+      .then(res => {
+        res.user.updateProfile({
+          displayName: name
+        });
+        this.handleAuthentication(
+          res.user.email,
+          res.user.uid,
+          res.user.displayName,
+          res.user.refreshToken,
+          3600
+        );
+        return res;
       });
   }
 
   login(email: string, password: string) {
     return this.firebaseAuth.auth
       .signInWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log("Nice, it worked!");
-      })
-      .catch(err => {
-        console.log("Something went wrong:", err.message);
+      .then(res => {
+        this.handleAuthentication(
+          res.user.email,
+          res.user.uid,
+          res.user.displayName,
+          res.user.refreshToken,
+          3600
+        );
+        return res;
       });
+  }
+
+  private handleAuthentication(
+    email: string,
+    uid: string,
+    displayName: string,
+    token: string,
+    expiresIn: number
+  ) {
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const user = new User(email, uid, displayName, token, expirationDate);
+    this.activeUser.next(user);
+
+    console.log(user);
   }
 
   logout() {

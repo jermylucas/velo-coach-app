@@ -7,20 +7,22 @@
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
           <p>
             <mat-form-field>
-              <input type="text" matInput placeholder="E-Mail" ngModel name="email" required email>
+              <input type="text" (focus)="focused=false" matInput placeholder="E-Mail" ngModel name="email" required
+                email>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field>
-              <input type="password" matInput placeholder="Password" ngModel name="password" required minlength="6">
+              <input type="password" (focus)="focused=false" matInput placeholder="Password" ngModel name="password"
+                required minlength="6">
             </mat-form-field>
           </p>
-          <p *ngIf="error" class="error">
-            {{ error }}
+          <p *ngIf="errorMessage && !focused" class="error">
+            {{ errorMessage }}
           </p>
 
           <div class="button">
-            <a (click)="onSwitchMode()" class="button-signup">New? Sign up</a>
+            <a (click)="onSwitchMode(); focused=false" class="button-signup">New? Sign up</a>
             <button
               matTooltip="Login Not Valid"
               [matTooltipDisabled]="authForm.valid"
@@ -40,12 +42,13 @@
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
           <p>
             <mat-form-field>
-              <input type="text" matInput placeholder="E-Mail" ngModel name="email" required>
+              <input type="text" (focus)="focused=false" matInput placeholder="E-Mail" ngModel name="email" required>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field>
-              <input type="password" matInput placeholder="Password" ngModel name="password" required minlength="6">
+              <input type="password" (focus)="focused=false" matInput placeholder="Password" ngModel name="password"
+                required minlength="6">
             </mat-form-field>
           </p>
           <p>
@@ -53,8 +56,8 @@
               <input type="name" matInput placeholder="Name" ngModel name="name" required>
             </mat-form-field>
           </p>
-          <p *ngIf="error" class="error">
-            {{ error }}
+          <p *ngIf="errorMessage && !focused" class="error">
+            {{ errorMessage }}
           </p>
           <div class="button">
             <a (click)="onSwitchMode()" class="button-signup">Already have account? Login</a>
