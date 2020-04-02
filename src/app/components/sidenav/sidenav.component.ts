@@ -20,12 +20,10 @@ export class SidenavComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router
   ) {}
-
   ngOnInit() {
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });
-    console.log("Auth user: ", this.authService.activeUser);
   }
 
   closePanel() {
@@ -47,8 +45,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
+    this.router.navigate(["/auth"]);
   }
   onLogin() {
-    this.router.navigate(["/auth"]);
+    this.router.navigate(["/dashboard"]);
   }
 }

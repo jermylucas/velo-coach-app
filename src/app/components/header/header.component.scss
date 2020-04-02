@@ -49,3 +49,9 @@
 .menu__btn--icon {
   margin-left: 20px;
 }
+
+.profile {
+  &__name {
+    color: $color-white;
+  }
+}

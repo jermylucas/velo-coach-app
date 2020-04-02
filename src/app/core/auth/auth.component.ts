@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "../services/auth/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-auth",
@@ -15,7 +16,7 @@ export class AuthComponent {
   errorMessage: string = null;
   focused = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onFocus() {
     this.errorMessage = null;
@@ -34,9 +35,9 @@ export class AuthComponent {
       this.isLoading = true;
       this.authService
         .login(email, password)
-        .then(res => {
+        .then(() => {
           this.isLoading = false;
-          console.log(res);
+          this.router.navigate(["/dashboard"]);
         })
         .catch(error => {
           console.log("Received an error: ", error);
@@ -50,6 +51,7 @@ export class AuthComponent {
         .signup(email, password, name)
         .then(() => {
           this.isLoading = false;
+          this.router.navigate(["/dashboard"]);
         })
         .catch(error => {
           console.log("Received an error: ", error);

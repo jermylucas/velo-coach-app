@@ -9,8 +9,8 @@ import { User } from "../../auth/user.model";
 @Injectable({ providedIn: "root" })
 export class AuthService {
   activeUser = new BehaviorSubject<User>(null);
-
   user: Observable<firebase.User>;
+  name;
 
   constructor(private firebaseAuth: AngularFireAuth) {
     this.user = firebaseAuth.authState;
@@ -65,11 +65,11 @@ export class AuthService {
     const user = new User(email, uid, displayName, token, expirationDate);
     this.activeUser.next(user);
 
+    this.name = displayName;
     console.log(user);
   }
 
   logout() {
     this.firebaseAuth.auth.signOut();
   }
-  s;
 }

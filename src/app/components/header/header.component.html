@@ -1,30 +1,31 @@
 <mat-toolbar class="header"> <a
-            routerLink="/workouts"
-            href="#"
-            class="logo--link">
-            <img
-                  class="logo--image-left logo--image"
-                  src="../../../assets/img/white logo.png"
-                  alt="logo"></a>
-      <button
-            type="button"
-            aria-label="Toggle sidenav"
-            (click)="toggleSidenav()"
-            mat-icon-button
-            class="menu__btn--icon">
-            <mat-icon
-                  class="icon-display"
-                  [ngStyle]="{'color': 'white'}"
-                  aria-label="Side nav toggle icon">menu
-            </mat-icon>
-      </button>
-      <span class="spacer"></span>
-      <a
-            routerLink="/workouts"
-            href="#"
-            class="logo--link">
-            <img
-                  class="logo--image-right logo--image"
-                  src="../../../assets/img/white logo.png"
-                  alt="logo"></a>
+    routerLink="/workouts"
+    class="logo--link">
+    <img
+      class="logo--image-left logo--image"
+      src="../../../assets/img/white logo.png"
+      alt="logo"></a>
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    (click)="toggleSidenav()"
+    mat-icon-button
+    class="menu__btn--icon">
+    <mat-icon
+      class="icon-display"
+      [ngStyle]="{'color': 'white'}"
+      aria-label="Side nav toggle icon">menu
+    </mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <div class="profile" *ngIf="activeUser">
+    <span class="profile__name">Welcome {{ activeUser }}</span>
+  </div>
+  <a
+    routerLink="/workouts"
+    class="logo--link">
+    <img
+      class="logo--image-right logo--image"
+      src="../../../assets/img/white logo.png"
+      alt="logo"></a>
 </mat-toolbar>
