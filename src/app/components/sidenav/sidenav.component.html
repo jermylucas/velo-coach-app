@@ -10,50 +10,64 @@
       <h2 class="sidenav__expansion--title">Dashboard</h2>
     </div>
   </div>
-  <mat-expansion-panel
-
-    [(expanded)]="panelOpenState"
-    class="sidenav__expansion--panel"
-    routerLinkActive="sidenav__expansion--panel-active">
-    <mat-expansion-panel-header class="sidenav__expansion--header">
-      <mat-panel-title class="sidenav__expansion--title">
-        Workouts
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <ul class="sidenav__expansion--list">
-      <li><a
-          routerLink="/workouts"
-          href="#"
-          class="sidenav__expansion--link"
-          (click)="closeNav()">View Workouts</a></li>
-      <li><a
-          routerLink="/workouts/new"
-          href="#"
-          class="sidenav__expansion--link"
-          (click)="closeNav()">Create Workout</a>
-      </li>
-    </ul>
-  </mat-expansion-panel>
   <div
     class="sidenav__expansion--panel"
     routerLinkActive="sidenav__expansion--panel-active">
     <div
+      *ngIf="!isAuthenticated"
       class="sidenav__expansion--header"
-      routerLink="/trainingplans"
+      routerLink="/auth"
       (click)="closePanel()"
       (click)="closeNav()">
-      <h2 class="sidenav__expansion--title">Training Plans </h2>
+      <h2 class="sidenav__expansion--title">Login</h2>
     </div>
   </div>
-  <div
-    class="sidenav__expansion--panel"
-    routerLinkActive="sidenav__expansion--panel-active">
+  <div *ngIf="isAuthenticated">
+    <mat-expansion-panel
+
+      [(expanded)]="panelOpenState"
+      class="sidenav__expansion--panel"
+      routerLinkActive="sidenav__expansion--panel-active">
+      <mat-expansion-panel-header class="sidenav__expansion--header">
+        <mat-panel-title class="sidenav__expansion--title">
+          Workouts
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ul class="sidenav__expansion--list">
+        <li><a
+            routerLink="/workouts"
+            href="#"
+            class="sidenav__expansion--link"
+            (click)="closeNav()">View Workouts</a></li>
+        <li><a
+            routerLink="/workouts/new"
+            href="#"
+            class="sidenav__expansion--link"
+            (click)="closeNav()">Create Workout</a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
     <div
-      class="sidenav__expansion--header"
-      routerLink="/account"
-      (click)="closePanel()"
-      (click)="closeNav()">
-      <h2 class="sidenav__expansion--title">Account </h2>
+      class="sidenav__expansion--panel"
+      routerLinkActive="sidenav__expansion--panel-active">
+      <div
+        class="sidenav__expansion--header"
+        routerLink="/trainingplans"
+        (click)="closePanel()"
+        (click)="closeNav()">
+        <h2 class="sidenav__expansion--title">Training Plans </h2>
+      </div>
+    </div>
+    <div
+      class="sidenav__expansion--panel"
+      routerLinkActive="sidenav__expansion--panel-active">
+      <div
+        class="sidenav__expansion--header"
+        routerLink="/account"
+        (click)="closePanel()"
+        (click)="closeNav()">
+        <h2 class="sidenav__expansion--title">Account </h2>
+      </div>
     </div>
   </div>
 
@@ -65,17 +79,6 @@
     <a
       (click)="onLogout()"
       class="logout-link">Logout
-      <mat-icon
-        class="logout-link-icon"
-        aria-label="logout icon">power_settings_new
-      </mat-icon>
-    </a></div>
-  <div
-    *ngIf="!isAuthenticated"
-    class="logout">
-    <a
-      (click)="onLogin()"
-      class="logout-link">Login
       <mat-icon
         class="logout-link-icon"
         aria-label="logout icon">power_settings_new
