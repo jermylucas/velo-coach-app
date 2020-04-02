@@ -11,6 +11,7 @@
     </div>
   </div>
   <mat-expansion-panel
+
     [(expanded)]="panelOpenState"
     class="sidenav__expansion--panel"
     routerLinkActive="sidenav__expansion--panel-active">
@@ -59,11 +60,22 @@
   <span class="spacer"></span>
 
   <div
+    *ngIf="isAuthenticated"
     class="logout">
-    <!-- //Not sure why I had this... it's not working so commenting out for now.. from div.logout // (click)="sidenav.toggle()" -->
     <a
-      href="#"
+      (click)="onLogout()"
       class="logout-link">Logout
+      <mat-icon
+        class="logout-link-icon"
+        aria-label="logout icon">power_settings_new
+      </mat-icon>
+    </a></div>
+  <div
+    *ngIf="!isAuthenticated"
+    class="logout">
+    <a
+      (click)="onLogin()"
+      class="logout-link">Login
       <mat-icon
         class="logout-link-icon"
         aria-label="logout icon">power_settings_new

@@ -2,13 +2,13 @@ import { Injectable } from "@angular/core";
 
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from "firebase/app";
-import { Observable, Subject } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 
-import { User } from "./user.model";
+import { User } from "../../auth/user.model";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
-  activeUser = new Subject<User>();
+  activeUser = new BehaviorSubject<User>(null);
 
   user: Observable<firebase.User>;
 
@@ -23,13 +23,16 @@ export class AuthService {
         res.user.updateProfile({
           displayName: name
         });
-        this.handleAuthentication(
-          res.user.email,
-          res.user.uid,
-          res.user.displayName,
-          res.user.refreshToken,
-          3600
-        );
+        res.user.getIdToken(true).then(token => {
+          this.handleAuthentication(
+            res.user.email,
+            res.user.uid,
+            res.user.displayName,
+            token,
+            3600
+          );
+        });
+
         return res;
       });
   }
@@ -38,13 +41,15 @@ export class AuthService {
     return this.firebaseAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        this.handleAuthentication(
-          res.user.email,
-          res.user.uid,
-          res.user.displayName,
-          res.user.refreshToken,
-          3600
-        );
+        res.user.getIdToken(true).then(token => {
+          this.handleAuthentication(
+            res.user.email,
+            res.user.uid,
+            res.user.displayName,
+            token,
+            3600
+          );
+        });
         return res;
       });
   }
