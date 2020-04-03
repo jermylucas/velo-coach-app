@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"]
+  styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   activeUser: string = null;
@@ -15,10 +15,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private sidenav: SidenavService,
     private authService: AuthService
-  ) {}
-
-  ngOnInit() {
-    this.userSub = this.authService.user.subscribe(user => {
+  ) {
+    this.userSub = this.authService.user.subscribe((user) => {
       if (user) {
         this.activeUser = user.displayName;
       } else if (!user) {
@@ -26,6 +24,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  ngOnInit() {}
 
   toggleSidenav() {
     this.sidenav.toggle();

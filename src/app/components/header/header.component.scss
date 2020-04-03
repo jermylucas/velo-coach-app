@@ -51,7 +51,7 @@
 }
 
 .profile {
-  @media (min-width: $breakpoint-tablet-port) {
+  @media (max-width: $breakpoint-tablet-port) {
     display: none;
   }
   @media (min-width: $breakpoint-tablet-port) {
