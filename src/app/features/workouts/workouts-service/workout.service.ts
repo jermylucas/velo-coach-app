@@ -3,7 +3,7 @@ import { Workout } from "../workout.model";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class WorkoutService {
   previousPosition: number;
@@ -25,7 +25,11 @@ export class WorkoutService {
 
   //Return selected workouts so checkboxes work and can subscribe to the behavior subject
   getWorkouts() {
-    return this.selectedWorkouts;
+    if (this.workouts) {
+      return this.selectedWorkouts;
+    } else {
+      console.log("No workouts listed");
+    }
   }
 
   // For selecting workouts when boxes are checked (doesn't mess up array with checked boxes)
@@ -63,12 +67,12 @@ export class WorkoutService {
     types: string[],
     zwo: string[]
   ) {
-    const workouts = this.workouts.filter(workout => {
+    const workouts = this.workouts.filter((workout) => {
       return (
         (!phases.length ||
-          phases.some(phase => workout.phase.includes(phase))) &&
+          phases.some((phase) => workout.phase.includes(phase))) &&
         (!specialties.length ||
-          specialties.some(specialty =>
+          specialties.some((specialty) =>
             workout.specialty.includes(specialty)
           )) &&
         (duration.length === 0 || duration.indexOf(workout.duration) >= 0) &&
@@ -91,9 +95,13 @@ export class WorkoutService {
 
   // Set workouts fetched from server
   setWorkouts(workouts: Workout[]) {
-    this.workouts = workouts;
-    this.selectedWorkouts.next(this.workouts);
-    this.listTotal = this.workouts.length;
+    if (workouts == null) {
+      return;
+    } else if (workouts !== null) {
+      this.workouts = workouts;
+      this.selectedWorkouts.next(this.workouts);
+      this.listTotal = this.workouts.length;
+    }
   }
 
   //// Sort By: events

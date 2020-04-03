@@ -25,11 +25,11 @@ export class AuthService {
   signup(email: string, password: string, name: string) {
     return this.firebaseAuth.auth
       .createUserWithEmailAndPassword(email, password)
-      .then(res => {
+      .then((res) => {
         res.user.updateProfile({
-          displayName: name
+          displayName: name,
         });
-        res.user.getIdToken(true).then(token => {
+        res.user.getIdToken(true).then((token) => {
           this.handleAuthentication(
             res.user.email,
             res.user.uid,
@@ -46,8 +46,8 @@ export class AuthService {
   login(email: string, password: string) {
     return this.firebaseAuth.auth
       .signInWithEmailAndPassword(email, password)
-      .then(res => {
-        res.user.getIdToken(true).then(token => {
+      .then((res) => {
+        res.user.getIdToken(true).then((token) => {
           this.handleAuthentication(
             res.user.email,
             res.user.uid,
@@ -66,9 +66,9 @@ export class AuthService {
       uid: string;
       displayName: string;
       _token: string;
-      _expiresIn: number;
+      _tokenExpirationDate: number;
     } = JSON.parse(this.localStorage.getItemLocally("userData"));
-    if (!userData) {
+    if (userData == null) {
       return;
     }
 
@@ -77,13 +77,14 @@ export class AuthService {
       userData.uid,
       userData.displayName,
       userData._token,
-      new Date(userData._expiresIn)
+      new Date(userData._tokenExpirationDate)
     );
 
     if (loadedUser.token) {
       this.activeUser.next(loadedUser);
       const expirationDuration =
-        new Date(userData._expiresIn).getTime() - new Date().getTime();
+        new Date(userData._tokenExpirationDate).getTime() -
+        new Date().getTime();
       this.autoLogout(expirationDuration);
     }
   }

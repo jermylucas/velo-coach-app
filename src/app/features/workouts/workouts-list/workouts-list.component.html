@@ -2,72 +2,66 @@
 <div class="workout__list" id="detail">
   <!--workout item-->
   <p>Showing {{ listCount }} of {{ listTotal }} Workouts</p>
-  <div
-    *ngFor="let workout of workouts; let i = index">
-    <!--Tag to select workout-->
-    <a
-      [routerLink]="[i]"
-      class="workout__item"
-      (click)="scrollPosition()">
-
-      <div class="workout__item--img"><img
-          [src]="workout.imageUrl"
-          alt="{{ workout.title }}"></div>
-
-      <div class="workout__item--info">
-        <h2 class="workout__item--title">{{ workout.title }}</h2>
-
-        <div class="workout__item--specs">
-
-          <h3 class="workout__item--specs-heading">{{ workout.type }}</h3>
-          <span class="break"></span>
-          <h3 class="workout__item--specs-heading">{{ workout.duration }} min</h3>
-          <!-- <span class="break"></span>
-          <h3 class="workout__item--specs-heading">
-            {{ (workout.phase.join.length>1)? (workout.phase | slice:0:1)+'more...':(workout.phase) }}</h3> -->
-        </div>
-      </div>
-
-      <div class="workout__item--notes">
-        <p [innerHTML]="workout.description">
-        </p>
-      </div>
-      <!--Tooltip on details hover-->
-      <span class="workout__item--details"
-        (mouseover)="workout.hoverState = true;"
-        (mouseout)="workout.hoverState = false;"> Details...
-        <div class="tooltip" [ngClass]="{detailsActive: workout.hoverState}">
-          <h3 class="tooltip__title">{{ workout.title }}</h3>
-          <div class="tooltip__list-wrapper">
-            <ul class="tooltip__list">
-              <li><span class="tooltip__list-lh">Phases</span>
-                <ul>
-                  <li class="tooltip__list-li" *ngFor="let phase of workout.phase"> {{ phase }}</li>
-                </ul>
-              </li>
-              <li><span class="tooltip__list-lh">Specialties</span>
-                <ul>
-                  <li class="tooltip__list-li" *ngFor="let specialty of workout.specialty"> {{ specialty }}</li>
-                </ul>
-              </li>
-              <li><span class="tooltip__list-lh">Type</span>
-                <ul>
-                  <!--if I make this an array later, change to ngfor loop like above-->
-                  <li class="tooltip__list-li"> {{ workout.type }}</li>
-                </ul>
-              </li>
-              <li><span class="tooltip__list-lh">On Zwift?</span>
-                <ul>
-                  <li class="tooltip__list-li"> {{ workout.zwo  }}</li>
-                </ul>
-              </li>
-            </ul>
+  <div *ngIf="listCount == 0">
+    <div class="no-workout">
+      I see you have not created a workout...
+    </div>
+  </div>
+  <div>
+    <div
+      *ngFor="let workout of workouts; let i = index">
+      <a
+        [routerLink]="[i]"
+        class="workout__item"
+        (click)="scrollPosition()">
+        <div class="workout__item--img"><img
+            [src]="workout.imageUrl"
+            alt="{{ workout.title }}"></div>
+        <div class="workout__item--info">
+          <h2 class="workout__item--title">{{ workout.title }}</h2>
+          <div class="workout__item--specs">
+            <h3 class="workout__item--specs-heading">{{ workout.type }}</h3>
+            <span class="break"></span>
+            <h3 class="workout__item--specs-heading">{{ workout.duration }} min</h3>
           </div>
         </div>
-      </span>
-
-
-    </a>
+        <div class="workout__item--notes">
+          <p [innerHTML]="workout.description">
+          </p>
+        </div>
+        <span class="workout__item--details"
+          (mouseover)="workout.hoverState = true;"
+          (mouseout)="workout.hoverState = false;"> Details...
+          <div class="tooltip" [ngClass]="{detailsActive: workout.hoverState}">
+            <h3 class="tooltip__title">{{ workout.title }}</h3>
+            <div class="tooltip__list-wrapper">
+              <ul class="tooltip__list">
+                <li><span class="tooltip__list-lh">Phases</span>
+                  <ul>
+                    <li class="tooltip__list-li" *ngFor="let phase of workout.phase"> {{ phase }}</li>
+                  </ul>
+                </li>
+                <li><span class="tooltip__list-lh">Specialties</span>
+                  <ul>
+                    <li class="tooltip__list-li" *ngFor="let specialty of workout.specialty"> {{ specialty }}</li>
+                  </ul>
+                </li>
+                <li><span class="tooltip__list-lh">Type</span>
+                  <ul>
+                    <li class="tooltip__list-li"> {{ workout.type }}</li>
+                  </ul>
+                </li>
+                <li><span class="tooltip__list-lh">On Zwift?</span>
+                  <ul>
+                    <li class="tooltip__list-li"> {{ workout.zwo  }}</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </span>
+      </a>
+    </div>
   </div>
 
 </div>
