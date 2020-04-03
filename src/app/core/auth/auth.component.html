@@ -22,7 +22,7 @@
           </p>
 
           <div class="button">
-            <a (click)="onSwitchMode(); focused=false" class="button-signup">New? Sign up</a>
+            <a (click)="onSwitchMode(authForm); focused=false" class="button-signup">New? Sign up</a>
             <button
               matTooltip="Login Not Valid"
               [matTooltipDisabled]="authForm.valid"
@@ -34,7 +34,6 @@
       </mat-card-content>
     </mat-card>
   </div>
-
   <div class="auth-container" *ngIf="!loginMode">
     <mat-card>
       <mat-card-title>Sign Up</mat-card-title>
@@ -60,7 +59,7 @@
             {{ errorMessage }}
           </p>
           <div class="button">
-            <a (click)="onSwitchMode()" class="button-signup">Already have account? Login</a>
+            <a (click)="onSwitchMode(authForm)" class="button-signup">Already have account? Login</a>
             <button class="button-login" type="submit" mat-raised-button [disabled]="!authForm.valid">Sign Up</button>
           </div>
         </form>

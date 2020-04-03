@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-auth",
   templateUrl: "./auth.component.html",
-  styleUrls: ["./auth.component.scss"]
+  styleUrls: ["./auth.component.scss"],
 })
 export class AuthComponent {
   email: string;
@@ -21,7 +21,8 @@ export class AuthComponent {
   onFocus() {
     this.errorMessage = null;
   }
-  onSwitchMode() {
+  onSwitchMode(form: NgForm) {
+    form.reset();
     this.loginMode = !this.loginMode;
   }
 
@@ -37,7 +38,7 @@ export class AuthComponent {
           this.isLoading = false;
           this.router.navigate(["/dashboard"]);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Received an error: ", error);
           this.handleError(error);
           this.isLoading = false;
@@ -51,7 +52,7 @@ export class AuthComponent {
           this.isLoading = false;
           this.router.navigate(["/dashboard"]);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Received an error: ", error);
           this.isLoading = false;
         });
