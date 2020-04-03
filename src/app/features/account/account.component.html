@@ -1,4 +1,14 @@
-<div style="padding: 20px; ">
-  <h4>This is where accounts and account settings will go</h4>
+<div style="padding: 20px; " *ngIf="!editMode">
+  <h4>Welcome {{ activeUser.displayName }}</h4>
+  <h3>Your email is {{ activeUser.email }}</h3>
+
+  <button type="button" (click)="changeMode()">Click to edit</button>
   <div class="ball-loader"></div>
+</div>
+<div style="padding: 20px; " *ngIf="editMode">
+  <h1>This is where the edit page will go</h1>
+  <h4>Change name: {{ activeUser.displayName }}</h4>
+  <h3>Change email: {{ activeUser.email }}</h3>
+
+  <button type="button" (click)="changeMode()">Click to go back to main page</button>
 </div>
