@@ -37,7 +37,7 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   ngOnDestroy() {
-    this.workoutSubscription.unsubscribe();
+    this.workoutSubscription.unsubscribe(); 
   }
   scrollPosition() {
     // Keeps previous scroll position in service for when back button is clicked on the workoutdetail page

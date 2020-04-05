@@ -3,6 +3,7 @@ import { SidenavService } from "../../core/services/sidenav.service";
 import { AuthService } from "src/app/core/services/auth/auth.service";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
+import { WorkoutService } from 'src/app/features/workouts/workouts-service/workout.service';
 
 @Component({
   selector: "app-sidenav",
@@ -18,7 +19,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
   constructor(
     private sidenavService: SidenavService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private workoutService: WorkoutService
   ) {}
   ngOnInit() {
     this.userSub = this.authService.user.subscribe(user => {
@@ -45,6 +47,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
+    this.workoutService.clearWorkouts();
   }
   onLogin() {
     this.router.navigate(["/auth"]);

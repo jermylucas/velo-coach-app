@@ -25,11 +25,7 @@ export class WorkoutService {
 
   //Return selected workouts so checkboxes work and can subscribe to the behavior subject
   getWorkouts() {
-    if (this.workouts) {
-      return this.selectedWorkouts;
-    } else {
-      console.log("No workouts listed");
-    }
+    return this.selectedWorkouts;
   }
 
   // For selecting workouts when boxes are checked (doesn't mess up array with checked boxes)
@@ -44,6 +40,12 @@ export class WorkoutService {
 
     // update list total on addition of new workout
     this.listTotal = this.workouts.length;
+  }
+
+  clearWorkouts() {
+    const emptyWorkouts = [];
+    this.selectedWorkouts.next(emptyWorkouts);
+    this.listTotal = 0;
   }
 
   //Updates workout instead of creating a new one while in editMode
@@ -146,14 +148,3 @@ export class WorkoutService {
     return a.duration - b.duration;
   }
 }
-
-// WORKOUT MODEL
-//
-// title: string,
-// description: string,
-// imagePath: string,
-// type: string,
-// duration: number,
-// specialty: string[],
-// phase: string[],
-// zwo: boolean
