@@ -1,1 +1,57 @@
 @import "../../../sass/variables";
+//mat-spinner color
+.uploader-status {
+  margin-top: 20px;
+}
+.uploader-status ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: $color-primary-light-blue;
+}
+
+.edit {
+  margin-top: 20px;
+  width: 85%;
+  margin: auto;
+
+  &__btns {
+    margin: 10px 0;
+
+    &--save,
+    &--cancel {
+      color: $color-white;
+      margin-right: 10px;
+    }
+    &--save {
+      background: $color-green;
+    }
+    &--cancel {
+      background: $color-secondary-grey;
+    }
+  }
+
+  &__group {
+    display: grid;
+    grid-template-columns: repeat(4, 24.25%);
+    grid-gap: 1%;
+    grid-template-areas: "display-name display-name none none";
+
+    @media (max-width: $breakpoint-tablet-land) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "display-name display-name";
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "display-name";
+    }
+  }
+  @media (max-width: $breakpoint-tablet-land) {
+    width: 90%;
+  }
+  @media (max-width: $breakpoint-mobile) {
+    width: 95%;
+  }
+}
+.display-name {
+  grid-area: display-name;
+}

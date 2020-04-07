@@ -21,4 +21,19 @@ export class ProfileService {
   getCurrentUser() {
     return this.currentUser;
   }
+
+  updateUser(name: string) {
+    return this.firebaseAuth.auth.currentUser
+      .updateProfile({
+        displayName: name,
+      })
+      .then(
+        () => {
+          // console.log("updated name");
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
 }
