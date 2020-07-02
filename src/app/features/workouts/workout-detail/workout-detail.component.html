@@ -1,20 +1,17 @@
 <div class="detail__image">
-  <img
-    [src]="workout.imageUrl"
-    alt="placeholder">
+  <img [src]="workout.imageUrl" alt="placeholder" />
 </div>
-<a
-  class="back-btn"
-  (click)="goBack()">Go Back</a>
+<a class="back-btn" (click)="goBack()">Go Back</a>
 <div class="heading__wrapper">
   <h2 class="detail__container--heading">{{ workout.title }}</h2>
-  <h3 class="detail__container--sub-heading"> {{ workout.type }}&nbsp; <span class="break"></span> &nbsp;
+  <h3 class="detail__container--sub-heading">
+    {{ workout.type }}&nbsp; <span class="break"></span> &nbsp;
     {{ workout.duration }}
-    minutes</h3>
+    minutes
+  </h3>
 
   <div class="heading__wrapper-button">
-    <button mat-button [matMenuTriggerFor]="menu"
-      aria-label="workout config menu button" class="manage-btn">
+    <button mat-button [matMenuTriggerFor]="menu" aria-label="workout config menu button" class="manage-btn">
       <mat-icon>more_vert</mat-icon>
       Manage Workout
     </button>
@@ -35,12 +32,8 @@
   </div>
 </div>
 
-
 <div class="detail">
   <div class="detail__container-left">
-
-
-
     <div class="detail__container-left-description">
       <!-- innerHTML to display WYSIWYG text as well -->
       <p [innerHTML]="workout.description"></p>
@@ -50,37 +43,41 @@
     <h3 class="detail__container--secondary-heading">Details</h3>
     <div class="detail__list-wrapper">
       <ul class="detail__list">
-        <li><span class="detail__list-lh">Phases</span>
+        <li>
+          <span class="detail__list-lh">Phases</span>
           <ul>
-            <li class="detail__list-li" *ngFor="let phase of workout.phase"> {{ phase }}</li>
+            <li class="detail__list-li" *ngFor="let phase of workout.phase">{{ phase }}</li>
           </ul>
         </li>
-        <li><span class="detail__list-lh">Specialties</span>
+        <li>
+          <span class="detail__list-lh">Specialties</span>
           <ul>
-            <li class="detail__list-li" *ngFor="let specialty of workout.specialty"> {{ specialty }}</li>
+            <li class="detail__list-li" *ngFor="let specialty of workout.specialty">{{ specialty }}</li>
           </ul>
         </li>
-        <li><span class="detail__list-lh">Type</span>
+        <li>
+          <span class="detail__list-lh">Type</span>
           <ul>
             <!--if I make this an array later, change to ngfor loop like above-->
-            <li class="detail__list-li"> {{ workout.type }}</li>
+            <li class="detail__list-li">{{ workout.type }}</li>
           </ul>
         </li>
-        <li><span class="detail__list-lh">Duration</span>
+        <li>
+          <span class="detail__list-lh">Duration</span>
           <ul>
-            <li class="detail__list-li"> {{ workout.duration }}</li>
+            <li class="detail__list-li">{{ workout.duration }}</li>
           </ul>
         </li>
-        <li><span class="detail__list-lh">On Zwift?</span>
+        <li>
+          <span class="detail__list-lh">On Zwift?</span>
           <ul>
-            <li class="detail__list-li"> {{ workout.zwo }}</li>
+            <li class="detail__list-li">{{ workout.zwo }}</li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </div>
-
 
 <!-- WORKOUT MODEL
 //

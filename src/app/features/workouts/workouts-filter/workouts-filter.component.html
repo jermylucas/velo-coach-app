@@ -1,15 +1,8 @@
-<button
-  mat-raised-button
-  class="checkbox-apply"
-  type="button"
-  (click)="applyFilter()">Apply</button>
+<button mat-raised-button class="checkbox-apply" type="button" (click)="applyFilter()">Apply</button>
 <h4>Phase</h4>
 <div class="checkbox">
   <span *ngFor="let phase of phaseOptions">
-    <mat-checkbox
-      color="warn"
-      type="checkbox"
-      (click)="phaseSelection.toggle(phase)">
+    <mat-checkbox color="warn" type="checkbox" (click)="phaseSelection.toggle(phase)">
       {{ phase }}
     </mat-checkbox>
   </span>
@@ -18,10 +11,7 @@
 <h4>Specialty</h4>
 <div class="checkbox">
   <span *ngFor="let specialty of specialtyOptions">
-    <mat-checkbox
-      color="warn"
-      type="checkbox"
-      (click)="specialtySelection.toggle(specialty)">
+    <mat-checkbox color="warn" type="checkbox" (click)="specialtySelection.toggle(specialty)">
       {{ specialty }}
     </mat-checkbox>
   </span>
@@ -30,10 +20,7 @@
 <h4>Duration (filters to be added)</h4>
 <div class="checkbox">
   <span *ngFor="let duration of durationOptions">
-    <mat-checkbox
-      color="warn"
-      type="checkbox"
-      (click)="durationSelection.toggle(duration)">
+    <mat-checkbox color="warn" type="checkbox" (click)="durationSelection.toggle(duration)">
       {{ duration }}
     </mat-checkbox>
   </span>
@@ -42,10 +29,7 @@
 <h4>Type</h4>
 <div class="checkbox">
   <span *ngFor="let type of typeOptions">
-    <mat-checkbox
-      color="warn"
-      type="checkbox"
-      (click)="typeSelection.toggle(type)">
+    <mat-checkbox color="warn" type="checkbox" (click)="typeSelection.toggle(type)">
       {{ type }}
     </mat-checkbox>
   </span>
@@ -54,15 +38,11 @@
 <h4>On Zwift?</h4>
 <div class="checkbox">
   <span *ngFor="let zwo of zwoOptions">
-    <mat-checkbox
-      color="warn"
-      type="checkbox"
-      (click)="zwoSelection.toggle(zwo)">
+    <mat-checkbox color="warn" type="checkbox" (click)="zwoSelection.toggle(zwo)">
       {{ zwo }}
     </mat-checkbox>
   </span>
 </div>
-
 
 <!-- PHASES -->
 <!-- Base 1
@@ -91,7 +71,6 @@ Cross Country MTB -->
 2 &mdash; 3hrs
 3hrs +  -->
 
-
 <!-- TYPE -->
 <!-- Anaerobic
 Aerobic / Endurance
@@ -103,7 +82,6 @@ Testing
 Tempo
 Threshold -->
 
-
 <!-- ZWIFT? -->
-<!-- Yes 
+<!-- Yes
 No -->

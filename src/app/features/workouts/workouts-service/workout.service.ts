@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Workout } from "../workout.model";
-import { BehaviorSubject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Workout } from '../workout.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class WorkoutService {
   previousPosition: number;
@@ -18,12 +18,12 @@ export class WorkoutService {
     this.listTotal = this.workouts.length;
   }
 
-  // For data storage. Always retrieves all workouts even with checked boxes rather than just the selected workouts. This prevents some potential bugs
+  // For data storage. Retrieves all workouts even with checked boxes rather than just the selected workouts
   getAllWorkouts() {
     return this.workouts.slice();
   }
 
-  //Return selected workouts so checkboxes work and can subscribe to the behavior subject
+  // Return selected workouts so checkboxes work and can subscribe to the behavior subject
   getWorkouts() {
     return this.selectedWorkouts;
   }
@@ -48,7 +48,7 @@ export class WorkoutService {
     this.listTotal = 0;
   }
 
-  //Updates workout instead of creating a new one while in editMode
+  // Updates workout instead of creating a new one while in editMode
   updateWorkout(index: number, newWorkout: Workout) {
     this.workouts[index] = newWorkout;
     this.selectedWorkouts.next(this.workouts.slice());
@@ -62,21 +62,11 @@ export class WorkoutService {
     this.listTotal = this.workouts.length;
   }
 
-  filterWorkouts(
-    phases: string[],
-    specialties: string[],
-    duration: number[],
-    types: string[],
-    zwo: string[]
-  ) {
+  filterWorkouts(phases: string[], specialties: string[], duration: number[], types: string[], zwo: string[]) {
     const workouts = this.workouts.filter((workout) => {
       return (
-        (!phases.length ||
-          phases.some((phase) => workout.phase.includes(phase))) &&
-        (!specialties.length ||
-          specialties.some((specialty) =>
-            workout.specialty.includes(specialty)
-          )) &&
+        (!phases.length || phases.some((phase) => workout.phase.includes(phase))) &&
+        (!specialties.length || specialties.some((specialty) => workout.specialty.includes(specialty))) &&
         (duration.length === 0 || duration.indexOf(workout.duration) >= 0) &&
         (types.length === 0 || types.indexOf(workout.type) >= 0) &&
         (zwo.length === 0 || zwo.indexOf(workout.zwo) >= 0)
@@ -89,7 +79,7 @@ export class WorkoutService {
 
     // Removes overlay after select on small devices
     if (window.innerWidth < 981) {
-      document.getElementById("filter").style.display = "none";
+      document.getElementById('filter').style.display = 'none';
     } else {
       return;
     }

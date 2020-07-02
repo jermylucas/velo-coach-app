@@ -1,12 +1,10 @@
 <app-header></app-header>
 <mat-sidenav-container class="main-sidenav">
-  <mat-sidenav
-
-    class="sidenav" #sidenav [mode]="mode" [opened]="openSidenav">
+  <mat-sidenav class="sidenav" #sidenav [mode]="mode" [opened]="openSidenav">
     <app-sidenav></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content id="detail">
-    <router-outlet *ngIf="!loadingRouteConfig" (activate)="resetPosition();"></router-outlet>
+    <router-outlet *ngIf="!loadingRouteConfig" (activate)="resetPosition()"></router-outlet>
     <ng-container *ngIf="loadingRouteConfig">
       <app-loading-spinner></app-loading-spinner>
     </ng-container>

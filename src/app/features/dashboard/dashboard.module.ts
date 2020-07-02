@@ -1,14 +1,14 @@
 // @Angular imports
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 
 // Components
-import { DashboardComponent } from "../dashboard/dashboard.component";
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
-//Modules
-import { MaterialModule } from "../../../app/material.module";
-import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
-import { SharedModule } from "../../../app/shared/shared.module";
+// Modules
+import { MaterialModule } from '../../../app/material.module';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../../app/shared/shared.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -16,8 +16,8 @@ import { SharedModule } from "../../../app/shared/shared.module";
     SharedModule,
     CommonModule,
     MaterialModule,
-    RouterModule.forChild([{ path: "", component: DashboardComponent }])
+    RouterModule.forChild([{ path: '', component: DashboardComponent }]),
   ],
-  providers: []
+  providers: [],
 })
 export class DashboardModule {}

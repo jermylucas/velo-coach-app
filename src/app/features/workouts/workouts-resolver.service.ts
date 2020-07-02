@@ -1,22 +1,22 @@
-import { Injectable } from "@angular/core";
-import { Resolve, ActivatedRouteSnapshot, Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 
-import { WorkoutResolved } from "./workout.model";
-import { WorkoutService } from "../workouts/workouts-service/workout.service";
+import { WorkoutResolved } from './workout.model';
+import { WorkoutService } from '../workouts/workouts-service/workout.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class WorkoutResolver implements Resolve<WorkoutResolved> {
   constructor(private workoutService: WorkoutService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    const id = route.paramMap.get("id");
+    const id = route.paramMap.get('id');
     if (isNaN(+id)) {
       const message = `Product id was not a number: ${id}`;
-      if (confirm("Error was found in URL. Please try action again.")) {
+      if (confirm('Error was found in URL. Please try action again.')) {
         console.error(message);
-        this.router.navigate(["workouts"]);
+        this.router.navigate(['workouts']);
       }
     }
     return this.workoutService.getWorkout(+id);

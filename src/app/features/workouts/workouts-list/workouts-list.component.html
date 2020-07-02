@@ -8,15 +8,10 @@
     </div>
   </div>
   <div>
-    <div
-      *ngFor="let workout of workouts; let i = index">
-      <a
-        [routerLink]="[i]"
-        class="workout__item"
-        (click)="scrollPosition()">
-        <div class="workout__item--img"><img
-            [src]="workout.imageUrl"
-            alt="{{ workout.title }}"></div>
+    <div *ngFor="let workout of workouts; let i = index">
+      <a [routerLink]="[i]" class="workout__item" (click)="scrollPosition()">
+        <div class="workout__item--img"><img [src]="workout.imageUrl" alt="{{ workout.title }}" /></div>
+
         <div class="workout__item--info">
           <h2 class="workout__item--title">{{ workout.title }}</h2>
           <div class="workout__item--specs">
@@ -26,34 +21,40 @@
           </div>
         </div>
         <div class="workout__item--notes">
-          <p [innerHTML]="workout.description">
-          </p>
+          <p [innerHTML]="workout.description"></p>
         </div>
-        <span class="workout__item--details"
-          (mouseover)="workout.hoverState = true;"
-          (mouseout)="workout.hoverState = false;"> Details...
-          <div class="tooltip" [ngClass]="{detailsActive: workout.hoverState}">
+        <span
+          class="workout__item--details"
+          (mouseover)="workout.hoverState = true"
+          (mouseout)="workout.hoverState = false"
+        >
+          Details...
+          <div class="tooltip" [ngClass]="{ detailsActive: workout.hoverState }">
             <h3 class="tooltip__title">{{ workout.title }}</h3>
             <div class="tooltip__list-wrapper">
               <ul class="tooltip__list">
-                <li><span class="tooltip__list-lh">Phases</span>
+                <li>
+                  <span class="tooltip__list-lh">Phases</span>
                   <ul>
-                    <li class="tooltip__list-li" *ngFor="let phase of workout.phase"> {{ phase }}</li>
+                    <li class="tooltip__list-li" *ngFor="let phase of workout.phase">{{ phase }}</li>
                   </ul>
                 </li>
-                <li><span class="tooltip__list-lh">Specialties</span>
+                <li>
+                  <span class="tooltip__list-lh">Specialties</span>
                   <ul>
-                    <li class="tooltip__list-li" *ngFor="let specialty of workout.specialty"> {{ specialty }}</li>
+                    <li class="tooltip__list-li" *ngFor="let specialty of workout.specialty">{{ specialty }}</li>
                   </ul>
                 </li>
-                <li><span class="tooltip__list-lh">Type</span>
+                <li>
+                  <span class="tooltip__list-lh">Type</span>
                   <ul>
-                    <li class="tooltip__list-li"> {{ workout.type }}</li>
+                    <li class="tooltip__list-li">{{ workout.type }}</li>
                   </ul>
                 </li>
-                <li><span class="tooltip__list-lh">On Zwift?</span>
+                <li>
+                  <span class="tooltip__list-lh">On Zwift?</span>
                   <ul>
-                    <li class="tooltip__list-li"> {{ workout.zwo  }}</li>
+                    <li class="tooltip__list-li">{{ workout.zwo }}</li>
                   </ul>
                 </li>
               </ul>
@@ -63,5 +64,4 @@
       </a>
     </div>
   </div>
-
 </div>

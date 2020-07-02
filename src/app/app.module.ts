@@ -1,44 +1,38 @@
-import { AppComponent } from "./app.component";
-import { AppRoutingModule } from "./app-routing.module";
-import { MaterialModule } from "./material.module";
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from './material.module';
 
 // @Angular imports
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule } from "@angular/forms";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 //Services
-import { SidenavService } from "../app/core/services/sidenav.service";
-import { LocalStorageService } from "../app/core/services/storage/local-storage.service";
+import { SidenavService } from '../app/core/services/sidenav.service';
+import { LocalStorageService } from '../app/core/services/storage/local-storage.service';
 
 // Components
-import { HeaderComponent } from "./components/header/header.component";
-import { SidenavComponent } from "./components/sidenav/sidenav.component";
-import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { AuthComponent } from "./core/auth/auth.component";
+import { HeaderComponent } from './components/header/header.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthComponent } from './core/auth/auth.component';
 
 ////// Firebase
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 //storage
-import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireStorageModule } from '@angular/fire/storage';
 //database
-import { AngularFireDatabaseModule } from "@angular/fire/database";
-import { environment } from "../environments/environment";
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 
-import { SharedModule } from "./shared/shared.module";
-import { AuthInterceptorService } from "./core/services/auth/auth-interceptor.service";
+import { SharedModule } from './shared/shared.module';
+import { AuthInterceptorService } from './core/services/auth/auth-interceptor.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SidenavComponent,
-    PageNotFoundComponent,
-    AuthComponent
-  ],
+  declarations: [AppComponent, HeaderComponent, SidenavComponent, PageNotFoundComponent, AuthComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -50,7 +44,7 @@ import { AuthInterceptorService } from "./core/services/auth/auth-interceptor.se
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     SidenavService,
@@ -58,9 +52,9 @@ import { AuthInterceptorService } from "./core/services/auth/auth-interceptor.se
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

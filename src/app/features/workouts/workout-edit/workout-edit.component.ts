@@ -1,36 +1,74 @@
-import { Component, OnInit, ViewChild, TemplateRef } from "@angular/core";
-import { FormGroup, Validators, FormBuilder } from "@angular/forms";
-import { WorkoutService } from "../workouts-service/workout.service";
-import { Router, ActivatedRoute, Params } from "@angular/router";
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { WorkoutService } from '../workouts-service/workout.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 // WYSIWYG
-import { AngularEditorConfig } from "@kolkov/angular-editor";
-import { DataStorageService } from "../../../core/services/storage/datastorage.service";
-//Firebase Storage
-import { AngularFireStorage } from "@angular/fire/storage";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { DataStorageService } from '../../../core/services/storage/datastorage.service';
+// Firebase Storage
+import { AngularFireStorage } from '@angular/fire/storage';
 // Finalize for upload operator
-import { finalize } from "rxjs/operators";
-import { MatDialog } from "@angular/material/dialog";
-import { FirebaseStorageService } from "../../../core/services/storage/firebase-storage.service";
+import { finalize } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { FirebaseStorageService } from '../../../core/services/storage/firebase-storage.service';
 
 @Component({
-  selector: "app-workout-edit",
-  templateUrl: "./workout-edit.component.html",
-  styleUrls: ["./workout-edit.component.scss"]
+  selector: 'app-workout-edit',
+  templateUrl: './workout-edit.component.html',
+  styleUrls: ['./workout-edit.component.scss'],
 })
 export class WorkoutEditComponent implements OnInit {
-  @ViewChild("modalImageDialog")
+  @ViewChild('modalImageDialog')
   modalImageDialog: TemplateRef<any>;
 
   id: number;
   editMode = false;
-  imgSrc = "";
+  imgSrc = '';
   selectedImage: any = null;
   isLoading = false;
-  imageUrl = "";
-  newImage: boolean = false;
+  imageUrl = '';
+  newImage = false;
   replaceImage: boolean;
 
   workoutForm: FormGroup;
+
+  // Configuration for WYSIWYG Editor
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Roboto',
+    toolbarHiddenButtons: [
+      ['subscript', 'superscript'],
+      ['justifyRight'],
+      ['justifyFull'],
+      ['insertImage'],
+      ['insertVideo'],
+      ['link'],
+      ['unlink'],
+      ['backgroundColor'],
+      ['customClasses'],
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText',
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+  };
 
   constructor(
     private workoutService: WorkoutService,
@@ -47,8 +85,8 @@ export class WorkoutEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.id = +params["id"];
-      this.editMode = params["id"] != null;
+      this.id = +params['id'];
+      this.editMode = params['id'] != null;
     });
 
     // Patches workout values to formbuilder
@@ -61,14 +99,14 @@ export class WorkoutEditComponent implements OnInit {
 
   createForms() {
     this.workoutForm = this.fb.group({
-      title: ["", Validators.required],
-      imageUrl: ["", Validators.required],
-      phase: ["", Validators.required],
-      duration: ["", Validators.required],
-      type: ["", Validators.required],
-      specialty: ["", Validators.required],
-      zwo: ["", Validators.required],
-      description: ["", Validators.required]
+      title: ['', Validators.required],
+      imageUrl: ['', Validators.required],
+      phase: ['', Validators.required],
+      duration: ['', Validators.required],
+      type: ['', Validators.required],
+      specialty: ['', Validators.required],
+      zwo: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
 
@@ -80,9 +118,7 @@ export class WorkoutEditComponent implements OnInit {
         if (this.newImage) {
           //// Upload Image, upload workoutForm value, and store workouts to dataStorage
           //// Adds date and time to image to avoid duplication
-          let filePath = `workout-images/${
-            this.selectedImage.name
-          }_${new Date().getTime()}`;
+          const filePath = `workout-images/${this.selectedImage.name}_${new Date().getTime()}`;
 
           console.log(filePath);
           const fileRef = this.fireStorage.ref(filePath);
@@ -91,15 +127,12 @@ export class WorkoutEditComponent implements OnInit {
             .snapshotChanges()
             .pipe(
               finalize(() => {
-                fileRef.getDownloadURL().subscribe(url => {
-                  this.workoutForm["imageUrl"] = url;
+                fileRef.getDownloadURL().subscribe((url) => {
+                  this.workoutForm['imageUrl'] = url;
                   // returns object with imageUrl of what I want
                   this.workoutForm.value.imageUrl = url;
                   this.isLoading = false;
-                  this.workoutService.updateWorkout(
-                    this.id,
-                    this.workoutForm.value
-                  );
+                  this.workoutService.updateWorkout(this.id, this.workoutForm.value);
                   this.resetForm();
                   this.onCancel();
                   // store workouts
@@ -123,9 +156,7 @@ export class WorkoutEditComponent implements OnInit {
 
         // Upload Image, upload workoutForm value, and store workouts to dataStorage
         // Adds date and time to avoid duplication
-        let filePath = `workout-images/${
-          this.selectedImage.name
-        }_${new Date().getTime()}`;
+        const filePath = `workout-images/${this.selectedImage.name}_${new Date().getTime()}`;
         const fileRef = this.fireStorage.ref(filePath);
 
         this.fireStorage
@@ -133,8 +164,8 @@ export class WorkoutEditComponent implements OnInit {
           .snapshotChanges()
           .pipe(
             finalize(() => {
-              fileRef.getDownloadURL().subscribe(url => {
-                this.workoutForm["imageUrl"] = url;
+              fileRef.getDownloadURL().subscribe((url) => {
+                this.workoutForm['imageUrl'] = url;
                 // returns object with imageUrl of what I want
                 this.workoutForm.value.imageUrl = url;
                 this.isLoading = false;
@@ -147,7 +178,7 @@ export class WorkoutEditComponent implements OnInit {
           )
           .subscribe();
       } else {
-        alert("image not valid");
+        alert('image not valid');
       }
     }
   }
@@ -156,23 +187,23 @@ export class WorkoutEditComponent implements OnInit {
     //// Delete image from storage when replace is clicked
     this.fireStorageService.onDeleteImage(this.imageUrl);
 
-    this.workoutForm.controls["imageUrl"].setErrors({ incorrect: true });
-    this.imageUrl = "";
+    this.workoutForm.controls['imageUrl'].setErrors({ incorrect: true });
+    this.imageUrl = '';
     this.newImage = true;
   }
 
   resetForm() {
     this.workoutForm.reset();
     this.selectedImage = null;
-    this.imgSrc = "";
+    this.imgSrc = '';
   }
 
   onCancel() {
-    this.router.navigate(["../"], { relativeTo: this.route });
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   onImageChange(event: any) {
-    this.workoutForm.controls["imageUrl"].setErrors(null);
+    this.workoutForm.controls['imageUrl'].setErrors(null);
     if (event.target.files && event.target.files[0]) {
       const currentImage = event.target.files[0];
       const reader = new FileReader();
@@ -180,51 +211,13 @@ export class WorkoutEditComponent implements OnInit {
       reader.readAsDataURL(currentImage);
       this.selectedImage = currentImage;
     } else {
-      this.imgSrc = "";
+      this.imgSrc = '';
     }
   }
 
   openModal() {
     this.dialog.open(this.modalImageDialog);
   }
-
-  // Configuration for WYSIWYG Editor
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: "15rem",
-    minHeight: "5rem",
-    placeholder: "Enter text here...",
-    translate: "no",
-    defaultParagraphSeparator: "p",
-    defaultFontName: "Roboto",
-    toolbarHiddenButtons: [
-      ["subscript", "superscript"],
-      ["justifyRight"],
-      ["justifyFull"],
-      ["insertImage"],
-      ["insertVideo"],
-      ["link"],
-      ["unlink"],
-      ["backgroundColor"],
-      ["customClasses"]
-    ],
-    customClasses: [
-      {
-        name: "quote",
-        class: "quote"
-      },
-      {
-        name: "redText",
-        class: "redText"
-      },
-      {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1"
-      }
-    ]
-  };
 }
 
 // title: string,

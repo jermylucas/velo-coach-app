@@ -1,53 +1,53 @@
-import { Component, OnInit } from "@angular/core";
-import { WorkoutService } from "../workouts-service/workout.service";
-import { SelectionModel } from "@angular/cdk/collections";
+import { Component, OnInit } from '@angular/core';
+import { WorkoutService } from '../workouts-service/workout.service';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
-  selector: "app-workouts-filter",
-  templateUrl: "./workouts-filter.component.html",
-  styleUrls: ["./workouts-filter.component.scss"]
+  selector: 'app-workouts-filter',
+  templateUrl: './workouts-filter.component.html',
+  styleUrls: ['./workouts-filter.component.scss'],
 })
 export class WorkoutsFilterComponent implements OnInit {
   apply = false;
 
   // Filter groups
   phaseOptions = [
-    "Base 1",
-    "Base 2",
-    "Base 3",
-    "Build 1",
-    "Build 2",
-    "Recovery",
-    "Peak",
-    "Race",
-    "Testing",
-    "Strength Build",
-    "Strength Maintenance"
+    'Base 1',
+    'Base 2',
+    'Base 3',
+    'Build 1',
+    'Build 2',
+    'Recovery',
+    'Peak',
+    'Race',
+    'Testing',
+    'Strength Build',
+    'Strength Maintenance',
   ];
   specialtyOptions = [
-    "Road Race",
-    "Criterium",
-    "Hill Climb",
-    "Cyclocross",
-    "Gravel",
-    "Time Trial",
-    "Cross Country MTB",
-    "Gym Work"
+    'Road Race',
+    'Criterium',
+    'Hill Climb',
+    'Cyclocross',
+    'Gravel',
+    'Time Trial',
+    'Cross Country MTB',
+    'Gym Work',
   ];
   durationOptions = [1, 2, 3, 4, 10];
   typeOptions = [
-    "Anaerobic",
-    "Aerobic / Endurance",
-    "Muscular Endurance",
-    "Power",
-    "Sweet Spot",
-    "Strength",
-    "Technique",
-    "Tempo",
-    "Threshold",
-    "Vo2 Max"
+    'Anaerobic',
+    'Aerobic / Endurance',
+    'Muscular Endurance',
+    'Power',
+    'Sweet Spot',
+    'Strength',
+    'Technique',
+    'Tempo',
+    'Threshold',
+    'Vo2 Max',
   ];
-  zwoOptions = ["Yes", "No"];
+  zwoOptions = ['Yes', 'No'];
 
   phaseSelection = new SelectionModel<string>(true);
   specialtySelection = new SelectionModel<string>(true);

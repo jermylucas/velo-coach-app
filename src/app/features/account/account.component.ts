@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { ProfileService } from "src/app/core/services/profile.service";
-import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { ProfileService } from 'src/app/core/services/profile.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: "app-account",
-  templateUrl: "./account.component.html",
-  styleUrls: ["./account.component.scss"],
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  isLoading: boolean = false;
+  isLoading = false;
   profileSub;
   activeUser;
-  editMode: boolean = false;
+  editMode = false;
 
   accountEdit: FormGroup;
 
@@ -32,8 +32,8 @@ export class AccountComponent implements OnInit {
 
   createForm() {
     this.accountEdit = this.fb.group({
-      displayName: ["", Validators.required],
-      email: ["", Validators.required],
+      displayName: ['', Validators.required],
+      email: ['', Validators.required],
     });
   }
 

@@ -1,7 +1,7 @@
-import { Component, ViewChild, HostListener } from "@angular/core";
-import { SidenavService } from "../app/core/services/sidenav.service";
-import { MatSidenav } from "@angular/material/sidenav";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
+import { SidenavService } from '../app/core/services/sidenav.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   Router,
   RoutesRecognized,
@@ -9,18 +9,18 @@ import {
   NavigationEnd,
   NavigationCancel,
   NavigationError,
-  Event
-} from "@angular/router";
-import { WorkoutService } from "../app/features/workouts/workouts-service/workout.service";
-import { AuthService } from "./core/services/auth/auth.service";
+  Event,
+} from '@angular/router';
+import { WorkoutService } from '../app/features/workouts/workouts-service/workout.service';
+import { AuthService } from './core/services/auth/auth.service';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = "velo-coach-app";
+export class AppComponent implements OnInit {
+  title = 'velo-coach-app';
   loadingRouteConfig: boolean;
   id;
   showToggle: string;
@@ -29,7 +29,7 @@ export class AppComponent {
   previousPosition: number;
   private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
 
-  @ViewChild("sidenav", { static: true }) matSidenav: MatSidenav;
+  @ViewChild('sidenav', { static: true }) matSidenav: MatSidenav;
 
   constructor(
     private sidenavService: SidenavService,
@@ -45,14 +45,14 @@ export class AppComponent {
   ngOnInit() {
     this.sidenavService.setSidenav(this.matSidenav);
     this.authService.autoLogin();
-    this.getScreenWidth().subscribe(width => {
+    this.getScreenWidth().subscribe((width) => {
       if (width < 640) {
-        this.showToggle = "show";
-        this.mode = "over";
+        this.showToggle = 'show';
+        this.mode = 'over';
         this.openSidenav = false;
       } else if (width > 640) {
-        this.showToggle = "hide";
-        this.mode = "side";
+        this.showToggle = 'hide';
+        this.mode = 'side';
         this.openSidenav = true;
       }
     });
@@ -72,13 +72,16 @@ export class AppComponent {
   }
 
   resetPosition() {
-    let myDiv = document.getElementById("detail");
+    const myDiv = document.getElementById('detail');
     // get router id from params to check position and reset
-    let routeSub = this.router.events.subscribe(val => {
-      // The val.state.root.firstchild.url returns an array of the url. ... workouts/1 would be an array of 2 object paths: "workouts" and 1. This statement checks to see if you are returning to the workout list, and if so, it will remember your scroll position and return to the same spot so you don't need to scroll down again
+    const routeSub = this.router.events.subscribe((val) => {
+      // The val.state.root.firstchild.url returns an array of the url
+      // workouts/1 would be an array of 2 object paths: "workouts" and 1
+      // This statement checks to see if you are returning to the workout list,
+      // and if so, it will remember your scroll position and return to the same spot so you don't need to scroll down again
       if (val instanceof RoutesRecognized) {
         this.id = val.state.root.firstChild.url;
-        if (this.id.length === 1 && this.id[0].path === "workouts") {
+        if (this.id.length === 1 && this.id[0].path === 'workouts') {
           myDiv.scrollTop = this.workoutService.previousPosition;
         } else {
           myDiv.scrollTop = 0;
@@ -89,7 +92,7 @@ export class AppComponent {
     });
   }
 
-  @HostListener("window:resize", ["$event"])
+  @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.screenWidth$.next(event.target.innerWidth);
   }
