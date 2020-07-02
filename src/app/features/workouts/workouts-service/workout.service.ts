@@ -3,7 +3,7 @@ import { Workout } from "../workout.model";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class WorkoutService {
   previousPosition: number;
@@ -63,12 +63,12 @@ export class WorkoutService {
     types: string[],
     zwo: string[]
   ) {
-    const workouts = this.workouts.filter(workout => {
+    const workouts = this.workouts.filter((workout) => {
       return (
         (!phases.length ||
-          phases.some(phase => workout.phase.includes(phase))) &&
+          phases.some((phase) => workout.phase.includes(phase))) &&
         (!specialties.length ||
-          specialties.some(specialty =>
+          specialties.some((specialty) =>
             workout.specialty.includes(specialty)
           )) &&
         (duration.length === 0 || duration.indexOf(workout.duration) >= 0) &&
