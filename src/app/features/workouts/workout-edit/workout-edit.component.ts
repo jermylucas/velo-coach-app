@@ -18,7 +18,7 @@ import { FirebaseStorageService } from "../../../core/services/storage/firebase-
   styleUrls: ["./workout-edit.component.scss"]
 })
 export class WorkoutEditComponent implements OnInit {
-  @ViewChild("modalImageDialog", { static: false })
+  @ViewChild("modalImageDialog")
   modalImageDialog: TemplateRef<any>;
 
   id: number;
