@@ -9,7 +9,7 @@ import { DataStorageService } from "../../../core/services/storage/datastorage.s
 import { AngularFireStorage } from "@angular/fire/storage";
 // Finalize for upload operator
 import { finalize } from "rxjs/operators";
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { FirebaseStorageService } from "../../../core/services/storage/firebase-storage.service";
 
 @Component({

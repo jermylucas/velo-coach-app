@@ -1,6 +1,6 @@
 import { Component, ViewChild, HostListener } from "@angular/core";
 import { SidenavService } from "../app/core/services/sidenav.service";
-import { MatSidenav } from "@angular/material";
+import { MatSidenav } from "@angular/material/sidenav";
 import { BehaviorSubject, Observable } from "rxjs";
 import {
   Router,
