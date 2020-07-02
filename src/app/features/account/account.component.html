@@ -1,4 +1,29 @@
-<div style="padding: 20px; ">
-  <h4>This is where accounts and account settings will go</h4>
+<div class="uploader-status" *ngIf="isLoading">
+  <mat-spinner style="margin:0 auto;"
+    mode="indeterminate"></mat-spinner>
+</div>
+<div style="padding: 20px; " *ngIf="!editMode && !isLoading">
+  <h4>Welcome {{ activeUser.displayName }}</h4>
+  <h3>Your email is {{ activeUser.email }}</h3>
+
+  <button type="button" (click)="changeMode()">Click to edit</button>
   <div class="ball-loader"></div>
+</div>
+<div class="edit" *ngIf="editMode && !isLoading">
+  <form [formGroup]="accountEdit" (ngSubmit)="onSubmit()">
+    <div class="edit__btns">
+      <button [disabled]="!accountEdit.valid" type="submit" mat-raised-button class="edit__btns--save">Save
+        Changes</button>
+      <button type="button" mat-raised-button class="edit__btns--cancel" (click)="onCancel()">Cancel</button>
+    </div>
+    <div class="edit__group">
+      <mat-form-field
+        hideRequiredMarker
+        appearance="fill"
+        class="display-name">
+        <mat-label>Display Name</mat-label>
+        <input autocomplete="off" matInput formControlName="displayName" name="displayName" id="displayName">
+      </mat-form-field>
+    </div>
+  </form>
 </div>

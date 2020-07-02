@@ -1,16 +1,32 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { SidenavService } from "../../core/services/sidenav.service";
+import { AuthService } from "src/app/core/services/auth/auth.service";
+import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
+import { WorkoutService } from 'src/app/features/workouts/workouts-service/workout.service';
 
 @Component({
   selector: "app-sidenav",
   templateUrl: "./sidenav.component.html",
   styleUrls: ["./sidenav.component.scss"]
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit, OnDestroy {
+  private userSub: Subscription;
+  isAuthenticated: boolean = false;
   panelOpenState: boolean = false;
   screenSize: boolean;
 
-  constructor(private sidenavService: SidenavService) {}
+  constructor(
+    private sidenavService: SidenavService,
+    private authService: AuthService,
+    private router: Router,
+    private workoutService: WorkoutService
+  ) {}
+  ngOnInit() {
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
+  }
 
   closePanel() {
     this.panelOpenState = false;
@@ -23,5 +39,17 @@ export class SidenavComponent {
     } else {
       this.sidenavService.open();
     }
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.workoutService.clearWorkouts();
+  }
+  onLogin() {
+    this.router.navigate(["/auth"]);
   }
 }

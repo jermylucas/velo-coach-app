@@ -49,3 +49,15 @@
 .menu__btn--icon {
   margin-left: 20px;
 }
+
+.profile {
+  @media (max-width: $breakpoint-tablet-port) {
+    display: none;
+  }
+  @media (min-width: $breakpoint-tablet-port) {
+    display: block;
+  }
+  &__name {
+    color: $color-white;
+  }
+}

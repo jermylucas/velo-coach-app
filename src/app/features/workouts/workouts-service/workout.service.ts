@@ -42,6 +42,12 @@ export class WorkoutService {
     this.listTotal = this.workouts.length;
   }
 
+  clearWorkouts() {
+    const emptyWorkouts = [];
+    this.selectedWorkouts.next(emptyWorkouts);
+    this.listTotal = 0;
+  }
+
   //Updates workout instead of creating a new one while in editMode
   updateWorkout(index: number, newWorkout: Workout) {
     this.workouts[index] = newWorkout;
@@ -91,15 +97,18 @@ export class WorkoutService {
 
   // Set workouts fetched from server
   setWorkouts(workouts: Workout[]) {
-    this.workouts = workouts;
-    this.selectedWorkouts.next(this.workouts);
-    this.listTotal = this.workouts.length;
+    if (workouts == null) {
+      return;
+    } else if (workouts !== null) {
+      this.workouts = workouts;
+      this.selectedWorkouts.next(this.workouts);
+      this.listTotal = this.workouts.length;
+    }
   }
 
   //// Sort By: events
   sortByTitle() {
     if (!this.filteredList) {
-      console.log(this.workouts);
       this.workouts.sort(this.sortTitle);
     } else {
       this.filteredList.sort(this.sortTitle);
@@ -139,14 +148,3 @@ export class WorkoutService {
     return a.duration - b.duration;
   }
 }
-
-// WORKOUT MODEL
-//
-// title: string,
-// description: string,
-// imagePath: string,
-// type: string,
-// duration: number,
-// specialty: string[],
-// phase: string[],
-// zwo: boolean

@@ -15,4 +15,14 @@ export class LocalStorageService {
   clearAll() {
     sessionStorage.clear();
   }
+
+  setItemLocally(key: string, value: string) {
+    localStorage.setItem(key, value);
+  }
+  getItemLocally(key: string) {
+    return localStorage.getItem(key);
+  }
+  removeLocalItem(key: string) {
+    localStorage.removeItem(key);
+  }
 }
