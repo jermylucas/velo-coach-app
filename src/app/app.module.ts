@@ -9,7 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
-//Services
+// Services
 import { SidenavService } from '../app/core/services/sidenav.service';
 import { LocalStorageService } from '../app/core/services/storage/local-storage.service';
 
@@ -22,9 +22,9 @@ import { AuthComponent } from './core/auth/auth.component';
 ////// Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-//storage
+// Storage
 import { AngularFireStorageModule } from '@angular/fire/storage';
-//database
+// Database
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 

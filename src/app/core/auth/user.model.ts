@@ -3,6 +3,7 @@ export class User {
     public email: string,
     public id: string,
     public displayName: string,
+    // tslint:disable: variable-name
     private _token,
     private _tokenExpirationDate: Date
   ) {}

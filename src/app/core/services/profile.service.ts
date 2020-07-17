@@ -1,20 +1,17 @@
-import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
-import * as firebase from "firebase/app";
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase/app';
 
-import { AuthService } from "./auth/auth.service";
-import { BehaviorSubject } from "rxjs";
+import { AuthService } from './auth/auth.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ProfileService {
   currentUser: BehaviorSubject<any>;
 
-  constructor(
-    private firebaseAuth: AngularFireAuth,
-    private authService: AuthService
-  ) {
+  constructor(private firebaseAuth: AngularFireAuth, private authService: AuthService) {
     this.currentUser = new BehaviorSubject(this.firebaseAuth.auth.currentUser);
   }
 
