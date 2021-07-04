@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 import { NgxsModule } from '@ngxs/store';
 import { WorkoutState } from './workout.state';
 import { WorkoutsFilterComponent } from './workouts-filter/workouts-filter.component';
+import { WorkoutEditComponent } from './workout-edit/workout-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { WorkoutsFilterComponent } from './workouts-filter/workouts-filter.compo
     WorkoutsListComponent,
     WorkoutDetailComponent,
     WorkoutsFilterComponent,
+    WorkoutEditComponent,
   ],
   imports: [
     SharedModule,
