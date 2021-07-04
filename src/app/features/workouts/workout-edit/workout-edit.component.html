@@ -1,0 +1,183 @@
+<!-- form container -->
+<div class="uploader-status" *ngIf="isLoading">
+  <mat-spinner style="margin: 0 auto" mode="indeterminate"></mat-spinner>
+</div>
+
+<div class="form" *ngIf="!isLoading">
+  <form [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
+    <!-- (ngSubmit)="onSubmit(f)" #f="ngForm" -->
+
+    <!-- form buttons -->
+    <div class="form__btns">
+      <button
+        mat-raised-button
+        type="submit"
+        class="form__btns--save"
+        [disabled]="!workoutForm.valid"
+      >
+        {{ editMode ? "Update" : "Save" }}
+      </button>
+      <!-- [disabled]="!f.form.valid" -->
+      <button
+        mat-raised-button
+        type="button"
+        (click)="onCancel()"
+        class="form__btns--cancel"
+      >
+        Cancel
+      </button>
+    </div>
+
+    <div class="form__group">
+      <!-- title -->
+      <mat-form-field hideRequiredMarker appearance="fill" class="title">
+        <mat-label>Title</mat-label>
+        <input
+          autocomplete="off"
+          matInput
+          formControlName="title"
+          name="title"
+          id="title"
+        />
+      </mat-form-field>
+
+      <!-- phase -->
+      <mat-form-field hideRequiredMarker appearance="fill" class="phase">
+        <mat-label>Phase</mat-label>
+        <mat-select multiple id="phase" name="phase" formControlName="phase">
+          <mat-option value="Base 1">Base 1</mat-option>
+          <mat-option value="Base 2">Base 2</mat-option>
+          <mat-option value="Base 3">Base 3</mat-option>
+          <mat-option value="Build 1">Build 1</mat-option>
+          <mat-option value="Build 2">Build 2</mat-option>
+          <mat-option value="Recovery">Recovery</mat-option>
+          <mat-option value="Peak">Peak</mat-option>
+          <mat-option value="Race">Race</mat-option>
+          <mat-option value="Testing">Testing</mat-option>
+          <mat-option value="Strength Build">Strength Build</mat-option>
+          <mat-option value="Strength Maintenance"
+            >Strength Maintenance</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <!-- specialty -->
+      <mat-form-field hideRequiredMarker appearance="fill" class="specialty">
+        <mat-label>Specialty</mat-label>
+        <mat-select
+          multiple
+          formControlName="specialty"
+          name="specialty"
+          id="specialty"
+        >
+          <mat-option value="Road Race">Road Race</mat-option>
+          <mat-option value="Criterium">Criterium</mat-option>
+          <mat-option value="Hill Climb">Hill Climb</mat-option>
+          <mat-option value="Cyclocross">Cyclocross</mat-option>
+          <mat-option value="Gravel">Gravel</mat-option>
+          <mat-option value="Timetrial">Time Trial</mat-option>
+          <mat-option value="Cross Country MTB">Cross Country MTB</mat-option>
+          <mat-option value="Gym Work">Gym Work</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- type -->
+      <mat-form-field hideRequiredMarker appearance="fill" class="type">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" id="type" name="type">
+          <mat-option value="Anaerobic">Anaerobic</mat-option>
+          <mat-option value="Aerobic / Endurance"
+            >Aerobic / Endurance</mat-option
+          >
+          <mat-option value="Muscular Endurance">Musc. Endurance</mat-option>
+          <mat-option value="Power">Power</mat-option>
+          <mat-option value="Sweet Spot">Sweet Spot</mat-option>
+          <mat-option value="Strength">Strength</mat-option>
+          <mat-option value="Technique">Technique</mat-option>
+          <mat-option value="Tempo">Tempo</mat-option>
+          <mat-option value="Threshold">Threshold</mat-option>
+          <mat-option value="Vo2 Max">Vo2 Max</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- zwo -->
+      <mat-form-field hideRequiredMarker appearance="fill" class="zwo">
+        <mat-label>On Zwift?</mat-label>
+        <mat-select formControlName="zwo" name="zwo" id="zwo">
+          <mat-option value="Yes">Yes</mat-option>
+          <mat-option value="No">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- imagePath -->
+      <button
+        *ngIf="!editMode || replaceImage"
+        class="img"
+        type="button"
+        (click)="fileInput.click()"
+      >
+        <input
+          #fileInput
+          type="file"
+          accept="image/*"
+          formControlName="imageUrl"
+          name="imagePath"
+          class="img-input"
+          (change)="onImageChange($event)"
+        />
+      </button>
+
+      <div *ngIf="editMode && !replaceImage" class="image-edit">
+        <button mat-stroked-button type="button" (click)="openModal()">
+          View Image
+        </button>
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="replaceImage = true; changeImage()"
+        >
+          Replace Image
+        </button>
+      </div>
+
+      <!-- time input -->
+      <mat-form-field hideRequiredMarker appearance="fill" class="duration">
+        <mat-label>Duration (minutes)</mat-label>
+        <input
+          type="number"
+          matInput
+          formControlName="duration"
+          name="duration"
+          id="duration"
+        />
+      </mat-form-field>
+
+      <!-- description -->
+      <div class="description">
+        <angular-editor
+          formControlName="description"
+          name="description"
+          id="description"
+          [config]="config"
+        >
+        </angular-editor>
+      </div>
+    </div>
+  </form>
+  <ng-template #modalImageDialog>
+    <div>
+      <img [src]="imageUrl" class="modal-image" />
+    </div>
+  </ng-template>
+</div>
+
+<!--
+  title: string,
+  description: string,
+  imagePath: string,
+  type: string,
+  duration: number,
+  specialty: string[],
+  phase: string[],
+zwo: boolean
+-->
