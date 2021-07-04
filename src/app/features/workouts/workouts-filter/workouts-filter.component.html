@@ -1,0 +1,114 @@
+<button
+  mat-raised-button
+  class="checkbox-apply"
+  type="button"
+  (click)="applyFilter()"
+>
+  Apply
+</button>
+<h4>Phase</h4>
+<div class="checkbox">
+  <span *ngFor="let phase of phaseOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="phaseSelection.toggle(phase)"
+    >
+      {{ phase }}
+    </mat-checkbox>
+  </span>
+</div>
+
+<h4>Specialty</h4>
+<div class="checkbox">
+  <span *ngFor="let specialty of specialtyOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="specialtySelection.toggle(specialty)"
+    >
+      {{ specialty }}
+    </mat-checkbox>
+  </span>
+</div>
+
+<h4>Duration (filters to be added)</h4>
+<div class="checkbox">
+  <span *ngFor="let duration of durationOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="durationSelection.toggle(duration)"
+    >
+      {{ duration }}
+    </mat-checkbox>
+  </span>
+</div>
+
+<h4>Type</h4>
+<div class="checkbox">
+  <span *ngFor="let type of typeOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="typeSelection.toggle(type)"
+    >
+      {{ type }}
+    </mat-checkbox>
+  </span>
+</div>
+
+<h4>On Zwift?</h4>
+<div class="checkbox">
+  <span *ngFor="let zwo of zwoOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="zwoSelection.toggle(zwo)"
+    >
+      {{ zwo }}
+    </mat-checkbox>
+  </span>
+</div>
+
+<!-- PHASES -->
+<!-- Base 1
+Base 2
+Base 3
+Build 1
+Build 2
+Recovery
+Peak
+Race
+Testing -->
+
+<!-- SPECIALTIES -->
+<!-- Rolling Road Race
+Climbing Road Race
+Cyclocross
+Gravel
+Time Trial
+Cross Country MTB -->
+
+<!-- DURATION -->
+<!-- Less than 30min
+30 &mdash; 60min
+60 &mdash; 90min
+90min &mdash; 2hrs
+2 &mdash; 3hrs
+3hrs +  -->
+
+<!-- TYPE -->
+<!-- Anaerobic
+Aerobic / Endurance
+Power
+Sweet Spot
+Strength
+Technique
+Testing
+Tempo
+Threshold -->
+
+<!-- ZWIFT? -->
+<!-- Yes
+No -->
