@@ -2,16 +2,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MaterialModule } from './material.module';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+// Components
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 import { SideNavComponent } from './core/components/side-nav/side-nav.component';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { MaterialModule } from './material.module';
-import { SharedModule } from './shared/shared.module';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+
+// State
+import { NgxsModule } from '@ngxs/store';
+import { AppState } from './app.state';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     PageNotFoundComponent,
     SideNavComponent,
-    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +34,9 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     FormsModule,
     HttpClientModule,
+    NgxsModule.forRoot([AppState], {
+      developmentMode: !environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

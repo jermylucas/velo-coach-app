@@ -20,6 +20,8 @@ import { WorkoutsRoutingModule } from './workouts-routing.module';
 import { MaterialModule } from '../../../app/material.module';
 import { SharedModule } from '../../../app/shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { NgxsModule } from '@ngxs/store';
+import { WorkoutState } from './workout.state';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     ReactiveFormsModule,
     AngularEditorModule,
+    NgxsModule.forFeature([WorkoutState]),
   ],
   providers: [LocalStorageService],
 })
