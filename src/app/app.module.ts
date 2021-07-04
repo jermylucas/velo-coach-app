@@ -8,6 +8,10 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 import { SideNavComponent } from './core/components/side-nav/side-nav.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { MaterialModule } from './material.module';
+import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,15 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
     SideNavComponent,
     DashboardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    SharedModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
