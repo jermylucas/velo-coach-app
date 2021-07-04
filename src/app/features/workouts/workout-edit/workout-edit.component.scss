@@ -1,0 +1,131 @@
+@import "../../../../scss/variables";
+
+//mat-spinner color
+.uploader-status {
+  margin-top: 20px;
+}
+.uploader-status ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: $color-primary-light-blue;
+}
+
+//form
+.form {
+  width: 85%;
+  margin: auto;
+
+  &__btns {
+    margin: 10px 0;
+
+    &--save,
+    &--cancel {
+      color: $color-white;
+      margin-right: 10px;
+    }
+    &--save {
+      background: $color-green;
+    }
+    &--cancel {
+      background: $color-secondary-grey;
+    }
+  }
+
+  &__group {
+    display: grid;
+    grid-template-columns: repeat(4, 24.25%);
+    grid-gap: 1%;
+    grid-template-areas:
+      "title title title title"
+      "phase specialty type zwo"
+      "img img duration duration"
+      "desc desc desc desc";
+
+    @media (max-width: $breakpoint-tablet-land) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "title title"
+        "phase specialty"
+        "type zwo"
+        "img duration"
+        "desc desc";
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "title"
+        "phase"
+        "specialty"
+        "type"
+        "zwo"
+        "img"
+        "duration"
+        "desc";
+    }
+  }
+  @media (max-width: $breakpoint-tablet-land) {
+    width: 90%;
+  }
+  @media (max-width: $breakpoint-mobile) {
+    width: 95%;
+  }
+}
+
+.description {
+  grid-area: desc;
+  margin-top: 5px;
+}
+.specialty {
+  grid-area: specialty;
+}
+.title {
+  grid-area: title;
+}
+.phase {
+  grid-area: phase;
+}
+.zwo {
+  grid-area: zwo;
+}
+.type {
+  grid-area: type;
+}
+
+.img {
+  grid-area: img;
+  background: #f0f0f0;
+  border: none;
+  border-bottom: 1px solid #8b8b8b;
+  cursor: pointer;
+  transition: all 0.1s;
+  border-radius: 4px 4px 0 0;
+  height: 59px;
+
+  &:hover {
+    border-bottom: 1px solid black;
+  }
+
+  &-input {
+    color: #606060;
+    padding: 18px 0;
+  }
+  &-preview {
+    color: #9b9b9b;
+  }
+}
+.duration {
+  grid-area: duration;
+}
+.image-edit {
+  grid-area: img;
+  height: 59px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+// Modal Image
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+}
