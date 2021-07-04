@@ -22,12 +22,14 @@ import { SharedModule } from '../../../app/shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { NgxsModule } from '@ngxs/store';
 import { WorkoutState } from './workout.state';
+import { WorkoutsFilterComponent } from './workouts-filter/workouts-filter.component';
 
 @NgModule({
   declarations: [
     WorkoutsComponent,
     WorkoutsListComponent,
     WorkoutDetailComponent,
+    WorkoutsFilterComponent,
   ],
   imports: [
     SharedModule,

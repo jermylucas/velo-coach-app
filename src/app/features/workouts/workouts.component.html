@@ -1,1 +1,43 @@
-<p>workouts works!</p>
+<mat-toolbar class="toolbar">
+  <span class="toolbar__title">Sort By:</span>
+
+  <span class="toolbar__sort" (click)="onTitleSort()">Name</span>
+  <span class="break"></span>
+  <span class="toolbar__sort" (click)="onDurationSort()">Duration</span>
+  <span class="break"></span>
+  <span class="toolbar__sort" (click)="onPhaseSort()">Phase</span>
+
+  <span class="spacer"></span>
+
+  <div class="search__wrapper">
+    <div class="search__main">
+      <input type="text" class="search__main--term" placeholder="Search..." />
+      <button type="submit" class="search__main--button">
+        <mat-icon class="search__icon">search</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-toolbar class="toolbar__mobile">
+  <div class="search__mobile">
+    <input type="text" class="search__mobile--term" placeholder="Search..." />
+    <button type="submit" class="search__mobile--button">
+      <mat-icon class="search__icon">search</mat-icon>
+    </button>
+  </div>
+  <button class="filter" (click)="openNav()">
+    <mat-icon>filter_list</mat-icon>Filter
+  </button>
+</mat-toolbar>
+
+<!-- will link with different workout components here -->
+<!-- workouts-filter
+workouts-list (inside the list there are the items)  -->
+<div class="main__workouts">
+  <div class="main__workouts--filter" id="filter">
+    <!-- <app-workouts-filter></app-workouts-filter> -->
+  </div>
+  <div class="main__workouts--list">
+    <app-workouts-list></app-workouts-list>
+  </div>
+</div>

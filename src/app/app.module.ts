@@ -18,6 +18,8 @@ import { SideNavComponent } from './core/components/side-nav/side-nav.component'
 // State
 import { NgxsModule } from '@ngxs/store';
 import { AppState } from './app.state';
+import { SidenavService } from './core/services/sidenav.service';
+import { LocalStorageService } from './core/services/storage/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,15 @@ import { AppState } from './app.state';
       developmentMode: !environment.production,
     }),
   ],
-  providers: [],
+  providers: [
+    SidenavService,
+    LocalStorageService,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorService,
+    //   multi: true,
+    // },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
