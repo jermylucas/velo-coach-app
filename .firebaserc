@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "velo-coach-app": {
+      "hosting": {
+        "velo-coach-app": [
+          "velo-coach"
+        ]
+      }
+    }
+  }
+}

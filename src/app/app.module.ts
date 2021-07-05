@@ -20,6 +20,7 @@ import { NgxsModule } from '@ngxs/store';
 import { AppState } from './app.state';
 import { SidenavService } from './core/services/sidenav.service';
 import { LocalStorageService } from './core/services/storage/local-storage.service';
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LocalStorageService } from './core/services/storage/local-storage.servi
     NgxsModule.forRoot([AppState], {
       developmentMode: !environment.production,
     }),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     SidenavService,
