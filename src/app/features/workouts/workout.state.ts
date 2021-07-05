@@ -1,4 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { tap } from 'rxjs/operators';
 
 export class Workout {

@@ -4,15 +4,13 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: 'AIzaSyAgzzN457IQNb25G7dPH9Th7dZnso5f24k',
-    authDomain: 'velo-coach-app.firebaseapp.com',
-    databaseURL: 'https://velo-coach-app.firebaseio.com',
-    projectId: 'velo-coach-app',
-    storageBucket: 'velo-coach-app.appspot.com',
-    messagingSenderId: '385105086333',
-    appId: '1:385105086333:web:5a6182fd5a7280a7986e14',
-    measurementId: 'G-Q7ZBG41BL2',
+  firebase: {
+    apiKey: 'AIzaSyAAFbg72A4GoB0UZsJUAnGpDSgXhN5wOhY',
+    authDomain: 'velo-coach.firebaseapp.com',
+    projectId: 'velo-coach',
+    storageBucket: 'velo-coach.appspot.com',
+    messagingSenderId: '857005255084',
+    appId: '1:857005255084:web:d17f53ffdc410133b7b209',
   },
 };
 
