@@ -54,6 +54,7 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
         console.log('Workouts Res', this.workouts);
       });
 
+    // Old method
     // this.workoutSubscription = this.workoutService
     //   .getWorkouts()
     //   .subscribe((res) => {
