@@ -35,6 +35,7 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
     private db: AngularFireDatabase
   ) {
     this.workoutsRef = this.db.list('workouts');
+
     // Adds workout to DB
     // this.db.list('workouts').push(this.sampleWorkout);
 
