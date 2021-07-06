@@ -1,0 +1,35 @@
+.wheel {
+  stroke-dasharray: 160px;
+  -webkit-animation: spin 0.3s linear infinite;
+          animation: spin 0.3s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  to {
+    stroke-dashoffset: 450;
+  }
+}
+
+@keyframes spin {
+  to {
+    stroke-dashoffset: 450;
+  }
+}
+
+.road {
+  stroke-dasharray: 60px;
+  -webkit-animation: dash 0.25s linear infinite;
+          animation: dash 0.25s linear infinite;
+}
+
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 120;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 120;
+  }
+}

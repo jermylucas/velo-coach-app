@@ -1,0 +1,34 @@
+/* whites */
+/* greys and blacks */
+/* colors */
+/* Media Query Breakpoints */
+.checkbox {
+  font-size: 15px;
+  margin: 0 0 20px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.checkbox-apply {
+  margin: 10px 0 10px 20px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.checkbox-apply:active {
+  outline: none;
+  -webkit-transform: translateY(1px);
+          transform: translateY(1px);
+  -webkit-box-shadow: 0 5px 2px rgba(12, 12, 12, 0.2);
+          box-shadow: 0 5px 2px rgba(12, 12, 12, 0.2);
+}
+
+h4 {
+  margin: 10px 20px;
+  padding: 0;
+}

@@ -1,6 +1,8 @@
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { tap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
+import { patch } from '@ngxs/store/operators';
+import { Injectable } from '@angular/core';
 
 export class Workout {
   title: string;
@@ -13,16 +15,83 @@ export class Workout {
   zwo: string;
 }
 
-export class Workouts {
+export interface WorkoutStateModel {
   workouts: Workout[];
+  loading: boolean;
 }
 
-export interface WorkoutStateModel {}
+export class FetchWorkouts {
+  static readonly type = '[WorkoutState] FetchWorkouts';
+}
+
+export class GetWorkout {
+  static readonly type = '[WorkoutState] GetWorkout';
+}
+
+export class SaveWorkout {
+  static readonly type = '[WorkoutState] SaveWorkout';
+  constructor(public payload: Workout) {}
+}
+
+export class DeleteWorkout {
+  static readonly type = '[WorkoutState] DeleteWorkout';
+  constructor(public payload: any) {}
+}
+
+export class ResetLoading {
+  static readonly type = '[WorkoutState] ResetLoading';
+}
 
 @State<WorkoutStateModel>({
   name: 'workout',
-  defaults: {},
+  defaults: {
+    workouts: [],
+    loading: false,
+  },
 })
+@Injectable()
 export class WorkoutState {
-  constructor() {}
+  workoutsRef: any;
+  constructor(private db: AngularFireDatabase) {
+    this.workoutsRef = this.db.list('workouts');
+  }
+
+  @Selector()
+  public static workouts(state: WorkoutStateModel) {
+    return state.workouts;
+  }
+  @Selector()
+  public static loading(state: WorkoutStateModel) {
+    return state.loading;
+  }
+
+  @Action(FetchWorkouts)
+  fetchWorkouts(ctx: StateContext<WorkoutStateModel>) {
+    ctx.setState(patch<WorkoutStateModel>({ loading: true }));
+    return this.workoutsRef.snapshotChanges().pipe(
+      map((changes: any) =>
+        changes.map((c) => ({
+          key: c.payload.key,
+          ...c.payload.val(),
+        }))
+      ),
+      tap((res: Workout[]) => {
+        ctx.setState(
+          patch<WorkoutStateModel>({
+            workouts: res,
+          })
+        );
+      }),
+      mergeMap(() => ctx.dispatch(new ResetLoading()))
+    );
+  }
+
+  @Action(ResetLoading)
+  resetLoading(ctx: StateContext<WorkoutStateModel>) {
+    ctx.setState(
+      patch<WorkoutStateModel>({
+        loading: false,
+      })
+    );
+  }
 }

@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { WorkoutService } from '../services/workout.service';
+import { FetchWorkouts, Workout, WorkoutState } from '../workout.state';
 
 @Component({
   selector: 'app-workouts-list',
@@ -9,6 +12,9 @@ import { WorkoutService } from '../services/workout.service';
   styleUrls: ['./workouts-list.component.scss'],
 })
 export class WorkoutsListComponent implements OnInit, OnDestroy {
+  @Select(WorkoutState.workouts) workouts$: Observable<Workout[]>;
+  @Select(WorkoutState.loading) loading$: Observable<any>;
+
   workouts: any;
   fireWorkouts: AngularFireObject<any>;
   listCount: number | null;
@@ -32,28 +38,27 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
 
   constructor(
     private workoutService: WorkoutService,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private store: Store
   ) {
-    this.workoutsRef = this.db.list('workouts');
-
+    // this.store.dispatch(new FetchWorkouts());
+    // this.workoutsRef = this.db.list('workouts');
     // Adds workout to DB
     // this.db.list('workouts').push(this.sampleWorkout);
-
-    this.workoutsRef
-      .snapshotChanges()
-      .pipe(
-        map((changes: any) =>
-          changes.map((c) => ({
-            key: c.payload.key,
-            ...c.payload.val(),
-          }))
-        )
-      )
-      .subscribe((res) => {
-        this.workouts = res;
-        console.log('Workouts Res', this.workouts);
-      });
-
+    // this.workoutsRef
+    //   .snapshotChanges()
+    //   .pipe(
+    //     map((changes: any) =>
+    //       changes.map((c) => ({
+    //         key: c.payload.key,
+    //         ...c.payload.val(),
+    //       }))
+    //     )
+    //   )
+    //   .subscribe((res) => {
+    //     this.workouts = res;
+    //     console.log('Workouts Res', this.workouts);
+    //   });
     // Old method
     // this.workoutSubscription = this.workoutService
     //   .getWorkouts()
@@ -74,10 +79,14 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
     //   });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.workouts$.subscribe((res) => {
+      this.workouts = res;
+    });
+  }
 
   ngOnDestroy() {
-    this.workoutSubscription.unsubscribe();
+    // this.workoutSubscription.unsubscribe();
   }
   scrollPosition() {
     // Keeps previous scroll position in service for when back button is clicked on the workoutdetail page

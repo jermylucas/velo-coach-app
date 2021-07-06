@@ -1,0 +1,180 @@
+/* whites */
+/* greys and blacks */
+/* colors */
+/* Media Query Breakpoints */
+.toolbar {
+  background: #c4c4c4;
+  height: 48px;
+  font-weight: normal;
+}
+
+.toolbar__title {
+  font-size: 16px;
+  margin-right: 2rem;
+}
+
+.toolbar__sort {
+  font-size: 16px;
+  color: #0061ad;
+  cursor: pointer;
+}
+
+.toolbar__search-icon {
+  display: inline;
+}
+
+.toolbar__mobile {
+  background: #c4c4c4;
+  height: 36px;
+  font-weight: normal;
+  display: none;
+  padding: 0 5px;
+}
+
+@media (max-width: 980px) {
+  .toolbar__mobile {
+    display: block;
+  }
+}
+
+.break {
+  width: 25px;
+  height: 0px;
+  left: 400px;
+  top: 68px;
+  border: 1px solid #868686;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.spacer {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.search__main {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 300px;
+  padding: 0;
+}
+
+.search__main--term {
+  width: 100%;
+  border: 1px solid #1f1f1f;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.search__main--term:focus {
+  color: #1f1f1f;
+}
+
+.search__main--button {
+  width: 40px;
+  border: 1px solid #1f1f1f;
+  background: #c4c4c4;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+@media (max-width: 980px) {
+  .search__main {
+    display: none;
+  }
+}
+
+.search__mobile {
+  position: relative;
+  float: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  max-width: 250px;
+  padding: 0;
+}
+
+.search__mobile--term {
+  width: 100%;
+  border: 1px solid #1f1f1f;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.search__mobile--term:focus {
+  color: #1f1f1f;
+}
+
+.search__mobile--button {
+  width: 40px;
+  border: 1px solid #1f1f1f;
+  background: #c4c4c4;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.search__icon {
+  vertical-align: bottom;
+  color: black;
+}
+
+.filter {
+  display: none;
+  border: 1px solid #303030;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 21px;
+  float: right;
+}
+
+@media (max-width: 980px) {
+  .filter {
+    display: inline-block;
+  }
+}
+
+.main__workouts {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30% 70%;
+      grid-template-columns: 30% 70%;
+}
+
+@media (max-width: 980px) {
+  .main__workouts--filter {
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    top: 56;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+@media (max-width: 980px) {
+  .main__workouts {
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
+  }
+}

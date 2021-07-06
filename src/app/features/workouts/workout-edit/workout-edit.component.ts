@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DataStorageService } from '../../../core/services/storage/datastorage.service';
 // Firebase Storage
-// import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 // Finalize for upload operator
 import { finalize } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
@@ -75,11 +75,10 @@ export class WorkoutEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dataStorage: DataStorageService,
-    // private fireStorage: AngularFireStorage,
+    private fireStorage: AngularFireStorage,
     private fb: FormBuilder,
-    private dialog: MatDialog
-  ) // private fireStorageService: FirebaseStorageService
-  {
+    private dialog: MatDialog // private fireStorageService: FirebaseStorageService
+  ) {
     this.createForms();
   }
 

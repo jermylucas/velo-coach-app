@@ -1,0 +1,27 @@
+/* whites */
+/* greys and blacks */
+/* colors */
+/* Media Query Breakpoints */
+.main-sidenav {
+  position: absolute;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.sidenav {
+  margin-top: 56px;
+  display: block;
+  width: 212px;
+  height: 100%;
+  position: fixed;
+  background: #303030;
+  /* disable user-select so it doesn't highlight menu text */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

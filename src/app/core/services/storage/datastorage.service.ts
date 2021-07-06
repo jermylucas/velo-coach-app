@@ -32,22 +32,22 @@ export class DataStorageService {
     this.popupService.openSnackBar('Workouts Saved to Server');
   }
 
-  fetchWorkouts() {
-    const currentId = JSON.parse(
-      this.localStorage.getItemLocally('userData') || '{}'
-    );
-    return this.http
-      .get<Workout[]>(
-        `https://velo-coach-app.firebaseio.com/workouts/${currentId.id}.json`
-      )
-      .pipe(
-        map((workouts) => {
-          return workouts;
-        }),
-        tap((workouts) => {
-          this.workoutService.setWorkouts(workouts);
-          this.popupService.openSnackBar('Workouts Fetch From Server');
-        })
-      );
-  }
+  // fetchWorkouts() {
+  //   const currentId = JSON.parse(
+  //     this.localStorage.getItemLocally('userData') || '{}'
+  //   );
+  //   return this.http
+  //     .get<Workout[]>(
+  //       `https://velo-coach-app.firebaseio.com/workouts/${currentId.id}.json`
+  //     )
+  //     .pipe(
+  //       map((workouts) => {
+  //         return workouts;
+  //       }),
+  //       tap((workouts) => {
+  //         this.workoutService.setWorkouts(workouts);
+  //         this.popupService.openSnackBar('Workouts Fetch From Server');
+  //       })
+  //     );
+  // }
 }
