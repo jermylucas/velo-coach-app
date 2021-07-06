@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import { AngularFireObject } from '@angular/fire/database';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { WorkoutService } from '../services/workout.service';
-import { FetchWorkouts, Workout, WorkoutState } from '../workout.state';
+import { Workout, WorkoutState } from '../workout.state';
 
 @Component({
   selector: 'app-workouts-list',
@@ -12,8 +11,8 @@ import { FetchWorkouts, Workout, WorkoutState } from '../workout.state';
   styleUrls: ['./workouts-list.component.scss'],
 })
 export class WorkoutsListComponent implements OnInit, OnDestroy {
-  @Select(WorkoutState.workouts) workouts$: Observable<Workout[]>;
-  @Select(WorkoutState.loading) loading$: Observable<any>;
+  @Select(WorkoutState.workoutList) workoutList$: Observable<Workout[]>;
+  @Select(WorkoutState.loading) loading$: Observable<boolean>;
 
   workouts: any;
   fireWorkouts: AngularFireObject<any>;
@@ -36,52 +35,20 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
     zwo: 'No',
   };
 
-  constructor(
-    private workoutService: WorkoutService,
-    private db: AngularFireDatabase,
-    private store: Store
-  ) {
-    // this.store.dispatch(new FetchWorkouts());
-    // this.workoutsRef = this.db.list('workouts');
-    // Adds workout to DB
-    // this.db.list('workouts').push(this.sampleWorkout);
-    // this.workoutsRef
-    //   .snapshotChanges()
-    //   .pipe(
-    //     map((changes: any) =>
-    //       changes.map((c) => ({
-    //         key: c.payload.key,
-    //         ...c.payload.val(),
-    //       }))
-    //     )
-    //   )
-    //   .subscribe((res) => {
-    //     this.workouts = res;
-    //     console.log('Workouts Res', this.workouts);
-    //   });
-    // Old method
-    // this.workoutSubscription = this.workoutService
-    //   .getWorkouts()
-    //   .subscribe((res) => {
-    //     if (res == null) {
-    //       this.listTotal = null;
-    //       this.listCount = null;
-    //     } else if (res !== null) {
-    //       this.workouts = res;
-    //       this.listCount = this.workouts.length;
-    //       // "Hack" to get the list total to work... Fix later
-    //       if (this.workouts.length >= this.workoutService.listTotal) {
-    //         this.listTotal = this.workouts.length;
-    //       } else if (this.workoutService.listTotal > this.workouts.length) {
-    //         this.listTotal = this.workoutService.listTotal;
-    //       }
-    //     }
-    //   });
-  }
+  constructor(private workoutService: WorkoutService, private store: Store) {}
 
   ngOnInit() {
-    this.workouts$.subscribe((res) => {
-      this.workouts = res;
+    this.workoutList$.subscribe((res) => {
+      if (res) {
+        this.workouts = res;
+        this.listCount = this.workouts.length;
+        this.listTotal = this.store.selectSnapshot(
+          WorkoutState.workouts
+        ).length;
+      } else {
+        this.listCount = 0;
+        this.listTotal = 0;
+      }
     });
   }
 
