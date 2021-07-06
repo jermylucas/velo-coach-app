@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { AngularFireObject } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { WorkoutService } from '../services/workout.service';
 import { Workout, WorkoutState } from '../workout.state';
 
@@ -24,7 +25,28 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   workoutsRef;
   details: boolean;
 
-  constructor(private workoutService: WorkoutService, private store: Store) {}
+  item: Observable<any>;
+
+  sampleWorkout = {
+    description: '<font face="Roboto">This is a workout...<br></font>',
+    duration: 50,
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/velo-coach-app.appspot.com/o/workout-images%2FCapture.PNG_1585957054363?alt=media&token=56ae157e-6671-43ca-8ec9-a95bc8e93a47',
+    phase: ['Base 2', 'Base 3'],
+    specialty: ['Criterium'],
+    title: 'Test workout',
+    type: 'Aerobic / Endurance',
+    zwo: 'No',
+  };
+
+  constructor(
+    private workoutService: WorkoutService,
+    private store: Store,
+    private db: AngularFireDatabase
+  ) {
+    this.workoutsRef = this.db.list('workouts');
+    // Adds workout to DB
+  }
 
   ngOnInit() {
     this.workoutList$.subscribe((res) => {

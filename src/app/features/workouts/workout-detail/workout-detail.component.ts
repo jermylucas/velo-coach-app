@@ -4,7 +4,9 @@ import { LocalStorageService } from '../../../core/services/storage/local-storag
 
 import { PopupService } from '../../../core/services/snackbar.service';
 import { WorkoutService } from '../services/workout.service';
-import { Workout } from '../workout.state';
+import { Workout, WorkoutState } from '../workout.state';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-workout-detail',
@@ -12,6 +14,7 @@ import { Workout } from '../workout.state';
   styleUrls: ['./workout-detail.component.scss'],
 })
 export class WorkoutDetailComponent implements OnInit {
+  @Select(WorkoutState.workouts) workouts$: Observable<Workout[]>;
   id: number;
   workout: Workout;
 
@@ -31,6 +34,7 @@ export class WorkoutDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
+      console.log(data);
       const resolvedData: Workout = data['resolveData'];
       this.workout = resolvedData;
     });

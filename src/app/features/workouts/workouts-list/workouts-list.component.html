@@ -16,7 +16,11 @@
     </div>
     <div>
       <div *ngFor="let workout of workouts; let i = index">
-        <a [routerLink]="[i]" class="workout__item" (click)="scrollPosition()">
+        <a
+          [routerLink]="[workout.key]"
+          class="workout__item"
+          (click)="scrollPosition()"
+        >
           <div class="workout__item--img">
             <img [src]="workout.imageUrl" alt="{{ workout.title }}" />
           </div>
