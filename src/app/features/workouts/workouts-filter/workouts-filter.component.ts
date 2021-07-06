@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { WorkoutService } from '../services/workout.service';
+import { FilterWorkouts } from '../workout.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-workouts-filter',
@@ -55,7 +57,7 @@ export class WorkoutsFilterComponent implements OnInit {
   typeSelection = new SelectionModel<string>(true);
   zwoSelection = new SelectionModel<string>(true);
 
-  constructor(private workoutService: WorkoutService) {}
+  constructor(private workoutService: WorkoutService, private store: Store) {}
 
   ngOnInit() {}
 
