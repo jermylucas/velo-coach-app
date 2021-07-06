@@ -62,24 +62,7 @@ export class WorkoutsFilterComponent implements OnInit {
   ngOnInit() {}
 
   applyFilter() {
-    // this.store.dispatch(
-    //   new FilterWorkouts(
-    //     this.phaseSelection.selected,
-    //     this.specialtySelection.selected,
-    //     this.durationSelection.selected,
-    //     this.typeSelection.selected,
-    //     this.zwoSelection.selected
-    //   )
-    // );
     this.workoutService.filterWorkouts(
-      this.phaseSelection.selected,
-      this.specialtySelection.selected,
-      this.durationSelection.selected,
-      this.typeSelection.selected,
-      this.zwoSelection.selected
-    );
-    console.log(
-      'Sections',
       this.phaseSelection.selected,
       this.specialtySelection.selected,
       this.durationSelection.selected,
