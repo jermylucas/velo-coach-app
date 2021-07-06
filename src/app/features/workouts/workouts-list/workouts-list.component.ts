@@ -14,7 +14,7 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   @Select(WorkoutState.workoutList) workoutList$: Observable<Workout[]>;
   @Select(WorkoutState.loading) loading$: Observable<boolean>;
 
-  workouts: any;
+  workouts: any = [];
   fireWorkouts: AngularFireObject<any>;
   listCount: number | null;
   listTotal: number | null;
@@ -22,25 +22,14 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   workoutSubscription;
   @Input() previousPosition: number;
   workoutsRef;
-
-  sampleWorkout = {
-    description: '<font face="Roboto">This is a workout...<br></font>',
-    duration: 50,
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/velo-coach-app.appspot.com/o/workout-images%2FCapture.PNG_1585957054363?alt=media&token=56ae157e-6671-43ca-8ec9-a95bc8e93a47',
-    phase: ['Base 2', 'Base 3'],
-    specialty: ['Criterium'],
-    title: 'Test workout',
-    type: 'Aerobic / Endurance',
-    zwo: 'No',
-  };
+  details: boolean;
 
   constructor(private workoutService: WorkoutService, private store: Store) {}
 
   ngOnInit() {
     this.workoutList$.subscribe((res) => {
       if (res) {
-        this.workouts = res;
+        this.workouts = JSON.parse(JSON.stringify(res));
         this.listCount = this.workouts.length;
         this.listTotal = this.store.selectSnapshot(
           WorkoutState.workouts
@@ -55,6 +44,13 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // this.workoutSubscription.unsubscribe();
   }
+
+  hoverListItem(workout) {
+    workout.hoverState = true;
+    console.log(workout.hoverState);
+    workout.listItemHovered = !workout.listItemHovered;
+  }
+
   scrollPosition() {
     // Keeps previous scroll position in service for when back button is clicked on the workoutdetail page
     this.workoutService.previousPosition =
