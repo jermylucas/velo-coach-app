@@ -46,7 +46,7 @@ export class ResetLoading {
   name: 'workout',
   defaults: {
     workouts: [],
-    loading: false,
+    loading: true,
   },
 })
 @Injectable()
@@ -78,7 +78,8 @@ export class WorkoutState {
       tap((res: Workout[]) => {
         ctx.setState(
           patch<WorkoutStateModel>({
-            workouts: res,
+            workouts: res as Workout[],
+            loading: false,
           })
         );
       }),

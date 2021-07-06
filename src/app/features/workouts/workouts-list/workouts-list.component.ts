@@ -13,7 +13,7 @@ import { FetchWorkouts, Workout, WorkoutState } from '../workout.state';
 })
 export class WorkoutsListComponent implements OnInit, OnDestroy {
   @Select(WorkoutState.workouts) workouts$: Observable<Workout[]>;
-  @Select(WorkoutState.loading) loading$: Observable<any>;
+  @Select(WorkoutState.loading) loading$: Observable<boolean>;
 
   workouts: any;
   fireWorkouts: AngularFireObject<any>;
@@ -81,7 +81,14 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.workouts$.subscribe((res) => {
-      this.workouts = res;
+      if (res) {
+        this.workouts = res;
+        this.listCount = this.workouts.length;
+        this.listTotal = this.workouts.length;
+      } else {
+        this.listCount = 0;
+        this.listTotal = 0;
+      }
     });
   }
 
