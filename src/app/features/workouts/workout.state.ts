@@ -26,6 +26,7 @@ export class FilterOptions {
 
 export interface WorkoutStateModel {
   workouts: Workout[];
+  workout: Workout | null;
   workoutList: Workout[];
   loading: boolean;
 }
@@ -40,6 +41,7 @@ export class FilterWorkouts {
 }
 export class GetWorkout {
   static readonly type = '[WorkoutState] GetWorkout';
+  constructor(public payload: string) {}
 }
 
 export class SaveWorkout {
@@ -60,6 +62,7 @@ export class ResetLoading {
   name: 'workout',
   defaults: {
     workouts: [],
+    workout: null,
     workoutList: [],
     loading: true,
   },
@@ -78,6 +81,10 @@ export class WorkoutState {
   @Selector()
   public static workouts(state: WorkoutStateModel) {
     return state.workouts;
+  }
+  @Selector()
+  public static workout(state: WorkoutStateModel) {
+    return state.workout;
   }
   @Selector()
   public static workoutList(state: WorkoutStateModel) {
@@ -109,6 +116,24 @@ export class WorkoutState {
       }),
       mergeMap(() => ctx.dispatch(new ResetLoading()))
     );
+  }
+
+  @Action(GetWorkout)
+  getWorkout(ctx: StateContext<WorkoutStateModel>, { payload }: any) {
+    ctx.setState(patch<WorkoutStateModel>({ loading: true }));
+    return this.db
+      .object('workouts/' + payload)
+      .valueChanges()
+      .pipe(
+        tap((res) => {
+          ctx.setState(
+            patch<WorkoutStateModel>({
+              workout: res as Workout,
+              loading: false,
+            })
+          );
+        })
+      );
   }
 
   @Action(FilterWorkouts)
