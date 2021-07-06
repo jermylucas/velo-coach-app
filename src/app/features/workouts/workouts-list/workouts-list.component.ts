@@ -12,7 +12,7 @@ import { FetchWorkouts, Workout, WorkoutState } from '../workout.state';
   styleUrls: ['./workouts-list.component.scss'],
 })
 export class WorkoutsListComponent implements OnInit, OnDestroy {
-  @Select(WorkoutState.workouts) workouts$: Observable<Workout[]>;
+  @Select(WorkoutState.workoutList) workoutList$: Observable<Workout[]>;
   @Select(WorkoutState.loading) loading$: Observable<boolean>;
 
   workouts: any;
@@ -80,11 +80,13 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.workouts$.subscribe((res) => {
+    this.workoutList$.subscribe((res) => {
       if (res) {
         this.workouts = res;
         this.listCount = this.workouts.length;
-        this.listTotal = this.workouts.length;
+        this.listTotal = this.store.selectSnapshot(
+          WorkoutState.workouts
+        ).length;
       } else {
         this.listCount = 0;
         this.listTotal = 0;

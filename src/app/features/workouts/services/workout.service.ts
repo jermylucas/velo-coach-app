@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { BehaviorSubject } from 'rxjs';
-import { Workout } from '../workout.state';
+import { FilterWorkouts, Workout, WorkoutState } from '../workout.state';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class WorkoutService {
 
   filteredList: any;
 
-  constructor() {
+  constructor(private store: Store) {
     this.selectedWorkouts = new BehaviorSubject(this.workouts);
     this.listTotal = this.workouts.length;
   }
@@ -69,7 +70,8 @@ export class WorkoutService {
     types: string[],
     zwo: string[]
   ) {
-    const workouts = this.workouts.filter((workout) => {
+    this.workouts = this.store.selectSnapshot(WorkoutState.workouts);
+    const filteredWorkouts = this.workouts.filter((workout) => {
       return (
         (!phases.length ||
           phases.some((phase) => workout.phase.includes(phase))) &&
@@ -82,10 +84,13 @@ export class WorkoutService {
         (zwo.length === 0 || zwo.indexOf(workout.zwo) >= 0)
       );
     });
-    this.selectedWorkouts.next(workouts);
+    console.log('filteredWorkouts', filteredWorkouts);
+    this.store.dispatch(new FilterWorkouts(filteredWorkouts));
+    // this.selectedWorkouts.next(workouts);
 
+    // console.log(this.selectedWorkouts);
     // sets filteredList to workouts to allow sort functionality
-    this.filteredList = workouts;
+    this.filteredList = filteredWorkouts;
 
     // Removes overlay after select on small devices
     if (window.innerWidth < 981) {
