@@ -5,9 +5,9 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { LocalStorageService } from '../../services/storage/local-storage.service';
 
 export interface User {
-  email: string;
-  id: string;
-  displayName: string;
+  email: string | undefined;
+  uid: string | undefined;
+  displayName: string | undefined;
   // tslint:disable: variable-name
   _token;
   _tokenExpirationDate: Date;
@@ -15,12 +15,12 @@ export interface User {
 
 export interface UserProfile {
   email: string;
-  id: string;
+  uid: string;
   displayName: string;
 }
 
 export class UserStateModel {
-  user: UserProfile | undefined;
+  user: any;
   _token: string | null;
   _tokenExpirationDate: number | null;
 }
@@ -52,7 +52,11 @@ export class SetToken {
 @State<UserStateModel>({
   name: 'user',
   defaults: {
-    user: undefined,
+    user: {
+      email: undefined,
+      displayName: undefined,
+      uid: undefined,
+    },
     _token: null,
     _tokenExpirationDate: null,
   },
@@ -93,11 +97,12 @@ export class UserState {
 
   @Action(SetUser)
   setUser(ctx: StateContext<UserStateModel>, { payload }: any) {
+    console.log('SET USER PAYLOAD', payload);
     ctx.setState(
       patch<UserStateModel>({
         user: {
           email: payload.email,
-          id: payload.id,
+          uid: payload.uid,
           displayName: payload.displayName,
         },
       })

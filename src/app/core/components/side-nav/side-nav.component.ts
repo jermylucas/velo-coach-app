@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { SidenavService } from '../../services/sidenav.service';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { SetUser } from '../auth/user.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-sidenav',
@@ -18,11 +20,16 @@ export class SideNavComponent implements OnInit, OnDestroy {
   constructor(
     private sidenavService: SidenavService,
     private authService: FirebaseAuthService,
+    private store: Store,
     private router: Router // private workoutService: WorkoutService
   ) {}
   ngOnInit() {
     this.userSub = this.authService.user.subscribe((res) => {
       this.isAuthenticated = !!res;
+      if (res) {
+        console.log('not null');
+        // this.store.dispatch(new SetUser(res));
+      }
       console.log('Firebase Auth Sub', res);
     });
   }

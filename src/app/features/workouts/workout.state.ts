@@ -45,8 +45,12 @@ export class GetWorkout {
   constructor(public payload: string) {}
 }
 
-export class SaveWorkout {
-  static readonly type = '[WorkoutState] SaveWorkout';
+export class CreateWorkout {
+  static readonly type = '[WorkoutState] CreateWorkout';
+  constructor(public payload: Workout) {}
+}
+export class UpdateWorkout {
+  static readonly type = '[WorkoutState] UpdateWorkout';
   constructor(public payload: Workout) {}
 }
 
@@ -95,7 +99,7 @@ export class WorkoutState {
 
   @Action(FetchWorkouts)
   fetchWorkouts(ctx: StateContext<WorkoutStateModel>) {
-    const uid = this.store.selectSnapshot(UserState.user)?.id;
+    const uid = this.store.selectSnapshot(UserState.user)?.uid;
     console.log(uid);
     let workoutsRef = this.db.list(`/workouts/${uid}`);
 
@@ -127,7 +131,7 @@ export class WorkoutState {
 
   @Action(GetWorkout)
   getWorkout(ctx: StateContext<WorkoutStateModel>, { payload }: any) {
-    const uid = this.store.selectSnapshot(UserState.user)?.id;
+    const uid = this.store.selectSnapshot(UserState.user)?.uid;
     ctx.setState(patch<WorkoutStateModel>({ loading: true }));
     return this.db
       .object(`workouts/${uid}` + payload)
@@ -153,6 +157,15 @@ export class WorkoutState {
       })
     );
   }
+
+  @Action(CreateWorkout)
+  createWorkout(ctx: StateContext<WorkoutStateModel>, { payload }: any) {
+    const uid = this.store.selectSnapshot(UserState.user)?.uid;
+    let workoutsRef = this.db.list(`/workouts/${uid}`);
+    console.log('Create Workout State', payload);
+    return workoutsRef.push(payload);
+  }
+
   //   const state = ctx.getState();
   //   // const workouts = state.workouts.slice();
   //   return this.workoutService.filterWorkouts(phase, specialty, duration, type, zwo)

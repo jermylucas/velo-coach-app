@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-import { FetchWorkouts } from 'src/app/features/workouts/workout.state';
+import {
+  FetchWorkouts,
+  WorkoutState,
+} from 'src/app/features/workouts/workout.state';
 import { SetUser, User } from '../components/auth/user.state';
 import { LocalStorageService } from './storage/local-storage.service';
 
@@ -23,6 +26,18 @@ export class FirebaseAuthService {
     this.user = this.fireAuth.authState;
   }
 
+  login(email: string, password: string) {
+    return this.fireAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((res: any) => {
+        console.log('LOGIN RES', res);
+        this.store.dispatch(new SetUser(res.user as any));
+
+        this.isLoggedIn = true;
+        this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
+      });
+  }
+
   signup(email: string, password: string, name: string) {
     return this.fireAuth
       .createUserWithEmailAndPassword(email, password)
@@ -30,16 +45,6 @@ export class FirebaseAuthService {
         res.user?.updateProfile({
           displayName: name,
         });
-        this.isLoggedIn = true;
-        this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
-      });
-  }
-
-  login(email: string, password: string) {
-    return this.fireAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((res) => {
-        this.store.dispatch(new SetUser(res as any));
         this.isLoggedIn = true;
         this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
       });
@@ -58,17 +63,18 @@ export class FirebaseAuthService {
     }
     const loadedUser: User = {
       email: userData.email,
-      id: userData.uid,
+      uid: userData.uid,
       displayName: userData.displayName,
       _token: userData._token,
       _tokenExpirationDate: new Date(userData._tokenExpirationDate),
     };
-    this.store.dispatch(new SetUser(loadedUser));
+    this.store.dispatch(new SetUser(loadedUser as any));
   }
 
   logout() {
     this.fireAuth.signOut();
     this.localStorage.removeLocalItem('userData');
+    this.store.reset(WorkoutState);
     this.router.navigate(['/auth']);
   }
 }

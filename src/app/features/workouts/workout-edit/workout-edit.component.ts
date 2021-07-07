@@ -11,6 +11,8 @@ import { finalize } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 // import { FirebaseStorageService } from '../../../core/services/storage/firebase-storage.service';
 import { WorkoutService } from '../services/workout.service';
+import { CreateWorkout } from '../workout.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-workout-edit',
@@ -77,7 +79,8 @@ export class WorkoutEditComponent implements OnInit {
     private dataStorage: DataStorageService,
     private fireStorage: AngularFireStorage,
     private fb: FormBuilder,
-    private dialog: MatDialog // private fireStorageService: FirebaseStorageService
+    private dialog: MatDialog,
+    private store: Store // private fireStorageService: FirebaseStorageService
   ) {
     this.createForms();
   }
@@ -110,72 +113,80 @@ export class WorkoutEditComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.editMode) {
-    //   if (this.workoutForm.valid) {
-    //     this.isLoading = true;
-    //     if (this.newImage) {
-    //       //// Upload Image, upload workoutForm value, and store workouts to dataStorage
-    //       //// Adds date and time to image to avoid duplication
-    //       const filePath = `workout-images/${this.selectedImage.name}_${new Date().getTime()}`;
-    //       console.log(filePath);
-    // const fileRef = this.fireStorage.ref(filePath);
-    //       this.fireStorage
-    //         .upload(filePath, this.selectedImage)
-    //         .snapshotChanges()
-    //         .pipe(
-    //           finalize(() => {
-    //             fileRef.getDownloadURL().subscribe((url) => {
-    //               this.workoutForm['imageUrl'] = url;
-    //               // returns object with imageUrl of what I want
-    //               this.workoutForm.value.imageUrl = url;
-    //               this.isLoading = false;
-    //               this.workoutService.updateWorkout(this.id, this.workoutForm.value);
-    //               this.resetForm();
-    //               this.onCancel();
-    //               // store workouts
-    //               this.dataStorage.storeWorkouts();
-    //             });
-    //           })
-    //         )
-    //         .subscribe();
-    //     } else {
-    //       this.workoutService.updateWorkout(this.id, this.workoutForm.value);
-    //       this.resetForm();
-    //       this.onCancel();
-    //       // store workouts
-    //       this.dataStorage.storeWorkouts();
-    //     }
-    //     return;
-    //   }
-    // } else {
-    //   if (this.workoutForm.valid) {
-    //     this.isLoading = true;
-    //     // Upload Image, upload workoutForm value, and store workouts to dataStorage
-    //     // Adds date and time to avoid duplication
-    //     const filePath = `workout-images/${this.selectedImage.name}_${new Date().getTime()}`;
-    //     const fileRef = this.fireStorage.ref(filePath);
-    //     this.fireStorage
-    //       .upload(filePath, this.selectedImage)
-    //       .snapshotChanges()
-    //       .pipe(
-    //         finalize(() => {
-    //           fileRef.getDownloadURL().subscribe((url) => {
-    //             this.workoutForm['imageUrl'] = url;
-    //             // returns object with imageUrl of what I want
-    //             this.workoutForm.value.imageUrl = url;
-    //             this.isLoading = false;
-    //             this.workoutService.addWorkout(this.workoutForm.value);
-    //             this.resetForm();
-    //             this.onCancel();
-    //             this.dataStorage.storeWorkouts();
-    //           });
-    //         })
-    //       )
-    //       .subscribe();
-    //   } else {
-    //     alert('image not valid');
-    // }
-    // }
+    if (this.editMode) {
+      if (this.workoutForm.valid) {
+        this.isLoading = true;
+        if (this.newImage) {
+          //// Upload Image, upload workoutForm value, and store workouts to dataStorage
+          //// Adds date and time to image to avoid duplication
+          const filePath = `workout-images/${
+            this.selectedImage.name
+          }_${new Date().getTime()}`;
+          console.log(filePath);
+          const fileRef = this.fireStorage.ref(filePath);
+          this.fireStorage
+            .upload(filePath, this.selectedImage)
+            .snapshotChanges()
+            .pipe(
+              finalize(() => {
+                fileRef.getDownloadURL().subscribe((url) => {
+                  this.workoutForm['imageUrl'] = url;
+                  // returns object with imageUrl of what I want
+                  this.workoutForm.value.imageUrl = url;
+                  this.isLoading = false;
+                  this.workoutService.updateWorkout(
+                    this.id,
+                    this.workoutForm.value
+                  );
+                  this.resetForm();
+                  this.onCancel();
+                  // store workouts
+                  this.dataStorage.storeWorkouts();
+                });
+              })
+            )
+            .subscribe();
+        } else {
+          this.workoutService.updateWorkout(this.id, this.workoutForm.value);
+          this.resetForm();
+          this.onCancel();
+          // store workouts
+          this.dataStorage.storeWorkouts();
+        }
+        return;
+      }
+    } else {
+      if (this.workoutForm.valid) {
+        this.isLoading = true;
+        // Upload Image, upload workoutForm value, and store workouts to dataStorage
+        // Adds date and time to avoid duplication
+        const filePath = `workout-images/${
+          this.selectedImage.name
+        }_${new Date().getTime()}`;
+        const fileRef = this.fireStorage.ref(filePath);
+        this.fireStorage
+          .upload(filePath, this.selectedImage)
+          .snapshotChanges()
+          .pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe((url) => {
+                this.workoutForm['imageUrl'] = url;
+                // returns object with imageUrl of what I want
+                this.workoutForm.value.imageUrl = url;
+                this.isLoading = false;
+                this.store.dispatch(new CreateWorkout(this.workoutForm.value));
+                // this.workoutService.addWorkout(this.workoutForm.value);
+                this.resetForm();
+                this.onCancel();
+                // this.dataStorage.storeWorkouts();
+              });
+            })
+          )
+          .subscribe();
+      } else {
+        alert('image not valid');
+      }
+    }
   }
 
   changeImage() {
