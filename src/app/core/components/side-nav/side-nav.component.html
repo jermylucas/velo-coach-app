@@ -4,19 +4,6 @@
     routerLinkActive="sidenav__expansion--panel-active"
   >
     <div
-      class="sidenav__expansion--header"
-      routerLink="/dashboard"
-      (click)="closePanel()"
-      (click)="closeNav()"
-    >
-      <h2 class="sidenav__expansion--title">Dashboard</h2>
-    </div>
-  </div>
-  <!-- <div
-    class="sidenav__expansion--panel"
-    routerLinkActive="sidenav__expansion--panel-active"
-  >
-    <div
       *ngIf="!isAuthenticated"
       class="sidenav__expansion--header"
       routerLink="/auth"
@@ -25,8 +12,21 @@
     >
       <h2 class="sidenav__expansion--title">Login</h2>
     </div>
-  </div> -->
-  <div>
+  </div>
+  <div *ngIf="isAuthenticated">
+    <div
+      class="sidenav__expansion--panel"
+      routerLinkActive="sidenav__expansion--panel-active"
+    >
+      <div
+        class="sidenav__expansion--header"
+        routerLink="/dashboard"
+        (click)="closePanel()"
+        (click)="closeNav()"
+      >
+        <h2 class="sidenav__expansion--title">Dashboard</h2>
+      </div>
+    </div>
     <mat-expansion-panel
       [(expanded)]="panelOpenState"
       class="sidenav__expansion--panel"
@@ -59,7 +59,7 @@
         </ul>
       </mat-list-item>
     </mat-expansion-panel>
-    <div
+    <!-- <div
       class="sidenav__expansion--panel"
       routerLinkActive="sidenav__expansion--panel-active"
     >
@@ -71,7 +71,7 @@
       >
         <h2 class="sidenav__expansion--title">Training Plans</h2>
       </div>
-    </div>
+    </div> -->
     <div
       class="sidenav__expansion--panel"
       routerLinkActive="sidenav__expansion--panel-active"
@@ -88,8 +88,7 @@
   </div>
 
   <span class="spacer"></span>
-  <!-- *ngIf="isAuthenticated" -->
-  <div class="logout">
+  <div *ngIf="isAuthenticated" class="logout">
     <a (click)="onLogout()" class="logout-link"
       >Logout
       <mat-icon class="logout-link-icon" aria-label="logout icon"

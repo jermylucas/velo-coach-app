@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import firebase from 'firebase/app';
+import { Observable } from 'rxjs';
 import { FetchWorkouts } from 'src/app/features/workouts/workout.state';
 import { SetUser, User } from '../components/auth/user.state';
 import { LocalStorageService } from './storage/local-storage.service';
@@ -10,33 +12,33 @@ import { LocalStorageService } from './storage/local-storage.service';
   providedIn: 'root',
 })
 export class FirebaseAuthService {
+  user: Observable<any>;
   isLoggedIn = false;
   constructor(
     public fireAuth: AngularFireAuth,
     private localStorage: LocalStorageService,
-    private store: Store
-  ) {}
+    private store: Store,
+    private router: Router
+  ) {
+    this.user = this.fireAuth.authState;
+  }
 
-  async signup(email: string, password: string, name: string) {
-    await this.fireAuth
+  signup(email: string, password: string, name: string) {
+    return this.fireAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         res.user?.updateProfile({
           displayName: name,
         });
         this.isLoggedIn = true;
-        console.log('res', res);
-        console.log('User', res.user);
         this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
       });
   }
 
-  async login(email: string, password: string) {
-    // sign in
-    await this.fireAuth
+  login(email: string, password: string) {
+    return this.fireAuth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log('User login res', res);
         this.store.dispatch(new SetUser(res as any));
         this.isLoggedIn = true;
         this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
@@ -62,16 +64,11 @@ export class FirebaseAuthService {
       _tokenExpirationDate: new Date(userData._tokenExpirationDate),
     };
     this.store.dispatch(new SetUser(loadedUser));
-    // if (loadedUser.token) {
-    //   this.activeUser.next(loadedUser);
-    //   const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
-    //   this.autoLogout(expirationDuration);
-    // }
   }
 
   logout() {
     this.fireAuth.signOut();
     this.localStorage.removeLocalItem('userData');
-    this.store.dispatch(new FetchWorkouts());
+    this.router.navigate(['/auth']);
   }
 }

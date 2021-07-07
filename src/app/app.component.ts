@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.sidenavService.setSidenav(this.matSidenav);
     // if (this.)
-    // this.authService.autoLogin();
+    this.authService.autoLogin();
     this.getScreenWidth().subscribe((width) => {
       if (width < 640) {
         this.showToggle = 'show';
