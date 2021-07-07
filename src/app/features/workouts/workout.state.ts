@@ -4,6 +4,7 @@ import { map, mergeMap, tap } from 'rxjs/operators';
 import { patch } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { WorkoutService } from './services/workout.service';
+import { UserState } from 'src/app/core/components/auth/user.state';
 
 export class Workout {
   title: string;
@@ -69,14 +70,11 @@ export class ResetLoading {
 })
 @Injectable()
 export class WorkoutState {
-  workoutsRef: any;
   constructor(
     private db: AngularFireDatabase,
     private workoutService: WorkoutService,
     private store: Store
-  ) {
-    this.workoutsRef = this.db.list('workouts');
-  }
+  ) {}
 
   @Selector()
   public static workouts(state: WorkoutStateModel) {
@@ -97,8 +95,15 @@ export class WorkoutState {
 
   @Action(FetchWorkouts)
   fetchWorkouts(ctx: StateContext<WorkoutStateModel>) {
+    const uid = this.store.selectSnapshot(UserState.user)?.id;
+    let workoutsRef = this.db.list(`/workouts/${uid}`);
+
+    // if (uid === undefined) {
+    //   workoutsRef = this.db.list('workouts');
+    // }
+
     ctx.setState(patch<WorkoutStateModel>({ loading: true }));
-    return this.workoutsRef.snapshotChanges().pipe(
+    return workoutsRef.snapshotChanges().pipe(
       map((changes: any) =>
         changes.map((c) => ({
           key: c.payload.key,
@@ -106,6 +111,7 @@ export class WorkoutState {
         }))
       ),
       tap((res: Workout[]) => {
+        console.log(res);
         ctx.setState(
           patch<WorkoutStateModel>({
             workouts: res as Workout[],
@@ -120,9 +126,10 @@ export class WorkoutState {
 
   @Action(GetWorkout)
   getWorkout(ctx: StateContext<WorkoutStateModel>, { payload }: any) {
+    const uid = this.store.selectSnapshot(UserState.user)?.id;
     ctx.setState(patch<WorkoutStateModel>({ loading: true }));
     return this.db
-      .object('workouts/' + payload)
+      .object(`workouts/${uid}` + payload)
       .valueChanges()
       .pipe(
         tap((res) => {

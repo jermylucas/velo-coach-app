@@ -1,0 +1,125 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
+  <div class="auth-container" *ngIf="loginMode">
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+          <p>
+            <mat-form-field>
+              <input
+                type="text"
+                (focus)="focused = false"
+                matInput
+                placeholder="E-Mail"
+                ngModel
+                name="email"
+                required
+                email
+              />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input
+                type="password"
+                (focus)="focused = false"
+                matInput
+                placeholder="Password"
+                ngModel
+                name="password"
+                required
+                minlength="6"
+              />
+            </mat-form-field>
+          </p>
+          <p *ngIf="errorMessage && !focused" class="error">
+            {{ errorMessage }}
+          </p>
+
+          <div class="button">
+            <a
+              (click)="onSwitchMode(authForm); focused = false"
+              class="button-signup"
+              >New? Sign up</a
+            >
+            <button
+              matTooltip="Login Not Valid"
+              [matTooltipDisabled]="authForm.valid"
+              class="button-login"
+              type="submit"
+              mat-raised-button
+              [disabled]="!authForm.valid"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="auth-container" *ngIf="!loginMode">
+    <mat-card>
+      <mat-card-title>Sign Up</mat-card-title>
+      <mat-card-content>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+          <p>
+            <mat-form-field>
+              <input
+                type="text"
+                (focus)="focused = false"
+                matInput
+                placeholder="E-Mail"
+                ngModel
+                name="email"
+                required
+              />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input
+                type="password"
+                (focus)="focused = false"
+                matInput
+                placeholder="Password"
+                ngModel
+                name="password"
+                required
+                minlength="6"
+              />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input
+                type="name"
+                matInput
+                placeholder="Name"
+                ngModel
+                name="name"
+                required
+              />
+            </mat-form-field>
+          </p>
+          <p *ngIf="errorMessage && !focused" class="error">
+            {{ errorMessage }}
+          </p>
+          <div class="button">
+            <a (click)="onSwitchMode(authForm)" class="button-signup"
+              >Already have account? Login</a
+            >
+            <button
+              class="button-login"
+              type="submit"
+              mat-raised-button
+              [disabled]="!authForm.valid"
+            >
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

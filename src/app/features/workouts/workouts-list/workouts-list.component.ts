@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { UserState } from 'src/app/core/components/auth/user.state';
 import { WorkoutService } from '../services/workout.service';
 import { Workout, WorkoutState } from '../workout.state';
 
@@ -46,6 +47,10 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
   ) {
     this.workoutsRef = this.db.list('workouts');
     // Adds workout to DB
+
+    // const uid = this.store.selectSnapshot(UserState.user)?.id;
+    // console.log(uid);
+    // this.db.list(`workouts/${uid}`).push(this.sampleWorkout);
   }
 
   ngOnInit() {

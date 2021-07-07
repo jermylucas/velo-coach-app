@@ -21,6 +21,9 @@ import { AppState } from './app.state';
 import { SidenavService } from './core/services/sidenav.service';
 import { LocalStorageService } from './core/services/storage/local-storage.service';
 import { AngularFireModule } from '@angular/fire';
+import { AuthComponent } from './core/components/auth/auth.component';
+import { UserState } from './core/components/auth/user.state';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { AngularFireModule } from '@angular/fire';
     HeaderComponent,
     PageNotFoundComponent,
     SideNavComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +41,10 @@ import { AngularFireModule } from '@angular/fire';
     SharedModule,
     FormsModule,
     HttpClientModule,
-    NgxsModule.forRoot([AppState], {
+    NgxsModule.forRoot([AppState, UserState], {
       developmentMode: !environment.production,
     }),
+    NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [

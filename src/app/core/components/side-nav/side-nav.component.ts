@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { SidenavService } from '../../services/sidenav.service';
+import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,20 +10,18 @@ import { SidenavService } from '../../services/sidenav.service';
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent implements OnInit, OnDestroy {
-  // private userSub: Subscription;
+  private userSub: Subscription;
   isAuthenticated = false;
   panelOpenState = false;
   // screenSize: boolean;
 
   constructor(
     private sidenavService: SidenavService,
-    // private authService: AuthService,
+    private authService: FirebaseAuthService,
     private router: Router // private workoutService: WorkoutService
   ) {}
   ngOnInit() {
-    // this.userSub = this.authService.user.subscribe((user) => {
-    //   this.isAuthenticated = !!user;
-    // });
+    // this.userSub = this.authService.
   }
 
   closePanel() {
@@ -43,7 +42,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    // this.authService.logout();
+    this.authService.logout();
     // this.workoutService.clearWorkouts();
   }
   onLogin() {
