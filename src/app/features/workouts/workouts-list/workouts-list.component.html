@@ -6,14 +6,21 @@
   </div>
 
   <!--workout item-->
-  <div>
+  <ng-template *ngIf="!(loading$ | async)">
     <p>Showing {{ listCount }} of {{ listTotal }} Workouts</p>
-    <div *ngIf="listCount == 0">
+    <div *ngIf="listTotal === 0">
       <div class="no-workout">I see you have not created a workout...</div>
+    </div>
+    <div *ngIf="listCount === 0">
+      <div class="no-workout">No Results Found</div>
     </div>
     <div>
       <div *ngFor="let workout of workouts; let i = index">
-        <a [routerLink]="[i]" class="workout__item" (click)="scrollPosition()">
+        <a
+          [routerLink]="[workout.key]"
+          class="workout__item"
+          (click)="scrollPosition()"
+        >
           <div class="workout__item--img">
             <img [src]="workout.imageUrl" alt="{{ workout.title }}" />
           </div>
@@ -33,14 +40,11 @@
           </div>
           <span
             class="workout__item--details"
-            (mouseover)="workout.hoverState = true"
-            (mouseout)="workout.hoverState = false"
+            (mouseenter)="workout.hover = true"
+            (mouseleave)="workout.hover = false"
           >
             Details...
-            <div
-              class="tooltip"
-              [ngClass]="{ detailsActive: workout.hoverState }"
-            >
+            <div class="tooltip" [ngClass]="{ detailsActive: workout.hover }">
               <h3 class="tooltip__title">{{ workout.title }}</h3>
               <div class="tooltip__list-wrapper">
                 <ul class="tooltip__list">
@@ -85,5 +89,5 @@
         </a>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>

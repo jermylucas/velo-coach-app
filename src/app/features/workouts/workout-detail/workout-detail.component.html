@@ -1,96 +1,109 @@
-<div class="detail__image">
-  <img [src]="workout.imageUrl" alt="placeholder" />
-</div>
-<a class="back-btn" (click)="goBack()">Go Back</a>
-<div class="heading__wrapper">
-  <h2 class="detail__container--heading">{{ workout.title }}</h2>
-  <h3 class="detail__container--sub-heading">
-    {{ workout.type }}&nbsp; <span class="break"></span> &nbsp;
-    {{ workout.duration }}
-    minutes
-  </h3>
+<!-- ngIf Loading -->
+<mat-toolbar class="toolbar">
+  <a class="back-btn" (click)="goBack()">
+    <div>
+      <mat-icon>arrow_back</mat-icon>
+      <span> &nbsp; Go Back</span>
+    </div>
+  </a>
+</mat-toolbar>
+<ng-template *ngIf="!(loading$ | async)">
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
 
-  <div class="heading__wrapper-button">
-    <button
-      mat-button
-      [matMenuTriggerFor]="menu"
-      aria-label="workout config menu button"
-      class="manage-btn"
-    >
-      <mat-icon>more_vert</mat-icon>
-      Manage Workout
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item type="button" (click)="onEditWorkout()">
-        <mat-icon>edit</mat-icon>
-        <span>Edit Workout</span>
-      </button>
-      <button mat-menu-item type="button" (click)="onDeleteWorkout()">
-        <mat-icon>delete</mat-icon>
-        <span>Delete Workout</span>
-      </button>
-      <button mat-menu-item type="button" disabled>
-        <mat-icon>directions_bike</mat-icon>
-        <span>Disabled test</span>
-      </button>
-    </mat-menu>
+<div *ngIf="loading$ | async">
+  <div class="detail__image">
+    <img [src]="workout.imageUrl" alt="placeholder" />
   </div>
-</div>
+  <div class="heading__wrapper">
+    <h2 class="detail__container--heading">{{ workout.title }}</h2>
+    <h3 class="detail__container--sub-heading">
+      {{ workout.type }}&nbsp; <span class="break"></span> &nbsp;
+      {{ workout.duration }}
+      minutes
+    </h3>
 
-<div class="detail">
-  <div class="detail__container-left">
-    <div class="detail__container-left-description">
-      <!-- innerHTML to display WYSIWYG text as well -->
-      <p [innerHTML]="workout.description"></p>
+    <div class="heading__wrapper-button">
+      <button
+        mat-button
+        [matMenuTriggerFor]="menu"
+        aria-label="workout config menu button"
+        class="manage-btn"
+      >
+        <mat-icon>more_vert</mat-icon>
+        Manage Workout
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item type="button" (click)="onEditWorkout()">
+          <mat-icon>edit</mat-icon>
+          <span>Edit Workout</span>
+        </button>
+        <button mat-menu-item type="button" (click)="onDeleteWorkout()">
+          <mat-icon>delete</mat-icon>
+          <span>Delete Workout</span>
+        </button>
+        <button mat-menu-item type="button" disabled>
+          <mat-icon>directions_bike</mat-icon>
+          <span>Disabled test</span>
+        </button>
+      </mat-menu>
     </div>
   </div>
-  <div class="detail__container-right">
-    <h3 class="detail__container--secondary-heading">Details</h3>
-    <div class="detail__list-wrapper">
-      <ul class="detail__list">
-        <li>
-          <span class="detail__list-lh">Phases</span>
-          <ul>
-            <li class="detail__list-li" *ngFor="let phase of workout.phase">
-              {{ phase }}
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span class="detail__list-lh">Specialties</span>
-          <ul>
-            <li
-              class="detail__list-li"
-              *ngFor="let specialty of workout.specialty"
-            >
-              {{ specialty }}
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span class="detail__list-lh">Type</span>
-          <ul>
-            <!--if I make this an array later, change to ngfor loop like above-->
-            <li class="detail__list-li">{{ workout.type }}</li>
-          </ul>
-        </li>
-        <li>
-          <span class="detail__list-lh">Duration</span>
-          <ul>
-            <li class="detail__list-li">{{ workout.duration }}</li>
-          </ul>
-        </li>
-        <li>
-          <span class="detail__list-lh">On Zwift?</span>
-          <ul>
-            <li class="detail__list-li">{{ workout.zwo }}</li>
-          </ul>
-        </li>
-      </ul>
+
+  <div class="detail">
+    <div class="detail__container-left">
+      <div class="detail__container-left-description">
+        <!-- innerHTML to display WYSIWYG text as well -->
+        <p [innerHTML]="workout.description"></p>
+      </div>
+    </div>
+    <div class="detail__container-right">
+      <h3 class="detail__container--secondary-heading">Details</h3>
+      <div class="detail__list-wrapper">
+        <ul class="detail__list">
+          <li>
+            <span class="detail__list-lh">Phases</span>
+            <ul>
+              <li class="detail__list-li" *ngFor="let phase of workout.phase">
+                {{ phase }}
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span class="detail__list-lh">Specialties</span>
+            <ul>
+              <li
+                class="detail__list-li"
+                *ngFor="let specialty of workout.specialty"
+              >
+                {{ specialty }}
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span class="detail__list-lh">Type</span>
+            <ul>
+              <!--if I make this an array later, change to ngfor loop like above-->
+              <li class="detail__list-li">{{ workout.type }}</li>
+            </ul>
+          </li>
+          <li>
+            <span class="detail__list-lh">Duration</span>
+            <ul>
+              <li class="detail__list-li">{{ workout.duration }}</li>
+            </ul>
+          </li>
+          <li>
+            <span class="detail__list-lh">On Zwift?</span>
+            <ul>
+              <li class="detail__list-li">{{ workout.zwo }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
-
 <!-- WORKOUT MODEL
 //
 title: string,

@@ -1,18 +1,15 @@
 @import "../../../../scss/variables";
 
 .back-btn {
-  display: block;
-  position: fixed;
-  top: 56px;
-  font-size: 16px;
-  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
   cursor: pointer;
-  text-decoration: underline;
-  color: $color-primary-dark-blue;
-  z-index: 1;
-  border-bottom-right-radius: 3px;
 
-  background: transparentize($color-light-grey, 0.05);
+  &:hover {
+    color: $color-primary-dark-blue;
+  }
 }
 img {
   position: relative;
@@ -177,4 +174,39 @@ ul li {
 
   border: 1px solid #7e7e7e;
   transform: rotate(90deg);
+}
+
+.toolbar {
+  background: $color-light-grey;
+  height: 48px;
+  font-weight: normal;
+
+  &__title {
+    font-size: 16px;
+    margin-right: 2rem;
+  }
+
+  &__sort {
+    font-size: 16px;
+    color: $color-primary-blue;
+    cursor: pointer;
+  }
+
+  &__search {
+    &-icon {
+      display: inline;
+    }
+  }
+
+  &__mobile {
+    background: $color-light-grey;
+    height: 36px;
+    font-weight: normal;
+    display: none;
+    padding: 0 5px;
+
+    @media (max-width: $breakpoint-tablet-port) {
+      display: block;
+    }
+  }
 }
