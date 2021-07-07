@@ -3,9 +3,12 @@
 </div> -->
 <!-- ngIf Loading -->
 <mat-toolbar class="toolbar">
-  <a style="cursor: pointer; vertical-align: middle" (click)="goBack()"
-    ><mat-icon>arrow_back</mat-icon> <span>Go Back</span></a
-  >
+  <a class="back-btn" (click)="goBack()">
+    <div>
+      <mat-icon>arrow_back</mat-icon>
+      <span> &nbsp; Go Back</span>
+    </div>
+  </a>
 </mat-toolbar>
 <div>
   <div class="detail__image">
