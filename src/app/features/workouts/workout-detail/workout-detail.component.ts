@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 })
 export class WorkoutDetailComponent implements OnInit {
   @Select(WorkoutState.workout) workout$: Observable<Workout>;
-  // @Select(WorkoutState.workout) loading$: Observable<boolean>;
+  @Select(WorkoutState.workout) loading$: Observable<boolean>;
 
   id: number;
   workout: any;

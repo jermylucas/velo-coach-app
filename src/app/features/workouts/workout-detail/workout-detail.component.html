@@ -1,6 +1,3 @@
-<!-- <div>
-  <app-loading-spinner></app-loading-spinner>
-</div> -->
 <!-- ngIf Loading -->
 <mat-toolbar class="toolbar">
   <a class="back-btn" (click)="goBack()">
@@ -10,7 +7,11 @@
     </div>
   </a>
 </mat-toolbar>
-<div>
+<ng-template #notLoading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
+
+<div *ngIf="loading$ | async; else notLoading">
   <div class="detail__image">
     <img [src]="workout.imageUrl" alt="placeholder" />
   </div>
