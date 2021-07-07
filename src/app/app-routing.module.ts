@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
+import { AuthComponent } from './core/components/auth/auth.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -34,7 +35,7 @@ const routes: Routes = [
   //   canActivate: [AuthGuard],
   //   loadChildren: () => import('./features/account/account.module').then((m) => m.AccountModule),
   // },
-  // { path: 'auth', component: AuthComponent },
+  { path: 'auth', component: AuthComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
 ];

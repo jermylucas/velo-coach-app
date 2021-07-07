@@ -12,6 +12,8 @@ import {
   Event,
 } from '@angular/router';
 import { WorkoutService } from './features/workouts/services/workout.service';
+import { FirebaseAuthService } from './core/services/firebase-auth.service';
+import { LocalStorageService } from './core/services/storage/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -33,9 +35,10 @@ export class AppComponent implements OnInit {
   constructor(
     private sidenavService: SidenavService,
     private router: Router,
-    private workoutService: WorkoutService
-  ) // private authService: AuthService
-  {
+    private workoutService: WorkoutService,
+    private authService: FirebaseAuthService,
+    private localStorage: LocalStorageService
+  ) {
     router.events.subscribe((routerEvent: Event) => {
       this.checkRouterEvent(routerEvent);
     });
@@ -43,6 +46,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.sidenavService.setSidenav(this.matSidenav);
+    // if (this.)
     // this.authService.autoLogin();
     this.getScreenWidth().subscribe((width) => {
       if (width < 640) {
