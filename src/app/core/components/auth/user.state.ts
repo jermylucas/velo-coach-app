@@ -103,9 +103,9 @@ export class UserState {
     ctx.setState(
       patch<UserStateModel>({
         user: {
-          email: payload.user.email,
-          id: payload.user.uid,
-          displayName: payload.user.displayName,
+          email: payload.email,
+          id: payload.id,
+          displayName: payload.displayName,
         },
       })
     );

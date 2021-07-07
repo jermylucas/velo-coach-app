@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Store } from '@ngxs/store';
 import firebase from 'firebase/app';
+import { Observable } from 'rxjs';
 import { FetchWorkouts } from 'src/app/features/workouts/workout.state';
 import { SetUser, User } from '../components/auth/user.state';
 import { LocalStorageService } from './storage/local-storage.service';
@@ -10,12 +11,15 @@ import { LocalStorageService } from './storage/local-storage.service';
   providedIn: 'root',
 })
 export class FirebaseAuthService {
+  user: Observable<any>;
   isLoggedIn = false;
   constructor(
     public fireAuth: AngularFireAuth,
     private localStorage: LocalStorageService,
     private store: Store
-  ) {}
+  ) {
+    this.user = this.fireAuth.authState;
+  }
 
   async signup(email: string, password: string, name: string) {
     await this.fireAuth
@@ -62,11 +66,6 @@ export class FirebaseAuthService {
       _tokenExpirationDate: new Date(userData._tokenExpirationDate),
     };
     this.store.dispatch(new SetUser(loadedUser));
-    // if (loadedUser.token) {
-    //   this.activeUser.next(loadedUser);
-    //   const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
-    //   this.autoLogout(expirationDuration);
-    // }
   }
 
   logout() {

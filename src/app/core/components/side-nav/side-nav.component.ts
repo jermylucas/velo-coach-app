@@ -21,7 +21,10 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private router: Router // private workoutService: WorkoutService
   ) {}
   ngOnInit() {
-    // this.userSub = this.authService.
+    this.userSub = this.authService.user.subscribe((res) => {
+      this.isAuthenticated = !!res;
+      console.log('Firebase Auth Sub', res);
+    });
   }
 
   closePanel() {

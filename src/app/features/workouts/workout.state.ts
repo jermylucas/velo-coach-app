@@ -96,6 +96,7 @@ export class WorkoutState {
   @Action(FetchWorkouts)
   fetchWorkouts(ctx: StateContext<WorkoutStateModel>) {
     const uid = this.store.selectSnapshot(UserState.user)?.id;
+    console.log(uid);
     let workoutsRef = this.db.list(`/workouts/${uid}`);
 
     // if (uid === undefined) {
