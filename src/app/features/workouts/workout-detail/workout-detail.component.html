@@ -7,11 +7,11 @@
     </div>
   </a>
 </mat-toolbar>
-<ng-template #notLoading>
+<ng-template *ngIf="!(loading$ | async)">
   <app-loading-spinner></app-loading-spinner>
 </ng-template>
 
-<div *ngIf="loading$ | async; else notLoading">
+<div *ngIf="loading$ | async">
   <div class="detail__image">
     <img [src]="workout.imageUrl" alt="placeholder" />
   </div>
