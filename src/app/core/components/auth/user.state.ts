@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { State, Selector, Action, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { LocalStorageService } from '../../services/storage/local-storage.service';
 
 export interface User {
   email: string;
@@ -14,7 +15,7 @@ export interface User {
 
 export interface UserProfile {
   email: string;
-  uid: string;
+  id: string;
   displayName: string;
 }
 
@@ -58,7 +59,10 @@ export class SetToken {
 })
 @Injectable()
 export class UserState {
-  constructor(private authService: FirebaseAuthService) {}
+  constructor(
+    private authService: FirebaseAuthService,
+    private localStorage: LocalStorageService
+  ) {}
 
   @Selector()
   static user(state: UserStateModel) {
@@ -95,9 +99,14 @@ export class UserState {
 
   @Action(SetUser)
   setUser(ctx: StateContext<UserStateModel>, { payload }: any) {
+    console.log('PAYLOAD', payload);
     ctx.setState(
       patch<UserStateModel>({
-        user: payload as UserProfile,
+        user: {
+          email: payload.user.email,
+          id: payload.user.uid,
+          displayName: payload.user.displayName,
+        },
       })
     );
   }

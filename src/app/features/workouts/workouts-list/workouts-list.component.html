@@ -6,12 +6,12 @@
   </div>
 
   <!--workout item-->
-  <ng-template *ngIf="!(loading$ | async)">
+  <div *ngIf="!(loading$ | async)">
     <p>Showing {{ listCount }} of {{ listTotal }} Workouts</p>
     <div *ngIf="listTotal === 0">
       <div class="no-workout">I see you have not created a workout...</div>
     </div>
-    <div *ngIf="listCount === 0">
+    <div *ngIf="listCount === 0 && listTotal !== 0">
       <div class="no-workout">No Results Found</div>
     </div>
     <div>
@@ -89,5 +89,5 @@
         </a>
       </div>
     </div>
-  </ng-template>
+  </div>
 </div>

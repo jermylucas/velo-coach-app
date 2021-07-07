@@ -24,6 +24,7 @@ import { NgxsModule } from '@ngxs/store';
 import { WorkoutState } from './workout.state';
 import { WorkoutsFilterComponent } from './workouts-filter/workouts-filter.component';
 import { WorkoutEditComponent } from './workout-edit/workout-edit.component';
+import { UserState } from 'src/app/core/components/auth/user.state';
 
 @NgModule({
   declarations: [

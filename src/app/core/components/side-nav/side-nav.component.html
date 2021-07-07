@@ -88,8 +88,8 @@
   </div>
 
   <span class="spacer"></span>
-
-  <div *ngIf="isAuthenticated" class="logout">
+  <!-- *ngIf="isAuthenticated" -->
+  <div class="logout">
     <a (click)="onLogout()" class="logout-link"
       >Logout
       <mat-icon class="logout-link-icon" aria-label="logout icon"
