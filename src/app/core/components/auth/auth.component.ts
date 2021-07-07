@@ -29,6 +29,7 @@ export class AuthComponent {
   }
   onSwitchMode(form: NgForm) {
     form.reset();
+    this.errorMessage = null;
     this.loginMode = !this.loginMode;
   }
 
@@ -52,21 +53,10 @@ export class AuthComponent {
       form.reset();
     } else if (!this.loginMode) {
       this.isLoading = true;
-      // this.store
-      //   .dispatch(new CreateUser(email, password, name))
-      //   .subscribe((res) => {
-      //     if (res) {
-      //       console.log('Res from auth component', res);
-      //       this.isLoading = false;
-      //       this.router.navigate(['/dashboard']);
-      //     }
-      //   });
       this.authService
         .signup(email, password, name)
         .then((res) => {
-          console.log(res);
           this.isLoading = false;
-          this.store.dispatch(new SetUser(res as any));
           this.router.navigate(['/dashboard']);
         })
         .catch((error) => {

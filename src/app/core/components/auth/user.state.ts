@@ -20,7 +20,7 @@ export interface UserProfile {
 }
 
 export class UserStateModel {
-  user: UserProfile | null;
+  user: UserProfile | undefined;
   _token: string | null;
   _tokenExpirationDate: number | null;
 }
@@ -52,7 +52,7 @@ export class SetToken {
 @State<UserStateModel>({
   name: 'user',
   defaults: {
-    user: null,
+    user: undefined,
     _token: null,
     _tokenExpirationDate: null,
   },
@@ -72,7 +72,6 @@ export class UserState {
   @Action(FetchUser)
   fetchUser(ctx: StateContext<UserStateModel>, { email, password }: any) {
     return this.authService.login(email, password).then((res) => {
-      console.log('User from state', res);
       ctx.setState(
         patch<UserStateModel>({
           user: res as any,
@@ -86,20 +85,14 @@ export class UserState {
     ctx: StateContext<UserStateModel>,
     { email, password, name }: any
   ) {
-    console.log('DISPATCHED');
-    return this.authService.signup(email, password, name).then((res) => {
-      console.log('User from state', res);
-      ctx.setState(
-        patch<UserStateModel>({
-          user: res as any,
-        })
-      );
-    });
+    // return this.authService.signup(email, password, name).then((res: any) => {
+    //   // console.log('User from state', res);
+    //   ctx.dispatch(new SetUser(res.user));
+    // });
   }
 
   @Action(SetUser)
   setUser(ctx: StateContext<UserStateModel>, { payload }: any) {
-    console.log('PAYLOAD', payload);
     ctx.setState(
       patch<UserStateModel>({
         user: {
