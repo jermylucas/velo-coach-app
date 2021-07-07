@@ -96,7 +96,7 @@ export class WorkoutState {
   @Action(FetchWorkouts)
   fetchWorkouts(ctx: StateContext<WorkoutStateModel>) {
     const uid = this.store.selectSnapshot(UserState.user)?.id;
-    let workoutsRef = this.db.list(`${uid}/workouts`);
+    let workoutsRef = this.db.list(`/workouts/${uid}`);
 
     // if (uid === undefined) {
     //   workoutsRef = this.db.list('workouts');
@@ -126,9 +126,10 @@ export class WorkoutState {
 
   @Action(GetWorkout)
   getWorkout(ctx: StateContext<WorkoutStateModel>, { payload }: any) {
+    const uid = this.store.selectSnapshot(UserState.user)?.id;
     ctx.setState(patch<WorkoutStateModel>({ loading: true }));
     return this.db
-      .object('workouts/' + payload)
+      .object(`workouts/${uid}` + payload)
       .valueChanges()
       .pipe(
         tap((res) => {

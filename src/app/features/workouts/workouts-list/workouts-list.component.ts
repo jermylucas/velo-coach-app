@@ -48,8 +48,8 @@ export class WorkoutsListComponent implements OnInit, OnDestroy {
     this.workoutsRef = this.db.list('workouts');
     // Adds workout to DB
 
-    const uid = this.store.selectSnapshot(UserState.user)?.id;
-    console.log(uid);
+    // const uid = this.store.selectSnapshot(UserState.user)?.id;
+    // console.log(uid);
     // this.db.list(`workouts/${uid}`).push(this.sampleWorkout);
   }
 
