@@ -134,7 +134,7 @@ export class WorkoutState {
     const uid = this.store.selectSnapshot(UserState.user)?.uid;
     ctx.setState(patch<WorkoutStateModel>({ loading: true }));
     return this.db
-      .object(`workouts/${uid}` + payload)
+      .object(`workouts/${uid}/` + payload)
       .valueChanges()
       .pipe(
         tap((res) => {
