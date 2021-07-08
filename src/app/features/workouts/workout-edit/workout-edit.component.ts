@@ -11,7 +11,7 @@ import { finalize } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 // import { FirebaseStorageService } from '../../../core/services/storage/firebase-storage.service';
 import { WorkoutService } from '../services/workout.service';
-import { CreateWorkout } from '../workout.state';
+import { CreateWorkout, UpdateWorkout, WorkoutState } from '../workout.state';
 import { Store } from '@ngxs/store';
 
 @Component({
@@ -23,7 +23,7 @@ export class WorkoutEditComponent implements OnInit {
   @ViewChild('modalImageDialog')
   modalImageDialog: TemplateRef<any>;
 
-  id: number;
+  id: string;
   editMode = false;
   imgSrc = '';
   selectedImage: any = null;
@@ -87,12 +87,12 @@ export class WorkoutEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
+      this.id = params['id'];
       this.editMode = params['id'] != null;
     });
 
     // Patches workout values to formbuilder
-    const workout = this.workoutService.getWorkout(this.id);
+    const workout = this.store.selectSnapshot(WorkoutState.workout)!;
     if (this.editMode) {
       this.workoutForm.patchValue(workout);
       this.imageUrl = workout.imageUrl;
@@ -134,24 +134,21 @@ export class WorkoutEditComponent implements OnInit {
                   // returns object with imageUrl of what I want
                   this.workoutForm.value.imageUrl = url;
                   this.isLoading = false;
-                  this.workoutService.updateWorkout(
-                    this.id,
-                    this.workoutForm.value
+                  this.store.dispatch(
+                    new UpdateWorkout(this.id, this.workoutForm.value)
                   );
                   this.resetForm();
                   this.onCancel();
-                  // store workouts
-                  this.dataStorage.storeWorkouts();
                 });
               })
             )
             .subscribe();
         } else {
-          this.workoutService.updateWorkout(this.id, this.workoutForm.value);
+          this.store.dispatch(
+            new UpdateWorkout(this.id, this.workoutForm.value)
+          );
           this.resetForm();
           this.onCancel();
-          // store workouts
-          this.dataStorage.storeWorkouts();
         }
         return;
       }
