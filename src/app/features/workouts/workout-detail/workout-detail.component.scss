@@ -177,7 +177,8 @@ ul li {
 }
 
 .toolbar {
-  background: $color-light-grey;
+  background: $toolbar-light-grey;
+  border-bottom: 1px solid #d6d8db;
   height: 48px;
   font-weight: normal;
 
