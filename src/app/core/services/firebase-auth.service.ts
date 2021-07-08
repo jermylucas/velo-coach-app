@@ -5,10 +5,17 @@ import { Store } from '@ngxs/store';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import {
+  ClearWorkouts,
   FetchWorkouts,
   WorkoutState,
 } from 'src/app/features/workouts/workout.state';
-import { SetUser, User } from '../components/auth/user.state';
+import {
+  ClearUser,
+  FetchUser,
+  SetUser,
+  User,
+  UserState,
+} from '../components/auth/user.state';
 import { LocalStorageService } from './storage/local-storage.service';
 
 @Injectable({
@@ -27,6 +34,9 @@ export class FirebaseAuthService {
   }
 
   login(email: string, password: string) {
+    // this.store.dispatch(new FetchUser(email, password)).subscribe((res) => {
+    //   console.log('');
+    // });
     return this.fireAuth
       .signInWithEmailAndPassword(email, password)
       .then((res: any) => {
@@ -74,7 +84,7 @@ export class FirebaseAuthService {
   logout() {
     this.fireAuth.signOut();
     this.localStorage.removeLocalItem('userData');
-    this.store.reset(WorkoutState);
+    this.store.dispatch([new ClearUser(), new ClearWorkouts()]);
     this.router.navigate(['/auth']);
   }
 }

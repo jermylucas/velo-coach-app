@@ -73,7 +73,6 @@
 
 .description {
   grid-area: desc;
-  margin-top: 5px;
 }
 .specialty {
   grid-area: specialty;
@@ -96,10 +95,10 @@
   background: #f0f0f0;
   border: none;
   border-bottom: 1px solid #8b8b8b;
-  cursor: pointer;
   transition: all 0.1s;
   border-radius: 4px 4px 0 0;
-  height: 59px;
+  height: 50px;
+  text-align: center;
 
   &:hover {
     border-bottom: 1px solid black;
@@ -115,6 +114,7 @@
 }
 .duration {
   grid-area: duration;
+  padding-bottom: 0;
 }
 .image-edit {
   grid-area: img;

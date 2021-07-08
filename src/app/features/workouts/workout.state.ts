@@ -32,6 +32,13 @@ export interface WorkoutStateModel {
   loading: boolean;
 }
 
+export const workoutStateDefaults = {
+  workouts: [],
+  workout: null,
+  workoutList: [],
+  loading: true,
+};
+
 export class FetchWorkouts {
   static readonly type = '[WorkoutState] FetchWorkouts';
 }
@@ -63,14 +70,13 @@ export class ResetLoading {
   static readonly type = '[WorkoutState] ResetLoading';
 }
 
+export class ClearWorkouts {
+  static readonly type = '[WorkoutState] ClearWorkouts';
+}
+
 @State<WorkoutStateModel>({
   name: 'workout',
-  defaults: {
-    workouts: [],
-    workout: null,
-    workoutList: [],
-    loading: true,
-  },
+  defaults: workoutStateDefaults,
 })
 @Injectable()
 export class WorkoutState {
@@ -100,12 +106,11 @@ export class WorkoutState {
   @Action(FetchWorkouts)
   fetchWorkouts(ctx: StateContext<WorkoutStateModel>) {
     const uid = this.store.selectSnapshot(UserState.user)?.uid;
-    console.log(uid);
+    // Stop fetching workouts if something happens
+    if (uid === undefined || null) {
+      return;
+    }
     let workoutsRef = this.db.list(`/workouts/${uid}`);
-
-    // if (uid === undefined) {
-    //   workoutsRef = this.db.list('workouts');
-    // }
 
     ctx.setState(patch<WorkoutStateModel>({ loading: true }));
     return workoutsRef.snapshotChanges().pipe(
@@ -116,7 +121,6 @@ export class WorkoutState {
         }))
       ),
       tap((res: Workout[]) => {
-        console.log(res);
         ctx.setState(
           patch<WorkoutStateModel>({
             workouts: res as Workout[],
@@ -162,7 +166,6 @@ export class WorkoutState {
   createWorkout(ctx: StateContext<WorkoutStateModel>, { payload }: any) {
     const uid = this.store.selectSnapshot(UserState.user)?.uid;
     let workoutsRef = this.db.list(`/workouts/${uid}`);
-    console.log('Create Workout State', payload);
     return workoutsRef.push(payload);
   }
 
@@ -210,5 +213,10 @@ export class WorkoutState {
         loading: false,
       })
     );
+  }
+
+  @Action(ClearWorkouts)
+  resetState(ctx: StateContext<WorkoutStateModel>) {
+    ctx.setState(workoutStateDefaults);
   }
 }

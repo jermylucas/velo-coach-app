@@ -12,8 +12,6 @@ export class WorkoutService {
   selectedWorkouts: BehaviorSubject<any>;
   workouts: Workout[] = [];
 
-  filteredList: any;
-
   constructor(private store: Store) {
     this.selectedWorkouts = new BehaviorSubject(this.workouts);
     this.listTotal = this.workouts.length;
@@ -84,13 +82,7 @@ export class WorkoutService {
         (zwo.length === 0 || zwo.indexOf(workout.zwo) >= 0)
       );
     });
-    console.log('filteredWorkouts', filteredWorkouts);
     this.store.dispatch(new FilterWorkouts(filteredWorkouts));
-    // this.selectedWorkouts.next(workouts);
-
-    // console.log(this.selectedWorkouts);
-    // sets filteredList to workouts to allow sort functionality
-    this.filteredList = filteredWorkouts;
 
     // Removes overlay after select on small devices
     if (window.innerWidth < 981) {
@@ -112,36 +104,36 @@ export class WorkoutService {
   }
 
   //// Sort By: events
-  sortByTitle() {
-    if (!this.filteredList) {
-      this.workouts.sort(this.sortTitle);
-    } else {
-      this.filteredList.sort(this.sortTitle);
-      // Keeps entire list sorted instead of only filtered list
-      this.workouts.sort(this.sortTitle);
-    }
-    return;
-  }
-  sortByPhase() {
-    if (!this.filteredList) {
-      this.workouts.sort(this.sortPhase);
-    } else {
-      this.filteredList.sort(this.sortPhase);
-      // Keeps entire list sorted instead of only filtered list
-      this.workouts.sort(this.sortPhase);
-    }
-    return;
-  }
-  sortByDuration() {
-    if (!this.filteredList) {
-      this.workouts.sort(this.sortDuration);
-    } else {
-      this.filteredList.sort(this.sortDuration);
-      // Keeps entire list sorted instead of only filtered list
-      this.workouts.sort(this.sortDuration);
-    }
-    return;
-  }
+  // sortByTitle() {
+  //   if (!this.filteredList) {
+  //     this.workouts.sort(this.sortTitle);
+  //   } else {
+  //     this.filteredList.sort(this.sortTitle);
+  //     // Keeps entire list sorted instead of only filtered list
+  //     this.workouts.sort(this.sortTitle);
+  //   }
+  //   return;
+  // }
+  // sortByPhase() {
+  //   if (!this.filteredList) {
+  //     this.workouts.sort(this.sortPhase);
+  //   } else {
+  //     this.filteredList.sort(this.sortPhase);
+  //     // Keeps entire list sorted instead of only filtered list
+  //     this.workouts.sort(this.sortPhase);
+  //   }
+  //   return;
+  // }
+  // sortByDuration() {
+  //   if (!this.filteredList) {
+  //     this.workouts.sort(this.sortDuration);
+  //   } else {
+  //     this.filteredList.sort(this.sortDuration);
+  //     // Keeps entire list sorted instead of only filtered list
+  //     this.workouts.sort(this.sortDuration);
+  //   }
+  //   return;
+  // }
 
   sortTitle(a, b) {
     return a.title > b.title ? 1 : b.title > a.title ? -1 : 0;

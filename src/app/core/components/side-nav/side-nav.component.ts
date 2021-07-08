@@ -26,11 +26,6 @@ export class SideNavComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userSub = this.authService.user.subscribe((res) => {
       this.isAuthenticated = !!res;
-      if (res) {
-        console.log('not null');
-        // this.store.dispatch(new SetUser(res));
-      }
-      console.log('Firebase Auth Sub', res);
     });
   }
 

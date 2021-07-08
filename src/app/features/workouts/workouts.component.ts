@@ -22,9 +22,7 @@ export class WorkoutsComponent implements OnInit {
     this.store.dispatch(new FetchWorkouts());
   }
 
-  ngOnInit() {
-    // this.onFetchData();
-  }
+  ngOnInit() {}
 
   openNav() {
     if (this.opened) {
@@ -38,15 +36,12 @@ export class WorkoutsComponent implements OnInit {
 
   // Sort by events to service
   onTitleSort() {
-    this.workoutService.sortByTitle();
+    // this.workoutService.sortByTitle();
   }
   onPhaseSort() {
-    this.workoutService.sortByPhase();
+    // this.workoutService.sortByPhase();
   }
   onDurationSort() {
-    this.workoutService.sortByDuration();
-  }
-  onFetchData() {
-    // this.dataStorageService.fetchWorkouts().subscribe();
+    // this.workoutService.sortByDuration();
   }
 }
