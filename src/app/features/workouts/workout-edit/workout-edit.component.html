@@ -110,12 +110,7 @@
       </mat-form-field>
 
       <!-- imagePath -->
-      <button
-        *ngIf="!editMode || replaceImage"
-        class="img"
-        type="button"
-        (click)="fileInput.click()"
-      >
+      <div *ngIf="!editMode || replaceImage" class="img">
         <input
           #fileInput
           type="file"
@@ -125,7 +120,7 @@
           class="img-input"
           (change)="onImageChange($event)"
         />
-      </button>
+      </div>
 
       <div *ngIf="editMode && !replaceImage" class="image-edit">
         <button mat-stroked-button type="button" (click)="openModal()">

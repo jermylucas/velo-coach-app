@@ -25,6 +25,16 @@ export class UserStateModel {
   _tokenExpirationDate: number | null;
 }
 
+export const userStateDefaults = {
+  user: {
+    email: undefined,
+    displayName: undefined,
+    uid: undefined,
+  },
+  _token: null,
+  _tokenExpirationDate: null,
+};
+
 export class FetchUser {
   static readonly type = '[User] FetchUser';
   constructor(public email: string, public password: string) {}
@@ -49,17 +59,13 @@ export class SetToken {
   constructor(public token: string) {}
 }
 
+export class ClearUser {
+  static readonly type = '[User] ClearUser';
+}
+
 @State<UserStateModel>({
   name: 'user',
-  defaults: {
-    user: {
-      email: undefined,
-      displayName: undefined,
-      uid: undefined,
-    },
-    _token: null,
-    _tokenExpirationDate: null,
-  },
+  defaults: userStateDefaults,
 })
 @Injectable()
 export class UserState {
@@ -97,7 +103,6 @@ export class UserState {
 
   @Action(SetUser)
   setUser(ctx: StateContext<UserStateModel>, { payload }: any) {
-    console.log('SET USER PAYLOAD', payload);
     ctx.setState(
       patch<UserStateModel>({
         user: {
@@ -107,5 +112,10 @@ export class UserState {
         },
       })
     );
+  }
+
+  @Action(ClearUser)
+  clearUser(ctx: StateContext<UserStateModel>) {
+    ctx.setState(userStateDefaults);
   }
 }
