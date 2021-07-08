@@ -58,7 +58,7 @@ export class CreateWorkout {
 }
 export class UpdateWorkout {
   static readonly type = '[WorkoutState] UpdateWorkout';
-  constructor(public payload: Workout) {}
+  constructor(public id: string, public payload: Workout) {}
 }
 
 export class DeleteWorkout {
@@ -167,6 +167,21 @@ export class WorkoutState {
     const uid = this.store.selectSnapshot(UserState.user)?.uid;
     let workoutsRef = this.db.list(`/workouts/${uid}`);
     return workoutsRef.push(payload);
+  }
+
+  @Action(UpdateWorkout)
+  updateWorkout(ctx: StateContext<WorkoutStateModel>, { id, payload }: any) {
+    const uid = this.store.selectSnapshot(UserState.user)?.uid;
+    return this.db
+      .object(`workouts/${uid}/${id}`)
+      .update(payload)
+      .then(() => {
+        ctx.setState(
+          patch<WorkoutStateModel>({
+            workout: payload,
+          })
+        );
+      });
   }
 
   //   const state = ctx.getState();
