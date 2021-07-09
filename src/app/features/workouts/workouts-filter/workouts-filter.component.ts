@@ -24,7 +24,7 @@ export class WorkoutsFilterComponent implements OnInit {
     'Race',
     'Testing',
     'Strength Build',
-    'Strength Maintenance',
+    'Strength Maint.',
   ];
   specialtyOptions = [
     'Road Race',

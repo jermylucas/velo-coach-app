@@ -26,17 +26,20 @@ img {
 
 /* Workout list */
 .workout__list {
-  width: 900px;
+  // width: 900px;
   max-width: 95%;
 
   margin: auto;
   margin-top: 10px;
   margin-bottom: 20px;
+
+  @media (min-width: $breakpoint-tablet-land) {
+    width: 1200px;
+    width: 90%;
+  }
 }
 /* Workout Items */
 .workout__item {
-  // width: 900px;
-  // max-width: 90%;
   min-height: 253px;
 
   margin-top: 20px;
@@ -47,29 +50,38 @@ img {
   border-radius: 2px;
   display: grid;
   grid-template-columns: 45% 55%;
-
-  position: relative;
-
   grid-template-areas:
     "img info"
     "notes notes";
+  position: relative;
 
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   &--img {
-    margin: auto;
+    margin: 0;
     padding: 10px;
     grid-area: img;
-    height: 156px;
+    height: 165px;
+
+    &img {
+      height: 100%;
+    }
+
+    @media (min-width: $breakpoint-tablet-land) {
+      border-bottom: 1px solid $color-light-grey;
+    }
   }
 
   &--info {
     grid-area: info;
     margin: 10px;
-
     position: relative;
+
+    @media (min-width: $breakpoint-tablet-land) {
+      margin: 0px;
+    }
   }
 
   &--title {
@@ -77,11 +89,15 @@ img {
     font-weight: 600;
     margin: 0;
 
+    width: 100%;
+    text-align: center;
+
     @media (min-width: $breakpoint-tablet-land) {
-      position: absolute;
-      top: 50%;
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
+      margin-bottom: 25px;
+    }
+
+    @media (max-width: $breakpoint-tablet-land) {
+      padding-bottom: 10px;
     }
   }
 
@@ -89,7 +105,7 @@ img {
     border-top: 1px solid $color-light-grey;
     text-align: center;
     width: 100%;
-    padding: 15px 0 8px 0;
+    padding-top: 10px;
 
     color: $color-grey;
     font-weight: bold;
@@ -108,6 +124,11 @@ img {
       padding: 8px 0;
       position: relative;
     }
+
+    @media (min-width: $breakpoint-tablet-land) {
+      border-top: 0px;
+      margin-bottom: 10px;
+    }
   }
 
   &--notes {
@@ -125,6 +146,17 @@ img {
     -webkit-box-shadow: inset 0px 6px 4px -4px $color-light-grey;
     -moz-box-shadow: inset 0px 6px 4px -4px $color-light-grey;
     box-shadow: inset 0px 6px 4px -4px $color-light-grey;
+
+    @media (min-width: $breakpoint-tablet-land) {
+      -webkit-box-shadow: inset 6px 0px 4px -4px $color-light-grey;
+      -moz-box-shadow: inset 6px 0px 4px -4px $color-light-grey;
+      box-shadow: inset 6px 0px 4px -4px $color-light-grey;
+
+      margin-bottom: 0px;
+
+      -webkit-line-clamp: 11;
+      line-clamp: 11;
+    }
   }
 
   &--details {
@@ -148,6 +180,13 @@ img {
       "img"
       "info"
       "notes";
+  }
+
+  @media (min-width: $breakpoint-tablet-land) {
+    grid-template-columns: 17.5% 22.5% 60%;
+    grid-template-areas:
+      "img img notes"
+      "info info notes";
   }
 }
 

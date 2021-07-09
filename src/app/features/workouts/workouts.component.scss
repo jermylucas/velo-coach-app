@@ -148,7 +148,7 @@
 // Main area grid
 .main__workouts {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 20% 80%;
 
   &--filter {
     @media (max-width: $breakpoint-tablet-port) {

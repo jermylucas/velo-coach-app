@@ -1,76 +1,75 @@
-<div class="filters">
-  <button
-    mat-raised-button
-    class="checkbox-apply"
-    type="button"
-    (click)="applyFilter()"
-  >
-    Apply
-  </button>
-  <h4>Phase</h4>
-  <div class="checkbox">
-    <span *ngFor="let phase of phaseOptions">
-      <mat-checkbox
-        color="warn"
-        type="checkbox"
-        (click)="phaseSelection.toggle(phase)"
-      >
-        {{ phase }}
-      </mat-checkbox>
-    </span>
-  </div>
+<button
+  mat-raised-button
+  class="checkbox-apply"
+  type="button"
+  (click)="applyFilter()"
+>
+  Apply
+</button>
 
-  <h4>Specialty</h4>
-  <div class="checkbox">
-    <span *ngFor="let specialty of specialtyOptions">
-      <mat-checkbox
-        color="warn"
-        type="checkbox"
-        (click)="specialtySelection.toggle(specialty)"
-      >
-        {{ specialty }}
-      </mat-checkbox>
-    </span>
-  </div>
+<h4>Phase</h4>
+<div class="checkbox">
+  <span *ngFor="let phase of phaseOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="phaseSelection.toggle(phase)"
+    >
+      {{ phase }}
+    </mat-checkbox>
+  </span>
+</div>
 
-  <h4>Duration (filters to be added)</h4>
-  <div class="checkbox">
-    <span *ngFor="let duration of durationOptions">
-      <mat-checkbox
-        color="warn"
-        type="checkbox"
-        (click)="durationSelection.toggle(duration)"
-      >
-        {{ duration }}
-      </mat-checkbox>
-    </span>
-  </div>
+<h4>Specialty</h4>
+<div class="checkbox">
+  <span *ngFor="let specialty of specialtyOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="specialtySelection.toggle(specialty)"
+    >
+      {{ specialty }}
+    </mat-checkbox>
+  </span>
+</div>
 
-  <h4>Type</h4>
-  <div class="checkbox">
-    <span *ngFor="let type of typeOptions">
-      <mat-checkbox
-        color="warn"
-        type="checkbox"
-        (click)="typeSelection.toggle(type)"
-      >
-        {{ type }}
-      </mat-checkbox>
-    </span>
-  </div>
+<!-- <h4>Duration (filters to be added)</h4>
+<div class="checkbox">
+  <span *ngFor="let duration of durationOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="durationSelection.toggle(duration)"
+    >
+      {{ duration }}
+    </mat-checkbox>
+  </span>
+</div>
+-->
+<h4>Type</h4>
+<div class="checkbox">
+  <span *ngFor="let type of typeOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="typeSelection.toggle(type)"
+    >
+      {{ type }}
+    </mat-checkbox>
+  </span>
+</div>
 
-  <h4>On Zwift?</h4>
-  <div class="checkbox">
-    <span *ngFor="let zwo of zwoOptions">
-      <mat-checkbox
-        color="warn"
-        type="checkbox"
-        (click)="zwoSelection.toggle(zwo)"
-      >
-        {{ zwo }}
-      </mat-checkbox>
-    </span>
-  </div>
+<h4>On Zwift?</h4>
+<div class="checkbox">
+  <span *ngFor="let zwo of zwoOptions">
+    <mat-checkbox
+      color="warn"
+      type="checkbox"
+      (click)="zwoSelection.toggle(zwo)"
+    >
+      {{ zwo }}
+    </mat-checkbox>
+  </span>
 </div>
 
 <!-- PHASES -->
