@@ -24,7 +24,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AuthComponent } from './core/components/auth/auth.component';
 import { UserState } from './core/components/auth/user.state';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { AccountComponent } from './features/account/account.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { AccountComponent } from './features/account/account.component';
     PageNotFoundComponent,
     SideNavComponent,
     AuthComponent,
-    AccountComponent,
   ],
   imports: [
     BrowserModule,

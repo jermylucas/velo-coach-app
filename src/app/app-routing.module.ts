@@ -30,11 +30,11 @@ const routes: Routes = [
   //   canActivate: [AuthGuard],
   //   loadChildren: () => import('./features/training-plans/training-plans.module').then((m) => m.TrainingPlansModule),
   // },
-  // {
-  //   path: 'account',
-  //   canActivate: [AuthGuard],
-  //   loadChildren: () => import('./features/account/account.module').then((m) => m.AccountModule),
-  // },
+  {
+    path: 'account',
+    loadChildren: () =>
+      import('./features/account/account.module').then((m) => m.AccountModule),
+  },
   { path: 'auth', component: AuthComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' },

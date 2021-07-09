@@ -23,6 +23,7 @@ export class UserStateModel {
   user: any;
   _token: string | null;
   _tokenExpirationDate: number | null;
+  loading: boolean;
 }
 
 export const userStateDefaults = {
@@ -33,6 +34,7 @@ export const userStateDefaults = {
   },
   _token: null,
   _tokenExpirationDate: null,
+  loading: false,
 };
 
 export class FetchUser {
@@ -51,6 +53,11 @@ export class CreateUser {
 
 export class SetUser {
   static readonly type = '[User] SetUser';
+  constructor(public payload: UserProfile) {}
+}
+
+export class UpdateUser {
+  static readonly type = '[User] UpdateUser';
   constructor(public payload: UserProfile) {}
 }
 
@@ -77,6 +84,10 @@ export class UserState {
   @Selector()
   static user(state: UserStateModel) {
     return state.user;
+  }
+  @Selector()
+  static loading(state: UserStateModel) {
+    return state.loading;
   }
 
   @Action(FetchUser)
