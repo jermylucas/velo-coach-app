@@ -1,0 +1,19 @@
+<div class="content padded">
+  <h2>{{ activeUser.displayName }}</h2>
+  <form [formGroup]="accountEditForm" (ngSubmit)="onSubmit()">
+    <div class="grid-col-2">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Display Name</mat-label>
+        <input matInput formControlName="displayName" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>E-Mail</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Password </mat-label>
+      <input matInput formControlName="displayName" />
+    </mat-form-field> -->
+  </form>
+</div>

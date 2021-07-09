@@ -40,9 +40,6 @@ export class FirebaseAuthService {
     return this.fireAuth
       .signInWithEmailAndPassword(email, password)
       .then((res: any) => {
-        console.log('LOGIN RES', res);
-        this.store.dispatch(new SetUser(res.user as any));
-
         this.isLoggedIn = true;
         this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
       });
@@ -55,6 +52,7 @@ export class FirebaseAuthService {
         res.user?.updateProfile({
           displayName: name,
         });
+
         this.isLoggedIn = true;
         this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
       });

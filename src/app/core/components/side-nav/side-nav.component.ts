@@ -26,7 +26,9 @@ export class SideNavComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userSub = this.authService.user.subscribe((res) => {
       this.isAuthenticated = !!res;
-      if (res === null) {
+      if (res) {
+        this.store.dispatch(new SetUser(res));
+      } else {
         this.authService.logout();
       }
     });

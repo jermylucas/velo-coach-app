@@ -24,11 +24,12 @@
   }
 
   &__mobile {
-    background: $color-light-grey;
-    height: 36px;
+    background: $toolbar-light-grey;
+    border-bottom: 1px solid $color-primary-blue;
+    height: 46px;
     font-weight: normal;
     display: none;
-    padding: 0 5px;
+    padding: 5px;
 
     @media (max-width: $breakpoint-tablet-port) {
       display: block;
@@ -95,6 +96,7 @@
     display: flex;
     width: 50%;
     max-width: 250px;
+    height: 100%;
     padding: 0;
 
     &--term {
@@ -102,7 +104,6 @@
       border: 1px solid $color-dark-grey;
       border-right: none;
       padding: 5px;
-      height: 20px;
       border-radius: 5px 0 0 5px;
       outline: none;
       color: #9dbfaf;
@@ -133,7 +134,7 @@
   display: none;
   border: 1px solid $color-grey;
   border-radius: 5px;
-  padding: 0 10px;
+  height: 100%;
   margin-right: 10px;
   cursor: pointer;
   font-size: 21px;
@@ -147,7 +148,7 @@
 // Main area grid
 .main__workouts {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 20% 80%;
 
   &--filter {
     @media (max-width: $breakpoint-tablet-port) {

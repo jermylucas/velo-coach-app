@@ -51,10 +51,12 @@
 }
 
 .profile {
-  @media (max-width: $breakpoint-tablet-port) {
+  position: relative;
+
+  @media (max-width: $breakpoint-mobile) {
     display: none;
   }
-  @media (min-width: $breakpoint-tablet-port) {
+  @media (min-width: $breakpoint-mobile) {
     display: block;
   }
   &__name {
