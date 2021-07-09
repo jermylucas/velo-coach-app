@@ -20,13 +20,11 @@
     </mat-icon>
   </button>
   <span class="spacer"></span>
-  <div class="profile" *ngIf="activeUser">
-    <span class="profile__name">Welcome {{ activeUser }}</span>
+  <div class="clock">
+    <i class="pi pi-clock"></i> {{ clock$ | async | date: "HH:mm" }}
+    <span title="Click to view Calendar">{{ today | date: "d MMM y" }}</span>
   </div>
-  <a routerLink="/workouts" class="logo--link">
-    <img
-      class="logo--image-right logo--image"
-      src="../../../assets/img/white logo.png"
-      alt="logo"
-  /></a>
+  <div class="profile" *ngIf="activeUser">
+    <span class="profile__name"> {{ activeUser }}</span>
+  </div>
 </mat-toolbar>

@@ -108,12 +108,14 @@ img {
         border-top: solid 4px $color-primary-light-blue;
         padding: 10px;
         font-size: 16px;
+        min-height: 237.5px;
 
         @media (max-width: $breakpoint-mobile) {
           padding: 5px;
           border-radius: 0px;
           box-shadow: none;
           background: #fafafa;
+          min-height: auto;
         }
       }
     }
