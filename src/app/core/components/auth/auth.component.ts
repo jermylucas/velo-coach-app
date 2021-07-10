@@ -46,7 +46,6 @@ export class AuthComponent {
           this.router.navigate(['/dashboard']);
         })
         .catch((error) => {
-          console.log('Received an error: ', error);
           this.handleError(error);
           this.isLoading = false;
         });
@@ -60,7 +59,7 @@ export class AuthComponent {
           this.router.navigate(['/dashboard']);
         })
         .catch((error) => {
-          console.log('Received an error: ', error);
+          this.handleError(error);
           this.isLoading = false;
         });
       form.reset();
@@ -68,6 +67,7 @@ export class AuthComponent {
   }
 
   private handleError(error) {
+    console.log('handle', error);
     let errorMessage =
       'An unknown error occured. Please try again or contact Jeremy';
     switch (error.code) {
@@ -78,15 +78,16 @@ export class AuthComponent {
     switch (error.code) {
       case 'auth/too-many-requests':
         errorMessage =
-          'Too many requests. Please wait at least 5 minutes or contact admin';
+          'Too many requests. Please wait at least 5 minutes or contact admin.';
     }
     switch (error.code) {
       case 'auth/wrong-password':
         errorMessage = 'Password is incorrect. Please try again.';
     }
     switch (error.code) {
-      case 'auth/email-already-exists':
-        errorMessage = 'This email already exists. Please login';
+      case 'auth/email-already-in-use':
+        errorMessage =
+          'This email already exists. Please login or try a new email.';
     }
     switch (error.code) {
       case 'auth/wrong-password':
@@ -94,7 +95,7 @@ export class AuthComponent {
     }
     switch (error.code) {
       case 'auth/weak-password':
-        errorMessage = 'Password must be longer than 6 characters';
+        errorMessage = 'Password must be longer than 6 characters.';
     }
     this.errorMessage = errorMessage;
   }

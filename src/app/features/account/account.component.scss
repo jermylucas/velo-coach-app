@@ -1,3 +1,5 @@
+@import "../../../scss/variables";
+
 .content.padded {
   margin: 0 0 4rem 0;
   padding: 2.5rem 2.2rem 2.2rem 2.8rem;
@@ -7,4 +9,18 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+}
+
+.btn {
+  &--save,
+  &--cancel {
+    color: $color-white;
+    margin-right: 10px;
+  }
+  &--save {
+    background: $color-green;
+  }
+  &--cancel {
+    background: $color-secondary-grey;
+  }
 }

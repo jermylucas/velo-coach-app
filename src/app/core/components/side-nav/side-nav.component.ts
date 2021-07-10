@@ -14,7 +14,6 @@ export class SideNavComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   isAuthenticated = false;
   panelOpenState = false;
-  // screenSize: boolean;
 
   constructor(
     private sidenavService: SidenavService,

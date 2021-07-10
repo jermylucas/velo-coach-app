@@ -1,6 +1,6 @@
 <div class="content padded">
   <h2>{{ activeUser.displayName }}</h2>
-  <form [formGroup]="accountEditForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="accountEditForm">
     <div class="grid-col-2">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Display Name</mat-label>
@@ -8,12 +8,22 @@
       </mat-form-field>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>E-Mail</mat-label>
-        <input matInput formControlName="email" />
+        <input [disabled]="true" matInput formControlName="email" />
       </mat-form-field>
     </div>
     <!-- <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Password </mat-label>
       <input matInput formControlName="displayName" />
     </mat-form-field> -->
+
+    <button
+      [disabled]="!accountEditForm.dirty"
+      class="btn--save"
+      type="submit"
+      mat-raised-button
+      (click)="onSubmit()"
+    >
+      Update
+    </button>
   </form>
 </div>

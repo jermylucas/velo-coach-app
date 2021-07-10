@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { State, Selector, Action, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
+import { first } from 'rxjs/operators';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { LocalStorageService } from '../../services/storage/local-storage.service';
 
@@ -78,6 +80,7 @@ export class ClearUser {
 export class UserState {
   constructor(
     private authService: FirebaseAuthService,
+    private fireAuth: AngularFireAuth,
     private localStorage: LocalStorageService
   ) {}
 
@@ -110,6 +113,23 @@ export class UserState {
     //   // console.log('User from state', res);
     //   ctx.dispatch(new SetUser(res.user));
     // });
+  }
+
+  @Action(UpdateUser)
+  async updateUser(ctx: StateContext<UserStateModel>, { payload }: any) {
+    // Payload has anything that comes from the accountform
+    // as of now only changing the displayname...
+    return (await this.fireAuth.currentUser)!
+      .updateProfile({
+        displayName: payload.displayName,
+      })
+      .then(() => {
+        this.fireAuth.user.pipe(first()).subscribe((res) => {
+          ctx.dispatch(new SetUser(res as any));
+          this.localStorage.removeLocalItem('userData');
+          this.localStorage.setItemLocally('userData', JSON.stringify(res));
+        });
+      });
   }
 
   @Action(SetUser)
