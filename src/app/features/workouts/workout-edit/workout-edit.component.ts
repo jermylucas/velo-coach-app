@@ -3,14 +3,11 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 // WYSIWYG
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { DataStorageService } from '../../../core/services/storage/datastorage.service';
 // Firebase Storage
 import { AngularFireStorage } from '@angular/fire/storage';
 // Finalize for upload operator
 import { finalize } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-// import { FirebaseStorageService } from '../../../core/services/storage/firebase-storage.service';
-import { WorkoutService } from '../services/workout.service';
 import { CreateWorkout, UpdateWorkout, WorkoutState } from '../workout.state';
 import { Store } from '@ngxs/store';
 
@@ -73,10 +70,8 @@ export class WorkoutEditComponent implements OnInit {
   };
 
   constructor(
-    private workoutService: WorkoutService,
     private router: Router,
     private route: ActivatedRoute,
-    private dataStorage: DataStorageService,
     private fireStorage: AngularFireStorage,
     private fb: FormBuilder,
     private dialog: MatDialog,

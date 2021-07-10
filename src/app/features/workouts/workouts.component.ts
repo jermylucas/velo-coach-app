@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { DataStorageService } from '../../core/services/storage/datastorage.service';
-import { WorkoutService } from './services/workout.service';
 import { FetchWorkouts } from './workout.state';
 
 @Component({
@@ -14,11 +12,7 @@ export class WorkoutsComponent implements OnInit {
   value = '';
   opened = false;
 
-  constructor(
-    private workoutService: WorkoutService,
-    private dataStorageService: DataStorageService,
-    private store: Store
-  ) {
+  constructor(private store: Store) {
     this.store.dispatch(new FetchWorkouts());
   }
 
