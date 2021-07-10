@@ -6,7 +6,7 @@ import {
   UpdateUser,
   User,
   UserState,
-} from 'src/app/core/components/auth/user.state';
+} from '../../core/components/auth/user.state';
 
 @Component({
   selector: 'app-account',
@@ -45,7 +45,9 @@ export class AccountComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('submitted');
     if (this.accountEditForm.valid) {
+      console.log('valid');
       this.store.dispatch(new UpdateUser(this.accountEditForm.value));
     }
   }
