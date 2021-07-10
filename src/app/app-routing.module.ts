@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './core/components/auth/auth.component';
+import { AuthGuard } from './core/components/auth/auth.guard';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
@@ -19,6 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'workouts',
+    canActivate: [AuthGuard],
     data: { preload: true },
     loadChildren: () =>
       import('./features/workouts/workouts.module').then(
@@ -32,6 +35,7 @@ const routes: Routes = [
   // },
   {
     path: 'account',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/account/account.module').then((m) => m.AccountModule),
   },
