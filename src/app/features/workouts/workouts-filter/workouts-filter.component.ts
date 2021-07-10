@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { WorkoutService } from '../services/workout.service';
-import { FilterWorkouts } from '../workout.state';
 import { Store } from '@ngxs/store';
 
 @Component({

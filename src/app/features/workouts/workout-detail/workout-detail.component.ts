@@ -4,7 +4,12 @@ import { LocalStorageService } from '../../../core/services/storage/local-storag
 
 import { PopupService } from '../../../core/services/snackbar.service';
 import { WorkoutService } from '../services/workout.service';
-import { GetWorkout, Workout, WorkoutState } from '../workout.state';
+import {
+  DeleteWorkout,
+  GetWorkout,
+  Workout,
+  WorkoutState,
+} from '../workout.state';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -78,7 +83,8 @@ export class WorkoutDetailComponent implements OnInit {
       )
     ) {
       // this.fireStorageService.onDeleteImage(this.workout.imageUrl);
-      this.workoutService.deleteWorkout(this.id);
+      this.store.dispatch(new DeleteWorkout(this.id));
+      // this.workoutService.deleteWorkout(this.id);
       this.router.navigate(['/workouts']);
       // this.dataStorage.storeWorkouts();
       this.popupService.openSnackBar('Workout Deleted From Server');

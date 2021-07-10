@@ -121,6 +121,7 @@ export class UserState {
           uid: payload.uid,
           displayName: payload.displayName,
         },
+        loading: false,
       })
     );
   }

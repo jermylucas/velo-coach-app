@@ -184,6 +184,13 @@ export class WorkoutState {
       });
   }
 
+  @Action(DeleteWorkout)
+  deleteWorkout(ctx: StateContext<WorkoutStateModel>, { payload }: any) {
+    const uid = this.store.selectSnapshot(UserState.user)?.uid;
+    let workoutsRef = this.db.list(`/workouts/${uid}`);
+    return workoutsRef.remove(payload);
+  }
+
   //   const state = ctx.getState();
   //   // const workouts = state.workouts.slice();
   //   return this.workoutService.filterWorkouts(phase, specialty, duration, type, zwo)

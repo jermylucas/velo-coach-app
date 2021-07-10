@@ -18,48 +18,48 @@ export class WorkoutService {
   }
 
   // For data storage. Retrieves all workouts even with checked boxes rather than just the selected workouts
-  getAllWorkouts() {
-    return this.workouts.slice();
-  }
+  // getAllWorkouts() {
+  //   return this.workouts.slice();
+  // }
 
-  // Return selected workouts so checkboxes work and can subscribe to the behavior subject
-  getWorkouts() {
-    return this.selectedWorkouts;
-  }
+  // // Return selected workouts so checkboxes work and can subscribe to the behavior subject
+  // getWorkouts() {
+  //   return this.selectedWorkouts;
+  // }
 
-  // For selecting workouts when boxes are checked (doesn't mess up array with checked boxes)
-  getWorkout(index: number) {
-    return this.selectedWorkouts.value[index];
-  }
+  // // For selecting workouts when boxes are checked (doesn't mess up array with checked boxes)
+  // getWorkout(index: number) {
+  //   return this.selectedWorkouts.value[index];
+  // }
 
-  // Add workouts from workout-edit
-  addWorkout(workout: Workout) {
-    this.workouts.push(workout);
-    this.selectedWorkouts.next(this.workouts.slice());
+  // // Add workouts from workout-edit
+  // addWorkout(workout: Workout) {
+  //   this.workouts.push(workout);
+  //   this.selectedWorkouts.next(this.workouts.slice());
 
-    // update list total on addition of new workout
-    this.listTotal = this.workouts.length;
-  }
+  //   // update list total on addition of new workout
+  //   this.listTotal = this.workouts.length;
+  // }
 
-  clearWorkouts() {
-    const emptyWorkouts: any = [];
-    this.selectedWorkouts.next(emptyWorkouts);
-    this.listTotal = 0;
-  }
+  // clearWorkouts() {
+  //   const emptyWorkouts: any = [];
+  //   this.selectedWorkouts.next(emptyWorkouts);
+  //   this.listTotal = 0;
+  // }
 
   // Updates workout instead of creating a new one while in editMode
-  updateWorkout(index: number, newWorkout: Workout) {
-    this.workouts[index] = newWorkout;
-    this.selectedWorkouts.next(this.workouts.slice());
-  }
+  // updateWorkout(index: number, newWorkout: Workout) {
+  //   this.workouts[index] = newWorkout;
+  //   this.selectedWorkouts.next(this.workouts.slice());
+  // }
 
-  deleteWorkout(index: number) {
-    this.workouts.splice(index, 1);
-    this.selectedWorkouts.next(this.workouts.slice());
+  // deleteWorkout(index: number) {
+  //   this.workouts.splice(index, 1);
+  //   this.selectedWorkouts.next(this.workouts.slice());
 
-    // update list total on addition of new workout
-    this.listTotal = this.workouts.length;
-  }
+  //   // update list total on addition of new workout
+  //   this.listTotal = this.workouts.length;
+  // }
 
   filterWorkouts(
     phases: string[],
@@ -92,16 +92,16 @@ export class WorkoutService {
     }
   }
 
-  // Set workouts fetched from server
-  setWorkouts(workouts: Workout[]) {
-    if (workouts == null) {
-      return;
-    } else if (workouts !== null) {
-      this.workouts = workouts;
-      this.selectedWorkouts.next(this.workouts);
-      this.listTotal = this.workouts.length;
-    }
-  }
+  // // Set workouts fetched from server
+  // setWorkouts(workouts: Workout[]) {
+  //   if (workouts == null) {
+  //     return;
+  //   } else if (workouts !== null) {
+  //     this.workouts = workouts;
+  //     this.selectedWorkouts.next(this.workouts);
+  //     this.listTotal = this.workouts.length;
+  //   }
+  // }
 
   //// Sort By: events
   // sortByTitle() {

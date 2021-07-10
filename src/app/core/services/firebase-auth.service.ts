@@ -2,20 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-import {
-  ClearWorkouts,
-  FetchWorkouts,
-  WorkoutState,
-} from 'src/app/features/workouts/workout.state';
-import {
-  ClearUser,
-  FetchUser,
-  SetUser,
-  User,
-  UserState,
-} from '../components/auth/user.state';
+import { first } from 'rxjs/operators';
+import { ClearWorkouts } from 'src/app/features/workouts/workout.state';
+import { ClearUser, SetUser, User } from '../components/auth/user.state';
 import { LocalStorageService } from './storage/local-storage.service';
 
 @Injectable({
@@ -34,12 +24,10 @@ export class FirebaseAuthService {
   }
 
   login(email: string, password: string) {
-    // this.store.dispatch(new FetchUser(email, password)).subscribe((res) => {
-    //   console.log('');
-    // });
     return this.fireAuth
       .signInWithEmailAndPassword(email, password)
       .then((res: any) => {
+        this.store.dispatch(new SetUser(res.user));
         this.isLoggedIn = true;
         this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
       });
@@ -49,12 +37,17 @@ export class FirebaseAuthService {
     return this.fireAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        res.user?.updateProfile({
-          displayName: name,
-        });
-
-        this.isLoggedIn = true;
-        this.localStorage.setItemLocally('userData', JSON.stringify(res.user));
+        res.user
+          ?.updateProfile({
+            displayName: name,
+          })
+          .then(() => {
+            this.user.pipe(first()).subscribe((res) => {
+              this.isLoggedIn = true;
+              this.localStorage.setItemLocally('userData', JSON.stringify(res));
+              this.store.dispatch(new SetUser(res));
+            });
+          });
       });
   }
 
