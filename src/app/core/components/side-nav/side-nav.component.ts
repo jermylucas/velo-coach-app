@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { SidenavService } from '../../services/sidenav.service';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
-import { SetUser } from '../auth/user.state';
 import { Store } from '@ngxs/store';
 
 @Component({
@@ -21,7 +20,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private sidenavService: SidenavService,
     private authService: FirebaseAuthService,
     private store: Store,
-    private router: Router // private workoutService: WorkoutService
+    private router: Router
   ) {}
   ngOnInit() {
     this.userSub = this.authService.user.subscribe((res) => {

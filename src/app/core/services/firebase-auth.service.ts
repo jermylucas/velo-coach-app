@@ -2,21 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
-import {
-  ClearWorkouts,
-  FetchWorkouts,
-  WorkoutState,
-} from 'src/app/features/workouts/workout.state';
-import {
-  ClearUser,
-  FetchUser,
-  SetUser,
-  User,
-  UserState,
-} from '../components/auth/user.state';
+import { ClearWorkouts } from 'src/app/features/workouts/workout.state';
+import { ClearUser, SetUser, User } from '../components/auth/user.state';
 import { LocalStorageService } from './storage/local-storage.service';
 
 @Injectable({

@@ -18,19 +18,19 @@ export class DataStorageService {
     private localStorage: LocalStorageService
   ) {}
 
-  storeWorkouts() {
-    const currentId = JSON.parse(
-      this.localStorage.getItemLocally('userData') || '{}'
-    );
-    const workouts = this.workoutService.getAllWorkouts();
-    this.http
-      .put(
-        `https://velo-coach-app.firebaseio.com/workouts/${currentId.id}.json`,
-        workouts
-      )
-      .subscribe((response) => console.log('Workouts Saved: ', response));
-    this.popupService.openSnackBar('Workouts Saved to Server');
-  }
+  // storeWorkouts() {
+  //   const currentId = JSON.parse(
+  //     this.localStorage.getItemLocally('userData') || '{}'
+  //   );
+  //   const workouts = this.workoutService.getAllWorkouts();
+  //   this.http
+  //     .put(
+  //       `https://velo-coach-app.firebaseio.com/workouts/${currentId.id}.json`,
+  //       workouts
+  //     )
+  //     .subscribe((response) => console.log('Workouts Saved: ', response));
+  //   this.popupService.openSnackBar('Workouts Saved to Server');
+  // }
 
   // fetchWorkouts() {
   //   const currentId = JSON.parse(
